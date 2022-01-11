@@ -1,0 +1,27 @@
+:root {
+    --shadow: 0px 4px 8px 0px var(--navy-green);
+    
+    --font-family: "Helvetica Neue", "Lucida Grande", "Arial", "Verdana", "Tahoma", sans-serif;
+	--font-smaller: 16px;
+	--font-medium: 18px;
+	--font-larger: 20px;
+
+    --off-white: rgb(242,239,234);
+    --green-white: rgb(237,235,223);
+    --grey-green-darker: rgb(187,183,172);
+    --grey-green-lighter: rgb(204,201,186);
+    --grey-green-ligtest: rgb(205,210,203);
+    --light-green: rgb(194,205,197);
+    --navy-blue: rgb(57,65,71);
+    --navy-green: rgb(71,91,100); 
+}
+
+html, input, textarea {
+	font-family: var(--font-family);
+}
+
+body {
+    background: var(--green-white);
+	margin: 0;
+	font-size: var(--font-smaller);
+}
