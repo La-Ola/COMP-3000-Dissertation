@@ -3,7 +3,7 @@
     padding-bottom: 120px 
 }
 
-.bookingHeader {
+.bookingHeader, .headerTimeCard {
     margin: 100px auto 0 auto;
     width: calc(100% - 80px);
     padding: 10px 10px 10px 10px;
@@ -13,9 +13,11 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     max-width: 1000px;
+    color: var(--off-white);
+    font-size: var(--font-medium);
 }
 
-.bookingCard {
+.bookingCard, .bookingTimeCard {
     box-shadow: var(--shadow);
     padding: 0 0 20px 0;
 	margin: 0 auto 0 auto;
@@ -27,7 +29,7 @@
     max-width: 1020px;
 }
 
-.datePicker {
+input.datePicker {
     background: var(--navy-blue);
     color: var(--off-white);
     border: none;
@@ -38,13 +40,6 @@
     padding: 10px;
     cursor: pointer;
     transition: 0.5s;
-}
-
-.datePicker svg {
-    fill: var(--off-white);
-	width: 20px;
-	height: 20px;
-	vertical-align: middle;
 }
 
 .datePicker:hover {
@@ -69,4 +64,8 @@
 .timeBox:hover{
     transition: 0.5s;
     background-color: var(--grey-green-lighter);
+}
+
+.active {
+    background-color: var(--grey-green-darker);
 }
