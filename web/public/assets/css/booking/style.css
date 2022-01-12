@@ -1,9 +1,10 @@
 .container-fluid {
     padding-top: 120px;
-    padding-bottom: 120px 
+    padding-bottom: 120px
 }
 
-.bookingHeader, .headerTimeCard {
+.bookingHeader,
+.headerTimeCard {
     margin: 100px auto 0 auto;
     width: calc(100% - 80px);
     padding: 10px 10px 10px 10px;
@@ -17,16 +18,22 @@
     font-size: var(--font-medium);
 }
 
-.bookingCard, .bookingTimeCard {
+.bookingCard,
+.bookingTimeCard {
     box-shadow: var(--shadow);
     padding: 0 0 20px 0;
-	margin: 0 auto 0 auto;
-	width: calc(100% - 60px);
-	border-bottom-left-radius: 10px;
+    margin: 0 auto 0 auto;
+    width: calc(100% - 80px);
+    border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-	display: block;
-    background-color: var(--off-white);
-    max-width: 1020px;
+    display: block;
+    background-color: var(--green-white);
+    max-width: 1000px;
+    padding-right: 20px;
+}
+
+.bookingTimeCard {
+    margin-bottom: 20px;
 }
 
 input.datePicker {
@@ -40,6 +47,7 @@ input.datePicker {
     padding: 10px;
     cursor: pointer;
     transition: 0.5s;
+    box-shadow: var(--shadow);
 }
 
 .datePicker:hover {
@@ -51,21 +59,48 @@ input.datePicker {
     font-size: var(--font-smaller);
     color: var(--navy-blue);
     padding: 10px;
-    width: 60px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: var(--navy-blue);
+    width: 80px;
+    border: none;
+    box-shadow: var(--shadow);
+    background-color: var(--off-white);
     text-align: center;
     display: inline-block;
     margin: 20px auto auto 20px;
     transition: 0.5s;
 }
 
-.timeBox:hover{
+.unselectableTime {
+    font-size: var(--font-smaller);
+    color: var(--grey-green-lighter);
+    box-shadow: none;
+    padding: 10px;
+    width: 80px;
+    border: none;
+    background-color: var(--off-white);
+    text-align: center;
+    display: inline-block;
+    margin: 20px auto auto 20px;
+    transition: 0.5s;
+    user-select: none;
+}
+
+.timeBox:hover {
     transition: 0.5s;
     background-color: var(--grey-green-lighter);
 }
 
 .active {
     background-color: var(--grey-green-darker);
+}
+
+.questionContainer {
+    display: inline-block;
+    margin-left: 20px;
+    padding-top: 20px;
+}
+
+.questionLabel {
+    display: inline-block;
+    margin: 20px 10px auto auto;
+    color: var(--navy-blue);
 }

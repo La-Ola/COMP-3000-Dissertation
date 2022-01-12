@@ -1,27 +1,110 @@
 :root {
-    --shadow: 0px 4px 8px 0px var(--navy-green);
-    
+    --shadow: 0px 4px 8px 0px var(--navy-blue);
     --font-family: "Helvetica Neue", "Lucida Grande", "Arial", "Verdana", "Tahoma", sans-serif;
-	--font-smaller: 16px;
-	--font-medium: 18px;
-	--font-larger: 20px;
-
-    --off-white: rgb(242,239,234);
-    --green-white: rgb(237,235,223);
-    --grey-green-darker: rgb(187,183,172);
-    --grey-green-lighter: rgb(204,201,186);
-    --grey-green-ligtest: rgb(205,210,203);
-    --light-green: rgb(194,205,197);
-    --navy-blue: rgb(57,65,71);
-    --navy-green: rgb(71,91,100); 
+    --font-smaller: 16px;
+    --font-medium: 18px;
+    --font-larger: 20px;
+    --off-white: rgb(242, 239, 234);
+    --green-white: rgb(237, 235, 223);
+    --grey-green-darker: rgb(187, 183, 172);
+    --grey-green-lighter: rgb(204, 201, 186);
+    --grey-green-ligtest: rgb(205, 210, 203);
+    --light-green: rgb(194, 205, 197);
+    --navy-blue: rgb(57, 65, 71);
+    --navy-green: rgb(71, 91, 100);
 }
 
-html, input, textarea {
-	font-family: var(--font-family);
+html,
+input,
+textarea {
+    font-family: var(--font-family);
 }
 
 body {
-    background: var(--green-white);
-	margin: 0;
-	font-size: var(--font-smaller);
-} 
+    background: var(--grey-green-ligtest);
+    margin: 0;
+    font-size: var(--font-smaller);
+}
+
+.inputBox {
+    border: none;
+    outline: none;
+    box-shadow: var(--shadow);
+    padding: 5px;
+    padding-left: 10px;
+    font-size: var(--font-smaller);
+    border-radius: 10px;
+    background-color: var(--off-white);
+}
+
+button {
+    background: var(--navy-blue);
+    color: var(--off-white);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    width: 110px;
+    font-size: var(--font-medium);
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+    margin-left: 20px;
+    box-shadow: var(--shadow);
+}
+
+button:hover {
+    transition: 0.5s;
+    background-color: var(--grey-green-darker);
+}
+
+textarea {
+    margin-left: 20px;
+    color: var(--navy-blue);
+}
+
+.inputBoxLarge {
+    border: none;
+    outline: none;
+    box-shadow: var(--shadow);
+    padding: 5px;
+    padding-left: 10px;
+    font-size: var(--font-smaller);
+    border-radius: 10px;
+    height: 200px;
+    width: calc(100% - 40px);
+    resize: none;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    background-color: var(--off-white);
+    color: var(--navy-blue);
+}
+
+.container {
+    display: block;
+    padding-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/*scroll bar*/
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 4px var(--grey-green-darker);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--navy-green);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--navy-blue);
+}
