@@ -131,5 +131,36 @@ document.addEventListener("DOMContentLoaded", () => {
                 fillBookableForm(bookable, slot);
             });
         });
+
+        submitButton.addEventListener("click", function() {
+            slot = slot.innerText + ":00";
+            let dateSelected = datePicker.value;
+            let formattedDateTime = dateSelected + " " + slot;
+
+            let xhr = new XMLHttpRequest();
+
+            let body = {
+                vetID: vetIDInput.value,
+                patientID: patientIDInput.value,
+                bookingDate: formattedDateTime,
+                reason: reasonIDInput.value
+            };
+
+            xhr.addEventListener("readystatechange", function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    let responseJSON = xhr.responseText;
+                    try {
+                        let response = JSON.parse(responseJSON);
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            });
+
+            xhr.open("POST", "./api/booking/create.php?", true);
+            xhr.send(JSON.stringify(body));
+
+            location.reload();
+        });
     }
 });
