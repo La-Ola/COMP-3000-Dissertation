@@ -55,20 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let fillBookableForm = function(bookable, slot) {
-        let vetInputContainer = document.createElement("div");
-        let vetIDLabelClassifier = document.createElement("div");
-        let vetIDLabel = document.createElement("span");
-        let vetIDInput = document.createElement("input");
-        vetInputContainer.classList.add("questionContainer");
-        vetIDLabelClassifier.classList.add("questionLabel");
-        vetIDInput.classList.add("inputBox");
-        vetIDInput.id = "vetIDInput";
-        vetIDInput.placeholder = "Vet ID";
-        vetIDLabel.innerHTML = "Vet ID:";
-        vetIDLabelClassifier.append(vetIDLabel);
-        vetInputContainer.append(vetIDLabelClassifier);
-        vetInputContainer.append(vetIDInput);
-
         let patientInputContainer = document.createElement("div");
         let patientIDLabelClassifier = document.createElement("div");
         let patientIDLabel = document.createElement("span");
@@ -104,8 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
         blockingButton.innerText = "Block Time";
         buttonContainer.append(blockingButton);
 
-
-        bookable.append(vetInputContainer);
         bookable.append(patientInputContainer);
         bookable.append(reasonInputContainer);
         bookable.append(buttonContainer);
@@ -140,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let xhr = new XMLHttpRequest();
 
             let body = {
-                vetID: vetIDInput.value,
+                vetID: 1111,
                 patientID: patientIDInput.value,
                 bookingDate: formattedDateTime,
                 reason: reasonIDInput.value
