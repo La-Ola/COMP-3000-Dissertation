@@ -305,4 +305,16 @@ document.addEventListener("DOMContentLoaded", () => {
             location.reload();
         }
     }
+
+    datePicker.addEventListener('change', () => {
+        let bookingCard = document.getElementsByClassName('bookingCard')[0];
+        let childs = bookingCard.childElementCount;
+        
+        for (let i = 0; i < childs; i++) {
+            let slot = bookingCard.children[i];
+            slot.classList.remove("unselectableTime");
+            slot.classList.add("timeBox");
+        }
+        checkAvailability();
+    });
 });
