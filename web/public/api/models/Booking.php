@@ -33,12 +33,23 @@
 			$command->execute();
 		}
 
+        public function delete() {
+            $query = 'CALL deleteBooking(:id)';
+            $command = $this->connection->prepare($query);
+            $command->bindParam(':id', $this->bookingID);
+            $command->execute();
+        }
+
         public function readAll() {
             $query = 'SELECT * FROM ' . $this->table;
             $command = $this->connection->prepare($query);
             $command->execute();
 
             return $command;
+        }
+
+        public function update() {
+
         }
     }
 

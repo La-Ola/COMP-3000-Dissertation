@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     let keysOfBooked = Object.keys(bookedSlots);
                     keysOfBooked.map(key => {
+                        let bookingID = bookedSlots[key].bookingID;
                         let bookingDate = bookedSlots[key].bookingDate;
                         let patientID = bookedSlots[key].patientID;
                         let reason = bookedSlots[key].reason;
@@ -81,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     checkAvailability();
-    console.log(bookedSlots);
 
     //gets time chosen from clickable time and opens bookables
     let getTime = function(timeBox) {
@@ -176,6 +176,30 @@ document.addEventListener("DOMContentLoaded", () => {
                             let deleteButton = document.createElement("button");
                             deleteButton.innerText = "Delete";
                             buttonContainer.append(deleteButton);
+
+                            deleteButton.addEventListener('click', () => {
+                                let bookingID = bookedSlots[key].bookingID;
+
+                                let xhr = new XMLHttpRequest();
+                                let body = {
+                                    bookingID: bookingID
+                                };
+
+                                xhr.addEventListener("readystatechange", function() {
+                                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                                        let responseJSON = xhr.responseText.substring(7);
+                                        try {
+                                            let response = JSON.parse(responseJSON);
+                                        } catch (error) {
+                                            console.log(error);
+                                        }
+                                    }
+                                });
+                                xhr.open("DELETE", "./api/booking/delete.php?", true);
+                                xhr.send(JSON.stringify(body));
+
+                                freeingButton(slot);
+                            });
                         }
                     }
                 }
@@ -229,10 +253,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     freeingButton.addEventListener("click", function() {
                         freeingButton(slot);
+                        slot.name = '';
                         bookable.innerHTML = "";
                         fillBookableForm(bookable, slot);
                     });
                 });
+
                 submitButton.addEventListener("click", function() {
                     let theSlot = slot.innerText + ":00";
                     let dateSelected = datePicker.value;
@@ -271,13 +297,12 @@ document.addEventListener("DOMContentLoaded", () => {
             bookable.append(patientInputContainer);
             bookable.append(reasonInputContainer);
             bookable.append(buttonContainer);
-
-            
         }
 
         let freeingButton = function(slot) {
             slot.classList.remove("unselectableTime");
             slot.classList.add("timeBox");
+            location.reload();
         }
     }
 });
