@@ -15,6 +15,14 @@
 			$this->connection = $db;
 		}
 
+        public function block() {
+            $query = 'CALL blockTime(:vetID, :bookingDate)';
+            $command = $this->connection->prepare($query);
+            $command->bindParam(':vetID', $this->vetID);
+            $command->bindParam(':bookingDate', $this->bookingDate);
+            $command->execute();
+        }
+
         public function create() {
 			$query = 'CALL createBooking(:vetID, :patientID, :bookingDate, :reason)';
 			$command = $this->connection->prepare($query);

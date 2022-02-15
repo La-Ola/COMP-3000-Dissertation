@@ -107,6 +107,31 @@ document.addEventListener("DOMContentLoaded", () => {
             buttonContainer.append(freeingButton);
             bookable.append(buttonContainer);
 
+            let theSlot = slot.innerText + ":00";
+            let dateSelected = datePicker.value;
+            let formattedDateTime = dateSelected + " " + theSlot;
+
+            let xhr = new XMLHttpRequest();
+
+            let body = {
+                vetID: 1111,
+                bookingDate: formattedDateTime
+            };
+
+            xhr.addEventListener("readystatechange", function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    let responseJSON = xhr.responseText;
+                    try {
+                        let response = JSON.parse(responseJSON);
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            });
+
+            xhr.open("POST", "./api/booking/block.php?", true);
+            xhr.send(JSON.stringify(body));
+
             freeingButton.addEventListener("click", function() {
                 slot.classList.remove("unselectableTime");
                 slot.classList.add("timeBox");
@@ -116,10 +141,15 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
+        
+
         submitButton.addEventListener("click", function() {
-            slot = slot.innerText + ":00";
+            let theSlot = slot.innerText + ":00";
             let dateSelected = datePicker.value;
-            let formattedDateTime = dateSelected + " " + slot;
+            let formattedDateTime = dateSelected + " " + theSlot;
+
+            slot.classList.remove("timeBox");
+            slot.classList.add("unselectableTime");
 
             let xhr = new XMLHttpRequest();
 
