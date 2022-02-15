@@ -32,6 +32,14 @@
 			$command->bindParam(':reason', $this->reason);
 			$command->execute();
 		}
+
+        public function readAll() {
+            $query = 'SELECT * FROM ' . $this->table;
+            $command = $this->connection->prepare($query);
+            $command->execute();
+
+            return $command;
+        }
     }
 
 ?>

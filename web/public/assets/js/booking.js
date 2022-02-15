@@ -6,9 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let timeBox = document.getElementsByClassName("timeBox");
     let bookableSlot = document.getElementById("booking slot");
 
-
-
-
     //on load, the page sets the date to today and makes days before today un-selectable.
     let today = new Date();
 
