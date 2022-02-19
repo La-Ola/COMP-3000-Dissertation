@@ -163,11 +163,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         let time = slot.id + ':00';
                         let dateTime = date + ' ' + time
                         if (dateTime == bookingDate) {
+                            let bookingID = bookedSlots[key].bookingID;
                             let patientID = bookedSlots[key].patientID;
                             let reason = bookedSlots[key].reason;
 
                             patientIDInput.placeholder = patientID;
-                            reasonIDInput.placeholder = reason;
+                            patientIDInput.innerText = patientID;
+                            reasonIDInput.innerText = reason;
 
                             let updateButton = document.createElement("button");
                             updateButton.innerText = "Update";
@@ -177,9 +179,29 @@ document.addEventListener("DOMContentLoaded", () => {
                             deleteButton.innerText = "Delete";
                             buttonContainer.append(deleteButton);
 
-                            deleteButton.addEventListener('click', () => {
-                                let bookingID = bookedSlots[key].bookingID;
+                            updateButton.addEventListener ('click', () => {
+                                let xhr = new XMLHttpRequest();
+                                let body = {
+                                    bookingID: bookingID,
+                                    patientID: patientIDInput.value,
+                                    reason: reasonIDInput.value
+                                };
 
+                                xhr.addEventListener("readystatechange", function() {
+                                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                                        let responseJSON = xhr.responseText.substring(7);
+                                        try {
+                                            let response = JSON.parse(responseJSON);
+                                        } catch (error) {
+                                            console.log(error);
+                                        }
+                                    }
+                                });
+                                xhr.open("PUT", "./api/booking/update.php?", true);
+                                xhr.send(JSON.stringify(body));
+                            });
+
+                            deleteButton.addEventListener('click', () => {
                                 let xhr = new XMLHttpRequest();
                                 let body = {
                                     bookingID: bookingID

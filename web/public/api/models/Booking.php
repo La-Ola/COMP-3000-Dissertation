@@ -49,7 +49,12 @@
         }
 
         public function update() {
-
+            $query = 'CALL updateBooking(:id, :patientID, :reason)';
+			$command = $this->connection->prepare($query);
+			$command->bindParam(':id', $this->bookingID);
+			$command->bindParam(':patientID', $this->patientID);
+			$command->bindParam(':reason', $this->reason);
+			$command->execute();
         }
     }
 
