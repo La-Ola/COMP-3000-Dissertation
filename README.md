@@ -1,6 +1,9 @@
 # COMP-3000
  
 ## Bootstrap Resources
-### booking page
+### Vet booking page
 - CSS
-    - https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css
+    - https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+
+- JS
+    - 

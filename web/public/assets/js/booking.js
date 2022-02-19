@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     let datePicker = document.getElementById("date_picker");
 
     let timeBox = document.getElementsByClassName("timeBox");
@@ -168,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             let reason = bookedSlots[key].reason;
 
                             patientIDInput.placeholder = patientID;
-                            patientIDInput.innerText = patientID;
+                            patientIDInput.value = patientID;
                             reasonIDInput.innerText = reason;
 
                             let updateButton = document.createElement("button");
@@ -190,10 +189,16 @@ document.addEventListener("DOMContentLoaded", () => {
                                 xhr.addEventListener("readystatechange", function() {
                                     if (xhr.readyState === XMLHttpRequest.DONE) {
                                         let responseJSON = xhr.responseText.substring(7);
+                                        let notifier = new AWN();
                                         try {
-                                            let response = JSON.parse(responseJSON);
+                                            if (xhr.status == 200) {
+                                                notifier.success('Successfully Updated Booking');
+                                            } else {
+                                                notifier.alert('Has Not Updated Booking. Check Connection');
+                                            }
                                         } catch (error) {
                                             console.log(error);
+                                            notifier.alert('Has Not Updated Booking. Check Connection.');
                                         }
                                     }
                                 });
@@ -211,9 +216,14 @@ document.addEventListener("DOMContentLoaded", () => {
                                     if (xhr.readyState === XMLHttpRequest.DONE) {
                                         let responseJSON = xhr.responseText.substring(7);
                                         try {
-                                            let response = JSON.parse(responseJSON);
+                                            if (xhr.status == 200) {
+                                                notifier.success('Successfully Deleted Booking');
+                                            } else {
+                                                notifier.alert('Has Not Deleted Booking. Check Connection.');
+                                            }
                                         } catch (error) {
                                             console.log(error);
+                                            notifier.alert('Has Not Deleted Booking. Check Connection.');
                                         }
                                     }
                                 });
@@ -263,9 +273,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
                             let responseJSON = xhr.responseText;
                             try {
-                                let response = JSON.parse(responseJSON);
+                                if (xhr.status == 200) {
+                                    notifier.success('Successfully Blocked Booking From Patients');
+                                } else {
+                                    notifier.alert('Has Not Blocked Booking. Check Connection.');
+                                }
                             } catch (error) {
                                 console.log(error);
+                                notifier.alert('Has Not Blocked Booking. Check Connection.');
                             }
                         }
                     });
@@ -278,6 +293,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         slot.name = '';
                         bookable.innerHTML = "";
                         fillBookableForm(bookable, slot);
+                        notifier.success('Successfully Blocked Booking From Patients');
+                        
                     });
                 });
 
@@ -302,9 +319,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
                             let responseJSON = xhr.responseText;
                             try {
-                                let response = JSON.parse(responseJSON);
+                                if (xhr.status == 200) {
+                                    notifier.success('Successfully Submitted Booking Information');
+                                } else {
+                                    notifier.alert('Has Not Submitted Booking. Check Connection.');
+                                }
                             } catch (error) {
                                 console.log(error);
+                                notifier.alert('Has Not Submitted Booking. Check Connection.');
                             }
                         }
                     });
