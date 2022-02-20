@@ -127,6 +127,50 @@ document.addEventListener("DOMContentLoaded", () => {
             freeingButton.innerText = "Unblock";
             buttonContainer.append(freeingButton);
             bookable.append(buttonContainer);
+
+            freeingButton.addEventListener("click", function() {
+                let keysOfBlocked = Object.keys(blockedSlots);
+                keysOfBlocked.map(key => {
+                    let bookingID = blockedSlots[key].bookingID;
+                    let bookingDate = blockedSlots[key].bookingDate;
+
+                    bookingDate = bookingDate.split(' ');
+                    let bookingBlockDate = bookingDate[0];
+                    let bookingBlockTime = bookingDate[1];
+                    bookingBlockTime = bookingBlockTime.substring(0, bookingBlockTime.length - 3);
+                    if ((datePicker.value == bookingBlockDate) && (slot.id == bookingBlockTime)) {
+                        let xhr = new XMLHttpRequest();
+                        let body = {
+                            bookingID: bookingID
+                        };
+
+                        xhr.addEventListener("readystatechange", function() {
+                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                let responseJSON = xhr.responseText.substring(7);
+                                let notifier = new AWN();
+                                try {
+                                    if (xhr.status == 200) {
+                                        notifier.success('Successfully Unblocked Booking');
+                                    } else {
+                                        notifier.alert('Has Not Unblocker Booking. Check Connection.');
+                                    }
+                                } catch (error) {
+                                    console.log(error);
+                                    notifier.alert('Has Not Unblocked Booking. Check Connection.');
+                                }
+                            }
+                        });
+                        xhr.open("DELETE", "./api/booking/delete.php?", true);
+                        xhr.send(JSON.stringify(body));
+                        
+                        slot.classList.remove("unselectableTime");
+                        slot.classList.add("timeBox");
+                        slot.name = '';
+                        bookable.innerHTML = "";
+                        fillBookableForm(bookable, slot);
+                    }
+                });
+            });
         } else {
             let patientInputContainer = document.createElement("div");
             let patientIDLabelClassifier = document.createElement("div");
@@ -215,6 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 xhr.addEventListener("readystatechange", function() {
                                     if (xhr.readyState === XMLHttpRequest.DONE) {
                                         let responseJSON = xhr.responseText.substring(7);
+                                        let notifier = new AWN();
                                         try {
                                             if (xhr.status == 200) {
                                                 notifier.success('Successfully Deleted Booking');
@@ -230,7 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 xhr.open("DELETE", "./api/booking/delete.php?", true);
                                 xhr.send(JSON.stringify(body));
 
-                                freeingButton(slot);
+                                freeButton(slot);
                             });
                         }
                     }
@@ -272,6 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     xhr.addEventListener("readystatechange", function() {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
                             let responseJSON = xhr.responseText;
+                            let notifier = new AWN();
                             try {
                                 if (xhr.status == 200) {
                                     notifier.success('Successfully Blocked Booking From Patients');
@@ -288,13 +334,50 @@ document.addEventListener("DOMContentLoaded", () => {
                     xhr.open("POST", "./api/booking/block.php?", true);
                     xhr.send(JSON.stringify(body));
 
+                    checkAvailability()
+
                     freeingButton.addEventListener("click", function() {
-                        freeingButton(slot);
-                        slot.name = '';
-                        bookable.innerHTML = "";
-                        fillBookableForm(bookable, slot);
-                        notifier.success('Successfully Blocked Booking From Patients');
-                        
+                        let keysOfBlocked = Object.keys(blockedSlots);
+                        keysOfBlocked.map(key => {
+                            let bookingID = blockedSlots[key].bookingID;
+                            let bookingDate = blockedSlots[key].bookingDate;
+
+                            bookingDate = bookingDate.split(' ');
+                            let bookingBlockDate = bookingDate[0];
+                            let bookingBlockTime = bookingDate[1];
+                            bookingBlockTime = bookingBlockTime.substring(0, bookingBlockTime.length - 3);
+                            if ((datePicker.value == bookingBlockDate) && (slot.id == bookingBlockTime)) {
+                                let xhr = new XMLHttpRequest();
+                                let body = {
+                                    bookingID: bookingID
+                                };
+
+                                xhr.addEventListener("readystatechange", function() {
+                                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                                        let responseJSON = xhr.responseText.substring(7);
+                                        let notifier = new AWN();
+                                        try {
+                                            if (xhr.status == 200) {
+                                                notifier.success('Successfully Unblocked Booking');
+                                            } else {
+                                                notifier.alert('Has Not Unblocker Booking. Check Connection.');
+                                            }
+                                        } catch (error) {
+                                            console.log(error);
+                                            notifier.alert('Has Not Unblocked Booking. Check Connection.');
+                                        }
+                                    }
+                                });
+                                xhr.open("DELETE", "./api/booking/delete.php?", true);
+                                xhr.send(JSON.stringify(body));
+
+                                slot.classList.remove("unselectableTime");
+                                slot.classList.add("timeBox");
+                                slot.name = '';
+                                bookable.innerHTML = "";
+                                fillBookableForm(bookable, slot);
+                            }
+                        });
                     });
                 });
 
@@ -318,9 +401,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     xhr.addEventListener("readystatechange", function() {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
                             let responseJSON = xhr.responseText;
+                            let notifier = new AWN();
                             try {
                                 if (xhr.status == 200) {
                                     notifier.success('Successfully Submitted Booking Information');
+                                    bookableSlot.innerHTML = '';
+                                    checkAvailability()
                                 } else {
                                     notifier.alert('Has Not Submitted Booking. Check Connection.');
                                 }
@@ -334,7 +420,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     xhr.open("POST", "./api/booking/create.php?", true);
                     xhr.send(JSON.stringify(body));
 
-                    location.reload();
                 });
             }
 
@@ -343,10 +428,10 @@ document.addEventListener("DOMContentLoaded", () => {
             bookable.append(buttonContainer);
         }
 
-        let freeingButton = function(slot) {
+        let freeButton = function(slot) {
             slot.classList.remove("unselectableTime");
             slot.classList.add("timeBox");
-            location.reload();
+            checkAvailability()
         }
     }
 

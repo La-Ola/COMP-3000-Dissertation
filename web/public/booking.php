@@ -17,9 +17,9 @@
         <input id="date_picker" class="datePicker" type="date" name="date_picker" required>
     </div>
     
-    <div class="bookingCard">
+    <div id="bookingCard" class="bookingCard">
             <button class="timeBox" id="08:30">08:30</button>
-            <button class="timeBox" id="08:45">08:45</butt>
+            <button class="timeBox" id="08:45">08:45</button>
             <button class="timeBox" id="09:00">09:00</button>
             <button class="timeBox" id="10:00">10:00</button>
             <button class="timeBox" id="10:15">10:15</button>
