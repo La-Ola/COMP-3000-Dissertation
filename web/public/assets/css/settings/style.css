@@ -1,0 +1,23 @@
+.toggle-container {
+	float: right;
+	border-radius: 18px;
+	width: 35px;
+	height: 18px;
+	background-color: var(--off-white);
+	box-shadow:var(--shadow);
+	margin: 0 20px 0 0;
+}
+
+.toggle-button {
+	background: var(--navy-green);
+	box-shadow:var(--shadow);
+	height: 18px;
+	width: 18px;
+	border-radius: 18px;
+	display: inline-block;
+	transition: transform 0.5s;
+}
+
+.toggle-button-active {
+	transform: translateX(17px);
+}

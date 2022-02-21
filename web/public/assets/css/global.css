@@ -1,19 +1,9 @@
 :root {
-    --shadow: 0px 4px 8px 0px var(--navy-blue);
     --font-family: "Helvetica Neue", "Lucida Grande", "Arial", "Verdana", "Tahoma", sans-serif;
     --font-smaller: 16px;
     --font-medium: 18px;
     --font-larger: 20px;
     --font-xtra-large: 30px;
-
-    --off-white: rgb(242, 239, 234);
-    --green-white: rgb(237, 235, 223);
-    --grey-green-darker: rgb(187, 183, 172);
-    --grey-green-lighter: rgb(204, 201, 186);
-    --grey-green-ligtest: rgb(205, 210, 203);
-    --light-green: rgb(194, 205, 197);
-    --navy-blue: rgb(57, 65, 71);
-    --navy-green: rgb(71, 91, 100);
 }
 
 html,
@@ -41,7 +31,7 @@ body {
 
 button {
     background: var(--navy-green);
-    color: var(--off-white);
+    color: var(--lightest-text);
     border: none;
     outline: none;
     border-radius: 10px;
@@ -51,11 +41,12 @@ button {
     transition: 0.5s;
     margin-left: 20px;
     box-shadow: var(--shadow);
+    padding: 10px 0 10px 0;
 }
 
 textarea {
     margin-left: 20px;
-    color: var(--navy-blue);
+    color: var(--dark-text);
 }
 
 .inputBoxLarge {
@@ -72,7 +63,7 @@ textarea {
     word-wrap: break-word;
     overflow-x: hidden;
     background-color: var(--off-white);
-    color: var(--navy-blue);
+    color: var(--dark-text);
 }
 
 .container {
@@ -118,7 +109,7 @@ textarea {
 	z-index: 1;
 	top: 0;
 	left: 0;
-    color: var(--off-white);
+    color: var(--lightest-text);
     font-size: var(--font-xtra-large);
     background-color: var(--navy-green);
 }
@@ -144,11 +135,12 @@ textarea {
     transition: 0.5s;
     text-align: left;
     margin-left: 10px;
+    padding: 0;
 }
 
 .navbar button.navbarActive {
     background-color: var(--grey-green-ligtest);
-    color: var(--navy-green);
+    color: var(--dark-text);
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 0;
@@ -157,14 +149,41 @@ textarea {
 }
 
 .svgFill {
-    fill: var(--navy-green) !important;
+    fill: var(--dark-text) !important;
 }
 
 .navbar svg {
-    fill: var(--off-white);
+    fill: var(--lightest-text);
 	padding: 15px 15px 15px 10px;
 	width: 40px;
 	height: 40px;
 	vertical-align: middle;
 }
 
+.header {
+    margin: 50px auto 0 auto;
+    width: calc(100% - 80px);
+    padding: 10px 10px 10px 10px;
+    display: block;
+    box-shadow: var(--shadow);
+    background-color: var(--navy-green);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    max-width: 1000px;
+    color: var(--lightest-text);
+    font-size: var(--font-medium);
+}
+
+.card {
+    box-shadow: var(--shadow);
+    padding: 20px 0 20px 10px;
+    margin: 0 auto 0 auto;
+    width: calc(100% - 90px);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: block;
+    background-color: var(--green-white);
+    max-width: 1000px;
+    padding-right: 20px;
+    color: var(--dark-text);
+}

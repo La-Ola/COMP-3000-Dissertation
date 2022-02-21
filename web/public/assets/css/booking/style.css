@@ -14,7 +14,7 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     max-width: 1000px;
-    color: var(--off-white);
+    color: var(--lightest-text);
     font-size: var(--font-medium);
 }
 
@@ -38,7 +38,7 @@
 
 input.datePicker {
     background: var(--navy-blue);
-    color: var(--off-white);
+    color: var(--lightest-text);
     border: none;
     outline: none;
     border-radius: 10px;
@@ -57,7 +57,7 @@ input.datePicker {
 
 .timeBox {
     font-size: var(--font-smaller);
-    color: var(--navy-blue);
+    color: var(--dark-text);
     padding: 10px;
     width: 80px;
     border: none;
@@ -70,7 +70,7 @@ input.datePicker {
 
 .unselectableTime {
     font-size: var(--font-smaller);
-    color: var(--grey-green-lighter);
+    color: var(--light-text);
     box-shadow: none;
     padding: 10px;
     width: 80px;
@@ -101,5 +101,5 @@ input.datePicker {
 .questionLabel {
     display: inline-block;
     margin: 20px 10px auto auto;
-    color: var(--navy-blue);
+    color: var(--dark-text);
 }
