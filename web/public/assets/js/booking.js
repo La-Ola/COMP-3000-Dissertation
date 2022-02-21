@@ -1,8 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
-    let datePicker = document.getElementById("date_picker");
+document.addEventListener('DOMContentLoaded', () => {
+    let datePicker = document.getElementById('date_picker');
 
-    let timeBox = document.getElementsByClassName("timeBox");
-    let bookableSlot = document.getElementById("booking slot");
+    let timeBox = document.getElementsByClassName('timeBox');
+    let bookableSlot = document.getElementById('booking slot');
 
     //on load, the page sets the date to today and makes days before today un-selectable.
     let today = new Date();
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let checkAvailability = function() {
         let xhr = new XMLHttpRequest();
 
-        xhr.addEventListener("readystatechange", function() {
+        xhr.addEventListener('readystatechange', function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 try {
                     let json = xhr.responseText.substring(7);
@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (datePicker.value == bookingBlockDate) {
                             bookingBlockTime = bookingBlockTime.substring(0, bookingBlockTime.length - 3);
                             let  slot = document.getElementById(bookingBlockTime);
-                            slot.classList.remove("timeBox");
-                            slot.classList.add("unselectableTime");
+                            slot.classList.remove('timeBox');
+                            slot.classList.add('unselectableTime');
                         }
                     });
 
@@ -64,9 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (datePicker.value == bookingBlockDate) {
                             bookingBlockTime = bookingBlockTime.substring(0, bookingBlockTime.length - 3);
                             let  slot = document.getElementById(bookingBlockTime);
-                            slot.classList.remove("timeBox");
-                            slot.classList.add("unselectableTime");
-                            slot.name = "blocked";
+                            slot.classList.remove('timeBox');
+                            slot.classList.add('unselectableTime');
+                            slot.name = 'blocked';
                         }
                     });
 
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        xhr.open("GET", "./api/booking/readAll.php?", true);
+        xhr.open('GET', './api/booking/readAll.php?', true);
         xhr.send();
     }
 
@@ -87,19 +87,19 @@ document.addEventListener("DOMContentLoaded", () => {
         return function() {
             let chosenTime = timeBox.id;
             let chosenSlot = document.getElementById(chosenTime);
-            chosenSlot.classList.add("active");
+            chosenSlot.classList.add('active');
 
-            splitDate = datePicker.value.split("-");
-            theDate = splitDate[2] + "/" + splitDate[1] + "/" + splitDate[0];
+            splitDate = datePicker.value.split('-');
+            theDate = splitDate[2] + '/' + splitDate[1] + '/' + splitDate[0];
 
-            bookableSlot.innerHTML = "";
+            bookableSlot.innerHTML = '';
 
-            let header = document.createElement("div");
-            header.classList.add("headerTimeCard");
-            header.innerText = theDate + " " + chosenTime;
+            let header = document.createElement('div');
+            header.classList.add('headerTimeCard');
+            header.innerText = theDate + ' ' + chosenTime;
 
-            let bookable = document.createElement("div");
-            bookable.classList.add("bookingTimeCard");
+            let bookable = document.createElement('div');
+            bookable.classList.add('bookingTimeCard');
 
             bookableSlot.append(header);
             bookableSlot.append(bookable);
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
             fillBookableForm(bookable, chosenSlot);
 
             setTimeout(function() {
-                chosenSlot.classList.remove("active");
+                chosenSlot.classList.remove('active');
             }, 1500);
         }
     };
@@ -118,17 +118,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let fillBookableForm = function(bookable, slot) {
         if (slot.name == 'blocked') {
-            bookable.innerHTML = "";
+            bookable.innerHTML = '';
 
-            let buttonContainer = document.createElement("div");
-            buttonContainer.classList.add("container");
+            let buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('container');
 
-            let freeingButton = document.createElement("button");
-            freeingButton.innerText = "Unblock";
+            let freeingButton = document.createElement('button');
+            freeingButton.innerText = 'Unblock';
             buttonContainer.append(freeingButton);
             bookable.append(buttonContainer);
 
-            freeingButton.addEventListener("click", function() {
+            freeingButton.addEventListener('click', function() {
                 let keysOfBlocked = Object.keys(blockedSlots);
                 keysOfBlocked.map(key => {
                     let bookingID = blockedSlots[key].bookingID;
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             bookingID: bookingID
                         };
 
-                        xhr.addEventListener("readystatechange", function() {
+                        xhr.addEventListener('readystatechange', function() {
                             if (xhr.readyState === XMLHttpRequest.DONE) {
                                 let responseJSON = xhr.responseText.substring(7);
                                 let notifier = new AWN();
@@ -160,42 +160,42 @@ document.addEventListener("DOMContentLoaded", () => {
                                 }
                             }
                         });
-                        xhr.open("DELETE", "./api/booking/delete.php?", true);
+                        xhr.open('DELETE', './api/booking/delete.php?', true);
                         xhr.send(JSON.stringify(body));
                         
-                        slot.classList.remove("unselectableTime");
-                        slot.classList.add("timeBox");
+                        slot.classList.remove('unselectableTime');
+                        slot.classList.add('timeBox');
                         slot.name = '';
-                        bookable.innerHTML = "";
+                        bookable.innerHTML = '';
                         fillBookableForm(bookable, slot);
                     }
                 });
             });
         } else {
-            let patientInputContainer = document.createElement("div");
-            let patientIDLabelClassifier = document.createElement("div");
-            let patientIDLabel = document.createElement("span");
-            let patientIDInput = document.createElement("input");
-            patientInputContainer.classList.add("questionContainer");
-            patientIDLabelClassifier.classList.add("questionLabel");
-            patientIDInput.classList.add("inputBox");
-            patientIDInput.id = "PatientIDInput";
-            patientIDInput.placeholder = "Patient ID";
-            patientIDLabel.innerHTML = "Patient ID:";
+            let patientInputContainer = document.createElement('div');
+            let patientIDLabelClassifier = document.createElement('div');
+            let patientIDLabel = document.createElement('span');
+            let patientIDInput = document.createElement('input');
+            patientInputContainer.classList.add('questionContainer');
+            patientIDLabelClassifier.classList.add('questionLabel');
+            patientIDInput.classList.add('inputBox');
+            patientIDInput.id = 'PatientIDInput';
+            patientIDInput.placeholder = 'Patient ID';
+            patientIDLabel.innerHTML = 'Patient ID:';
             patientIDLabelClassifier.append(patientIDLabel);
             patientInputContainer.append(patientIDLabelClassifier);
             patientInputContainer.append(patientIDInput);
 
-            let reasonInputContainer = document.createElement("div");
-            let reasonIDInput = document.createElement("textarea");
-            reasonInputContainer.classList.add("container");
-            reasonIDInput.classList.add("inputBoxLarge");
-            reasonIDInput.id = "reasonInput";
-            reasonIDInput.placeholder = "Reason";
+            let reasonInputContainer = document.createElement('div');
+            let reasonIDInput = document.createElement('textarea');
+            reasonInputContainer.classList.add('container');
+            reasonIDInput.classList.add('inputBoxLarge');
+            reasonIDInput.id = 'reasonInput';
+            reasonIDInput.placeholder = 'Reason';
             reasonInputContainer.append(reasonIDInput);
 
-            let buttonContainer = document.createElement("div");
-            buttonContainer.classList.add("container");
+            let buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('container');
 
             if (slot.classList.contains('unselectableTime') && slot.name != 'bookable') {
                 for (const key in bookedSlots) {
@@ -214,12 +214,12 @@ document.addEventListener("DOMContentLoaded", () => {
                             patientIDInput.value = patientID;
                             reasonIDInput.innerText = reason;
 
-                            let updateButton = document.createElement("button");
-                            updateButton.innerText = "Update";
+                            let updateButton = document.createElement('button');
+                            updateButton.innerText = 'Update';
                             buttonContainer.append(updateButton);
 
-                            let deleteButton = document.createElement("button");
-                            deleteButton.innerText = "Delete";
+                            let deleteButton = document.createElement('button');
+                            deleteButton.innerText = 'Delete';
                             buttonContainer.append(deleteButton);
 
                             updateButton.addEventListener ('click', () => {
@@ -230,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                     reason: reasonIDInput.value
                                 };
 
-                                xhr.addEventListener("readystatechange", function() {
+                                xhr.addEventListener('readystatechange', function() {
                                     if (xhr.readyState === XMLHttpRequest.DONE) {
                                         let responseJSON = xhr.responseText.substring(7);
                                         let notifier = new AWN();
@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                         }
                                     }
                                 });
-                                xhr.open("PUT", "./api/booking/update.php?", true);
+                                xhr.open('PUT', './api/booking/update.php?', true);
                                 xhr.send(JSON.stringify(body));
                             });
 
@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                     bookingID: bookingID
                                 };
 
-                                xhr.addEventListener("readystatechange", function() {
+                                xhr.addEventListener('readystatechange', function() {
                                     if (xhr.readyState === XMLHttpRequest.DONE) {
                                         let responseJSON = xhr.responseText.substring(7);
                                         let notifier = new AWN();
@@ -272,7 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                         }
                                     }
                                 });
-                                xhr.open("DELETE", "./api/booking/delete.php?", true);
+                                xhr.open('DELETE', './api/booking/delete.php?', true);
                                 xhr.send(JSON.stringify(body));
 
                                 freeButton(slot);
@@ -281,31 +281,31 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             } else {
-                let submitButton = document.createElement("button");
-                submitButton.innerText = "Submit";
+                let submitButton = document.createElement('button');
+                submitButton.innerText = 'Submit';
                 buttonContainer.append(submitButton);
 
-                let blockingButton = document.createElement("button");
-                blockingButton.innerText = "Block Time";
+                let blockingButton = document.createElement('button');
+                blockingButton.innerText = 'Block Time';
                 buttonContainer.append(blockingButton);
 
-                blockingButton.addEventListener("click", function() {
-                    slot.classList.remove("timeBox");
-                    slot.classList.add("unselectableTime");
-                    slot.name = "blocked";
-                    bookable.innerHTML = "";
+                blockingButton.addEventListener('click', function() {
+                    slot.classList.remove('timeBox');
+                    slot.classList.add('unselectableTime');
+                    slot.name = 'blocked';
+                    bookable.innerHTML = '';
 
-                    let buttonContainer = document.createElement("div");
-                    buttonContainer.classList.add("container");
+                    let buttonContainer = document.createElement('div');
+                    buttonContainer.classList.add('container');
 
-                    let freeingButton = document.createElement("button");
-                    freeingButton.innerText = "Unblock";
+                    let freeingButton = document.createElement('button');
+                    freeingButton.innerText = 'Unblock';
                     buttonContainer.append(freeingButton);
                     bookable.append(buttonContainer);
 
-                    let theSlot = slot.innerText + ":00";
+                    let theSlot = slot.innerText + ':00';
                     let dateSelected = datePicker.value;
-                    let formattedDateTime = dateSelected + " " + theSlot;
+                    let formattedDateTime = dateSelected + ' ' + theSlot;
 
                     let xhr = new XMLHttpRequest();
 
@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         bookingDate: formattedDateTime
                     };
 
-                    xhr.addEventListener("readystatechange", function() {
+                    xhr.addEventListener('readystatechange', function() {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
                             let responseJSON = xhr.responseText;
                             let notifier = new AWN();
@@ -331,12 +331,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     });
 
-                    xhr.open("POST", "./api/booking/block.php?", true);
+                    xhr.open('POST', './api/booking/block.php?', true);
                     xhr.send(JSON.stringify(body));
 
                     checkAvailability()
 
-                    freeingButton.addEventListener("click", function() {
+                    freeingButton.addEventListener('click', function() {
                         let keysOfBlocked = Object.keys(blockedSlots);
                         keysOfBlocked.map(key => {
                             let bookingID = blockedSlots[key].bookingID;
@@ -352,7 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                     bookingID: bookingID
                                 };
 
-                                xhr.addEventListener("readystatechange", function() {
+                                xhr.addEventListener('readystatechange', function() {
                                     if (xhr.readyState === XMLHttpRequest.DONE) {
                                         let responseJSON = xhr.responseText.substring(7);
                                         let notifier = new AWN();
@@ -368,26 +368,26 @@ document.addEventListener("DOMContentLoaded", () => {
                                         }
                                     }
                                 });
-                                xhr.open("DELETE", "./api/booking/delete.php?", true);
+                                xhr.open('DELETE', './api/booking/delete.php?', true);
                                 xhr.send(JSON.stringify(body));
 
-                                slot.classList.remove("unselectableTime");
-                                slot.classList.add("timeBox");
+                                slot.classList.remove('unselectableTime');
+                                slot.classList.add('timeBox');
                                 slot.name = '';
-                                bookable.innerHTML = "";
+                                bookable.innerHTML = '';
                                 fillBookableForm(bookable, slot);
                             }
                         });
                     });
                 });
 
-                submitButton.addEventListener("click", function() {
-                    let theSlot = slot.innerText + ":00";
+                submitButton.addEventListener('click', function() {
+                    let theSlot = slot.innerText + ':00';
                     let dateSelected = datePicker.value;
-                    let formattedDateTime = dateSelected + " " + theSlot;
+                    let formattedDateTime = dateSelected + ' ' + theSlot;
 
-                    slot.classList.remove("timeBox");
-                    slot.classList.add("unselectableTime");
+                    slot.classList.remove('timeBox');
+                    slot.classList.add('unselectableTime');
 
                     let xhr = new XMLHttpRequest();
 
@@ -398,7 +398,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         reason: reasonIDInput.value
                     };
 
-                    xhr.addEventListener("readystatechange", function() {
+                    xhr.addEventListener('readystatechange', function() {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
                             let responseJSON = xhr.responseText;
                             let notifier = new AWN();
@@ -417,7 +417,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     });
 
-                    xhr.open("POST", "./api/booking/create.php?", true);
+                    xhr.open('POST', './api/booking/create.php?', true);
                     xhr.send(JSON.stringify(body));
 
                 });
@@ -429,8 +429,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         let freeButton = function(slot) {
-            slot.classList.remove("unselectableTime");
-            slot.classList.add("timeBox");
+            slot.classList.remove('unselectableTime');
+            slot.classList.add('timeBox');
             checkAvailability()
         }
     }
@@ -441,8 +441,8 @@ document.addEventListener("DOMContentLoaded", () => {
         
         for (let i = 0; i < childs; i++) {
             let slot = bookingCard.children[i];
-            slot.classList.remove("unselectableTime");
-            slot.classList.add("timeBox");
+            slot.classList.remove('unselectableTime');
+            slot.classList.add('timeBox');
         }
         checkAvailability();
     });

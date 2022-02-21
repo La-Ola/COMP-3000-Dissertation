@@ -4,6 +4,8 @@
     --font-smaller: 16px;
     --font-medium: 18px;
     --font-larger: 20px;
+    --font-xtra-large: 30px;
+
     --off-white: rgb(242, 239, 234);
     --green-white: rgb(237, 235, 223);
     --grey-green-darker: rgb(187, 183, 172);
@@ -38,23 +40,17 @@ body {
 }
 
 button {
-    background: var(--navy-blue);
+    background: var(--navy-green);
     color: var(--off-white);
     border: none;
     outline: none;
     border-radius: 10px;
     width: 110px;
     font-size: var(--font-medium);
-    padding: 10px;
     cursor: pointer;
     transition: 0.5s;
     margin-left: 20px;
     box-shadow: var(--shadow);
-}
-
-button:hover {
-    transition: 0.5s;
-    background-color: var(--grey-green-darker);
 }
 
 textarea {
@@ -108,3 +104,67 @@ textarea {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--navy-blue);
 }
+
+/*navbar*/
+
+.newBody {
+    margin-left: 200px;
+}
+
+.navbar {
+    height: 100%;
+	width: 200px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+    color: var(--off-white);
+    font-size: var(--font-xtra-large);
+    background-color: var(--navy-green);
+}
+
+.navTitle {
+    width: calc(100% - 20px);
+    padding: 20px 0 20px 0;
+    text-align: center;
+    font-weight:bold;
+    text-shadow: 0 0 10px rgb(242, 239, 234), 2px 2px 5px rgba(206,89,55,0);
+}
+
+.navbar a {
+    text-decoration: none;
+    height: 70px;
+}
+
+.navbar button {
+    height: 70px;
+    width: 190px;
+    margin: 0;
+    box-shadow: none;
+    transition: 0.5s;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.navbar button.navbarActive {
+    background-color: var(--grey-green-ligtest);
+    color: var(--navy-green);
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: 0.5s;
+}
+
+.svgFill {
+    fill: var(--navy-green) !important;
+}
+
+.navbar svg {
+    fill: var(--off-white);
+	padding: 15px 15px 15px 10px;
+	width: 40px;
+	height: 40px;
+	vertical-align: middle;
+}
+
