@@ -21,3 +21,45 @@
 .toggle-button-active {
 	transform: translateX(17px);
 }
+
+.fontContainer {
+    float: right;
+    width: 200px;
+    height: 50px
+}
+
+.fontBox {
+    height: 40px;
+    width: 40px;
+    float: right;
+    padding: 0;
+}
+
+.fontBoxActive {
+    background: var(--navy-blue);
+}
+
+#fontSize {
+    height: 40px;
+}
+
+.fontSmlSVG {
+    fill: var(--lightest-text);
+	width: 12px;
+	height: 12px;
+	vertical-align: middle;
+}
+
+.fontRegSVG {
+    fill: var(--lightest-text);
+	width: 18px;
+	height: 18px;
+	vertical-align: middle;
+}
+
+.fontLrgSVG {
+    fill: var(--lightest-text);
+	width: 25px;
+	height: 25px;
+	vertical-align: middle;
+}

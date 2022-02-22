@@ -1,9 +1,5 @@
 :root {
     --font-family: "Helvetica Neue", "Lucida Grande", "Arial", "Verdana", "Tahoma", sans-serif;
-    --font-smaller: 16px;
-    --font-medium: 18px;
-    --font-larger: 20px;
-    --font-xtra-large: 30px;
 }
 
 html,
@@ -27,6 +23,7 @@ body {
     font-size: var(--font-smaller);
     border-radius: 10px;
     background-color: var(--off-white);
+    color: var(--dark-text);
 }
 
 button {

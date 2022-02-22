@@ -1,6 +1,11 @@
 :root {
     --shadow: 0px 4px 8px 0px var(--navy-blue);
 
+    --font-smaller: 16px;
+    --font-medium: 18px;
+    --font-larger: 20px;
+    --font-xtra-large: 30px;
+
     --lightest-text: rgb(242, 239, 234);
     --light-text: rgb(204, 201, 186);
     --dark-text: rgb(57, 65, 71);
@@ -15,17 +20,29 @@
 }
 
 [data-theme="dark"] {
-    --shadow: 0px 4px 8px 0px var(--navy-green);
+    --shadow: 0px 4px 8px 0px black;
 
     --lightest-text: rgb(242, 239, 234);
     --light-text: rgb(52, 59, 65);
-    --dark-text: rgb(202, 217, 228);
+    --dark-text: rgb(220, 226, 230);
     
-	--off-white: rgb(22,33,62);
-    --green-white: rgb(12, 41, 77);
-    --grey-green-darker: rgb(5, 22, 41);
-    --grey-green-lighter: rgb(7, 49, 100);
-    --grey-green-ligtest: rgb(19, 19, 54);
-    --navy-blue: rgb(4, 36, 61);
-    --navy-green: rgb(7, 16, 27);
+	--off-white: rgb(29, 29, 29);
+    --green-white: rgb(44, 44, 44);
+    --grey-green-darker: rgb(23, 28, 31);
+    --grey-green-lighter: rgb(46, 57, 63);
+    --grey-green-ligtest: rgb(14, 13, 13);
+    --navy-blue: rgb(32, 40, 44);
+    --navy-green: rgb(47, 59, 65);
+}
+
+[font-size="small"] {
+    --font-smaller: 14px;
+    --font-medium: 16px;
+    --font-larger: 18px;
+}
+
+[font-size="large"] {
+    --font-smaller: 20px;
+    --font-medium: 22px;
+    --font-larger: 24px;
 }
