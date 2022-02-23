@@ -1,8 +1,8 @@
 .toggle-container {
 	float: right;
-	border-radius: 18px;
+	border-radius: 20px;
 	width: 35px;
-	height: 18px;
+	height: 20px;
 	background-color: var(--off-white);
 	box-shadow:var(--shadow);
 	margin: 0 20px 0 0;
@@ -11,9 +11,9 @@
 .toggle-button {
 	background: var(--navy-green);
 	box-shadow:var(--shadow);
-	height: 18px;
-	width: 18px;
-	border-radius: 18px;
+	height: 20px;
+	width: 20px;
+	border-radius: 20px;
 	display: inline-block;
 	transition: transform 0.5s;
 }
