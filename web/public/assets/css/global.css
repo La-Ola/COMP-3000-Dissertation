@@ -96,27 +96,31 @@ textarea {
 /*navbar*/
 
 .newBody {
-    margin-left: 200px;
+    margin-top: 110px;
 }
 
 .navbar {
-    height: 100%;
-	width: 200px;
+    height: 70px;
+	width: 100%;
 	position: fixed;
 	z-index: 1;
 	top: 0;
-	left: 0;
     color: var(--lightest-text);
     font-size: var(--font-xtra-large);
     background-color: var(--navy-green);
 }
 
 .navTitle {
-    width: calc(100% - 20px);
-    padding: 20px 0 20px 0;
-    text-align: center;
-    font-weight:bold;
+    padding: 0 0 0 20px;
+    text-align: left;
+    height: 70px;
+    font-weight: bold;
     text-shadow: 0 0 10px rgb(242, 239, 234), 2px 2px 5px rgba(206,89,55,0);
+}
+
+.navText {
+    margin-top: 15px;
+    display: inline-block;
 }
 
 .navbar a {
@@ -125,24 +129,27 @@ textarea {
 }
 
 .navbar button {
-    height: 70px;
+    height: 60px;
     width: 190px;
     margin: 0;
     box-shadow: none;
     transition: 0.5s;
-    text-align: left;
-    margin-left: 10px;
+    text-align:left;
+    margin-top: 10px;
     padding: 0;
+    float: right;
+    vertical-align: text-bottom;
 }
 
 .navbar button.navbarActive {
     background-color: var(--grey-green-ligtest);
     color: var(--dark-text);
-    border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 0;
     border-top-left-radius: 10px;
-    border-top-right-radius: 0;
+    border-top-right-radius: 10px;
     border-bottom-right-radius: 0;
     transition: 0.5s;
+    box-shadow: inset 0px 9px 11px -5px rgba(0,0,0,0.75) ;
 }
 
 .svgFill {
@@ -152,9 +159,10 @@ textarea {
 .navbar svg {
     fill: var(--lightest-text);
 	padding: 15px 15px 15px 10px;
-	width: 40px;
-	height: 40px;
+	width: 20px;
+	height: 20px;
 	vertical-align: middle;
+    float: left;
 }
 
 .header {
@@ -180,7 +188,7 @@ textarea {
     border-bottom-right-radius: 10px;
     display: block;
     background-color: var(--green-white);
-    max-width: 1000px;
+    max-width: 990px;
     padding-right: 20px;
     color: var(--dark-text);
 }
