@@ -1,0 +1,15 @@
+:root {
+    --font-family: "Helvetica Neue", "Lucida Grande", "Arial", "Verdana", "Tahoma", sans-serif;
+}
+
+body {
+    background: var(--grey-green-ligtest);
+    margin: 0;
+    font-size: var(--font-smaller);
+}
+
+nav {
+    color: var(--lightest-text);
+    font-size: var(--font-xtra-large);
+    background-color: var(--navy-green);
+}
