@@ -26,15 +26,19 @@ body {
 
 .navbar button {
     height: 170px;
-    width: 125px;
+    width: calc((100% - 60px) / 4);
     box-shadow: none; 
     transition: 0.5s;
     text-align: center;
-    margin: 0 0 10px 50px;
+    margin: 0 0 10px 0;
     padding: 0;
     vertical-align: text-bottom;
     background-color: transparent;
     border: none;
+}
+
+#first {
+    margin-left: 20px;
 }
 
 .navbar button.buttonActive {
@@ -47,19 +51,48 @@ body {
     box-shadow: inset 0px -9px 11px -5px rgba(0,0,0,0.75);
 }
 
-#first {
-    margin-left: calc((100% - 150px - 355px)/2);
-}
-
 .navbar svg {
     fill: var(--lightest-text);
 	padding: 15px 15px 15px 10px;
 	width: 100px;
 	height: 100px;
 	vertical-align: middle;
-    float: left;
+    float: center;
 }
 
 .svgFill {
     fill: var(--dark-text) !important;
+}
+
+.newBody {
+    height: calc(100% - 180px);
+    top: 0;
+}
+
+.header {
+    margin: 50px auto 0 auto;
+    width: calc(100% - 80px);
+    padding: 10px 10px 10px 10px;
+    display: block;
+    box-shadow: var(--shadow);
+    background-color: var(--navy-green);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    max-width: 1000px;
+    color: var(--lightest-text);
+    font-size: var(--font-medium);
+}
+
+.card {
+    box-shadow: var(--shadow);
+    padding: 20px 0 30px 10px;
+    margin: 0 auto 0 auto;
+    width: calc(100% - 90px);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: block;
+    background-color: var(--green-white);
+    max-width: 990px;
+    padding-right: 20px;
+    color: var(--dark-text);
 }

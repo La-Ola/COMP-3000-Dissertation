@@ -1,0 +1,71 @@
+.toggle-container {
+	float: right;
+	border-radius: 40px;
+	width: 100px;
+	height: 50px;
+	background-color: var(--off-white);
+	box-shadow:var(--shadow);
+	margin: 0 20px 0 0;
+}
+
+.toggle-button {
+	background: var(--navy-green);
+	box-shadow:var(--shadow);
+	height: 50px;
+	width: 50px;
+	border-radius: 50px;
+	display: inline-block;
+	transition: transform 0.5s;
+}
+
+.toggle-button-active {
+	transform: translateX(47px);
+}
+
+.fontContainer {
+    float: right;
+    width: 300px;
+    height: 100px;
+}
+
+.fontBox {
+    height: 90px;
+    width: 90px;
+    float: right;
+    padding: 0;
+    border-radius: 10px;
+    margin: 0 10px 1px 0;
+    background: var(--navy-green);
+    color: var(--lightest-text);
+    border: none;
+    outline: none;
+}
+
+.fontBoxActive {
+    background: var(--navy-blue);
+}
+
+#fontSize {
+    height: 80px;
+}
+
+.fontSmlSVG {
+    fill: var(--lightest-text);
+	width: 15px;
+	height: 15px;
+	vertical-align: middle;
+}
+
+.fontRegSVG {
+    fill: var(--lightest-text);
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+
+.fontLrgSVG {
+    fill: var(--lightest-text);
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
+}
