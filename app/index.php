@@ -3,7 +3,6 @@
 
 <head>
     <link rel="manifest" href="./manifest.json" />
-    <link rel="stylesheet" href="./assets/css/index/style.css">
     <link rel="stylesheet" href="./assets/css/global.css">
     <link rel="stylesheet" href="./assets/css/themes.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,17 +12,53 @@
     <script src="./assets/js/index.js"></script>
     <!--<script src="./assets/awesome-notifications-master/dist/index.var.js"></script>-->
 
-    <title>Pet Profiles</title>
+    <title>Home</title>
 </head>
 
 <body>
     <div class="newBody">
+        <div class="header">
+            How This Works
+        </div>
+        <div class="card">
+            This is a web app designed for your phone, the site is not formattd to be used on laptops, or computers.<br><br>
+            Please add this site to your home screen so that it can be treated like an app!<br>BEWARE - once you have saved this
+            site to your homescreen, it will not automatically update! To update, delete the homescreen app, and re-save the webpage.
+        </div>
+        <div class="header">
+            How to save in "app" ~ IPhone
+        </div>
+        <div class="card">
+            Open site with <b>Safari</b><br><br>
+            Press the share button, and scroll to "Add to Home Screen". Then press "done".
+        </div>
+        <div class="header">
+            How to save in "app" ~ Android
+        </div>
+        <div class="card">
+            Open site with <b>Chrome</b><br><br>
+            Press the three vertical dots in the top right corner, and scroll to "Add to Home Screen". Then press "add".
+        </div>
+        <div class="header">
+            Offline?
+        </div>
+        <div class="card">
+            All pages will be viewable when offline, only pet profiles are changable.<br><br>
+            When using the site through a browser, it will automatically check for updates each time you are online, the site is mildly
+            functional offline too so that internet service doesnt get in the way of you checking appointments.<br><br>
+            The saved page also has the same functionality offline.
+        </div>
 
     </div>
     <div class="navbar">
         <a>
             <button id="first" class="buttonActive">
-                <svg class="svgFill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M248 104c-53 0-96 43-96 96s43 96 96 96 96-43 96-96-43-96-96-96zm0 144c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm0-240C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 448c-49.7 0-95.1-18.3-130.1-48.4 14.9-23 40.4-38.6 69.6-39.5 20.8 6.4 40.6 9.6 60.5 9.6s39.7-3.1 60.5-9.6c29.2 1 54.7 16.5 69.6 39.5-35 30.1-80.4 48.4-130.1 48.4zm162.7-84.1c-24.4-31.4-62.1-51.9-105.1-51.9-10.2 0-26 9.6-57.6 9.6-31.5 0-47.4-9.6-57.6-9.6-42.9 0-80.6 20.5-105.1 51.9C61.9 339.2 48 299.2 48 256c0-110.3 89.7-200 200-200s200 89.7 200 200c0 43.2-13.9 83.2-37.3 115.9z"/></svg>
+                <svg class="svgFill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"/></svg>
+            </button>
+        </a>
+        <a href='./profile.php'>
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M248 104c-53 0-96 43-96 96s43 96 96 96 96-43 96-96-43-96-96-96zm0 144c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm0-240C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 448c-49.7 0-95.1-18.3-130.1-48.4 14.9-23 40.4-38.6 69.6-39.5 20.8 6.4 40.6 9.6 60.5 9.6s39.7-3.1 60.5-9.6c29.2 1 54.7 16.5 69.6 39.5-35 30.1-80.4 48.4-130.1 48.4zm162.7-84.1c-24.4-31.4-62.1-51.9-105.1-51.9-10.2 0-26 9.6-57.6 9.6-31.5 0-47.4-9.6-57.6-9.6-42.9 0-80.6 20.5-105.1 51.9C61.9 339.2 48 299.2 48 256c0-110.3 89.7-200 200-200s200 89.7 200 200c0 43.2-13.9 83.2-37.3 115.9z"/></svg>
             </button>
         </a>
         <a href='./appointment.php'>

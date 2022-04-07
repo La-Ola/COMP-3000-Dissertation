@@ -8,6 +8,27 @@ body {
     font-size: var(--font-smaller);
 }
 
+/*scroll bar*/
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 4px var(--grey-green-darker);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--navy-green);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--navy-blue);
+}
+
+
 .navbar {
     height: 180px;
 	width: 100%;
@@ -26,7 +47,7 @@ body {
 
 .navbar button {
     height: 170px;
-    width: calc((100% - 60px) / 4);
+    width: calc((100% - 50px) / 5);
     box-shadow: none; 
     transition: 0.5s;
     text-align: center;
@@ -35,10 +56,6 @@ body {
     vertical-align: text-bottom;
     background-color: transparent;
     border: none;
-}
-
-#first {
-    margin-left: 20px;
 }
 
 .navbar button.buttonActive {
@@ -65,8 +82,7 @@ body {
 }
 
 .newBody {
-    height: calc(100% - 180px);
-    top: 0;
+    margin-bottom: 210px;
 }
 
 .header {
