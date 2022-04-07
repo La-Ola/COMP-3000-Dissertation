@@ -1,5 +1,5 @@
 //declaring a name for our cache
-const staticFamiliarSystems = "familiar-systems-app"
+const FamiliarSystems = "familiar-systems-app"
 
 //all things needed to run app, these need to be stored in the cache
 const asset = [
@@ -17,7 +17,7 @@ const asset = [
  */
 self.addEventListener("install", installEvent => {
     installEvent.waitUntil(
-        caches.open(staticFamiliarSystems).then(cache => {
+        caches.open(FamiliarSystems).then(cache => {
             cache.addAll(asset);
         })
     )
@@ -29,9 +29,9 @@ self.addEventListener("install", installEvent => {
  * once cache is ready, apply caches.match(...) to check if something in the cache matches the request.
  */
 self.addEventListener("fetch", fetchEvent => {
-    fetchEvent.respondWith(
-        caches.match(fetchEvent.request).then(res => {
-            return res || fetch(fetchEvent.request)
-        })
-    )
+    //fetchEvent.respondWith(
+        //caches.match(fetchEvent.request).then(res => {
+            //return res || fetch(fetchEvent.request)
+    //    })
+    //)
 })

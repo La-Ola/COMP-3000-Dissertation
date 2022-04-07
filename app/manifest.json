@@ -1,15 +1,16 @@
 {
     "name": "Familiar Systems",
-    "short_name": "Familiar",
+    "short_name": "FamSyms",
     "start_url": "index.php",
     "display": "standalone",
-    "background_color": "#CCC9BA",
-    "theme_color": "#BBB7AC",
+    "background_color": "#475B64",
+    "theme_color": "#475B64",
     "orientation": "portrait-primary",
     "icons": [
         {
-            "src": "/templogo.png",
-            "type": "image/png", "sizes": "144x144"
+            "src": "/templogo.ico",
+            "type": "image/png", 
+            "sizes": "192x192"
         }
     ]
 }
