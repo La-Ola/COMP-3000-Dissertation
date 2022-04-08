@@ -1,0 +1,11 @@
+.biTableSpacing td {
+    width: calc(100% - 25px / 2);
+    border-bottom: 3px dashed var(--light-text);
+    padding: 25px 0 15px 0;
+    text-align: left;
+}
+
+.cardButton {
+    margin-top: 100px;
+    display: inline-block;
+}

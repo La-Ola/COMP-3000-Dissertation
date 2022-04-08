@@ -1,0 +1,6 @@
+CREATE PROCEDURE `deletePatient`(IN `id` INT) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+BEGIN 
+    DELETE FROM patients 
+    WHERE patientID = id; 
+    COMMIT; 
+END
