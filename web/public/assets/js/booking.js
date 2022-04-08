@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        xhr.open('GET', './api/booking/readAll.php?', true);
+        xhr.open('GET', '../../api/booking/readAll.php?', true);
         xhr.send();
     }
 
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
                             }
                         });
-                        xhr.open('DELETE', './api/booking/delete.php?', true);
+                        xhr.open('DELETE', '../../api/booking/delete.php?', true);
                         xhr.send(JSON.stringify(body));
                         
                         slot.classList.remove('unselectableTime');
@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         }
                                     }
                                 });
-                                xhr.open('PUT', './api/booking/update.php?', true);
+                                xhr.open('PUT', '../../api/booking/update.php?', true);
                                 xhr.send(JSON.stringify(body));
                             });
 
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         }
                                     }
                                 });
-                                xhr.open('DELETE', './api/booking/delete.php?', true);
+                                xhr.open('DELETE', '../../api/booking/delete.php?', true);
                                 xhr.send(JSON.stringify(body));
 
                                 freeButton(slot);
@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
 
-                    xhr.open('POST', './api/booking/block.php?', true);
+                    xhr.open('POST', '../../api/booking/block.php?', true);
                     xhr.send(JSON.stringify(body));
 
                     checkAvailability()
@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
 
-                    xhr.open('POST', './api/booking/create.php?', true);
+                    xhr.open('POST', '../../api/booking/create.php?', true);
                     xhr.send(JSON.stringify(body));
 
                 });
