@@ -18,7 +18,27 @@
 
 <body>
     <div class="newBody">
-        
+        <div class="header">
+            Current bookings
+        </div>
+        <div id="bookings" class="card">
+        <table>
+            <tr>
+                <th id="day">Day</th>
+                <th id="date">Date</th>
+                <th id="time">Time</th>
+                <th id="pet">Pet</th>
+            </tr>
+            <tr>
+                <td>thurday</td>
+                <td>21/01/02</td>
+                <td>13:13</td>
+                <td>irene</td>
+            </tr>
+        </table>
+        </div>
+
+        <button>Book Appointment</button>
     </div>
     <div class="navbar">
         <a href='./index.php'>

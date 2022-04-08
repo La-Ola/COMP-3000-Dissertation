@@ -18,6 +18,7 @@
 
 <body>
     <div class="newBody">
+        <button>View Medical File</button>
     </div>
     <div class="navbar">
         <a href='./index.php'>
