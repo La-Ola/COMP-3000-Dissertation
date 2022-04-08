@@ -2,28 +2,10 @@
     --font-family: "Helvetica Neue", "Lucida Grande", "Arial", "Verdana", "Tahoma", sans-serif;
 }
 
-html,
-input,
-textarea {
-    font-family: var(--font-family);
-}
-
 body {
     background: var(--grey-green-ligtest);
     margin: 0;
     font-size: var(--font-smaller);
-}
-
-.inputBox {
-    border: none;
-    outline: none;
-    box-shadow: var(--shadow);
-    padding: 5px;
-    padding-left: 10px;
-    font-size: var(--font-smaller);
-    border-radius: 10px;
-    background-color: var(--off-white);
-    color: var(--dark-text);
 }
 
 button {
@@ -32,46 +14,34 @@ button {
     border: none;
     outline: none;
     border-radius: 10px;
-    width: 110px;
-    font-size: var(--font-medium);
+    width: 250px;
+    font-size: var(--font-small);
     cursor: pointer;
     transition: 0.5s;
-    margin-left: 20px;
+    margin: 20px 0 0 25px;
     box-shadow: var(--shadow);
     padding: 10px 0 10px 0;
 }
 
-textarea {
-    margin-left: 20px;
-    color: var(--dark-text);
+table {
+    width: 100%
 }
 
-.inputBoxLarge {
-    border: none;
-    outline: none;
-    box-shadow: var(--shadow);
-    padding: 5px;
-    padding-left: 10px;
-    font-size: var(--font-smaller);
-    border-radius: 10px;
-    height: 200px;
-    width: calc(100% - 40px);
-    resize: none;
-    word-wrap: break-word;
-    overflow-x: hidden;
-    background-color: var(--off-white);
-    color: var(--dark-text);
+tr {
+    height: 90px;
+    margin-top: 50px;
 }
 
-.container {
-    display: block;
-    padding-top: 20px;
+th {
+    width: calc(100% / 4);
+    font-size: var(--font-medium);
 }
 
-.hidden {
-    display: none;
+th, td {
+    text-align: center;
+    vertical-align: bottom;
+    border-bottom: 3px dashed var(--navy-green);
 }
-
 
 /*scroll bar*/
 
@@ -93,76 +63,61 @@ textarea {
     background: var(--navy-blue);
 }
 
-/*navbar*/
-
-.newBody {
-    margin-top: 110px;
-}
 
 .navbar {
-    height: 70px;
+    height: 180px;
 	width: 100%;
-	position: fixed;
+    position: fixed;
 	z-index: 1;
-	top: 0;
+    bottom: 0;
     color: var(--lightest-text);
     font-size: var(--font-xtra-large);
     background-color: var(--navy-green);
 }
 
-.navTitle {
-    padding: 0 0 0 20px;
-    text-align: left;
-    height: 70px;
-    font-weight: bold;
-    text-shadow: 0 0 10px rgb(242, 239, 234), 2px 2px 5px rgba(206,89,55,0);
-}
-
-.navText {
-    margin-top: 15px;
-    display: inline-block;
-}
-
 .navbar a {
     text-decoration: none;
-    height: 70px;
+    height: 100%;
 }
 
 .navbar button {
-    height: 60px;
-    width: 190px;
-    margin: 0;
-    box-shadow: none;
+    height: 170px;
+    width: calc((100% - 50px) / 5);
+    box-shadow: none; 
     transition: 0.5s;
-    text-align:left;
-    margin-top: 10px;
+    text-align: center;
+    margin: 0 0 10px 0;
     padding: 0;
-    float: right;
     vertical-align: text-bottom;
+    background-color: transparent;
+    border: none;
 }
 
-.navbar button.navbarActive {
+.navbar button.buttonActive {
     background-color: var(--grey-green-ligtest);
     color: var(--dark-text);
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 0;
-    transition: 0.5s;
-    box-shadow: inset 0px 9px 11px -5px rgba(0,0,0,0.75);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 0;
+    box-shadow: inset 0px -9px 11px -5px rgba(0,0,0,0.75);
+}
+
+.navbar svg {
+    fill: var(--lightest-text);
+	padding: 15px 15px 15px 10px;
+	width: 100px;
+	height: 100px;
+	vertical-align: middle;
+    float: center;
 }
 
 .svgFill {
     fill: var(--dark-text) !important;
 }
 
-.navbar svg {
-    fill: var(--lightest-text);
-	padding: 15px 15px 15px 10px;
-	width: 20px;
-	height: 20px;
-	vertical-align: middle;
-    float: left;
+.newBody {
+    margin-bottom: 210px;
 }
 
 .header {
@@ -181,7 +136,7 @@ textarea {
 
 .card {
     box-shadow: var(--shadow);
-    padding: 20px 0 20px 10px;
+    padding: 20px 0 30px 10px;
     margin: 0 auto 0 auto;
     width: calc(100% - 90px);
     border-bottom-left-radius: 10px;
