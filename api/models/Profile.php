@@ -39,7 +39,7 @@
         }
 
         public function read() {
-            $query = 'SELECT * FROM ' . $this->table ;
+            $query = 'SELECT * FROM ' . $this->table;
             $command = $this->connection->prepare($query);
             $command->execute();
 
