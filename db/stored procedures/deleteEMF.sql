@@ -1,0 +1,6 @@
+CREATE PROCEDURE `deleteEMF`(IN `id` INT) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+BEGIN
+    DELETE FROM electronicmedicalfile 
+    WHERE patientID = id; 
+    COMMIT; 
+END

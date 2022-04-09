@@ -34,7 +34,7 @@
             }
             echo json_encode($array, JSON_PRETTY_PRINT);
         } else {
-            echo json_encode(array('message' => 'No questions found.'));
+            echo json_encode(array('message' => 'No bookings found.'));
         }
     } else {
         echo json_encode(array('message' => 'Wrong HTTP request method. Use GET instead.'));

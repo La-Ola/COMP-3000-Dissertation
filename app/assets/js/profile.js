@@ -282,8 +282,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         updateCommit.innerHTML = 'Update';
                         updateHolder.append(updateTable);
 
+                        let emfHolder = document.createElement('div');
+                        //emfHolder.classList.add('hidden');
+                        let emfTable = document.createElement('table');
+                        emfHolder.append(emfTable)
 
                         card.append(tableHolder);
+                        card.append(emfHolder);
                         card.append(updateHolder);
                         card.append(del);
                         card.append(updateCommit);
@@ -303,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 emf.classList.add('profileBut');
                             } else {
                                 tableHolder.classList.add('hidden');
-                                show.innerHTML = 'Show';
+                                show.innerHTML = 'More';
                                 update.classList.add('hidden');
                                 update.classList.remove('profileBut');
                                 emf.classList.add('hidden');
@@ -311,7 +316,79 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         })
 
-                        emf.addEventListener('click', () => {})
+                        emf.addEventListener('click', () => {
+                            let id = patients[key].patientID;
+                            emfTable.innerHTML = '';
+                            if (emfHolder.classList.contains('hidden')) {
+                                emfHolder.classList.remove('hidden');
+                                tableHolder.classList.add('hidden');
+                                show.classList.add('hidden');
+                                show.classList.remove('profileBut');
+                                del.classList.add('hidden');
+                                del.classList.remove('profileBut');
+                                update.classList.add('hidden');
+                                update.classList.remove('profileBut');
+                                emf.innerHTML = 'Close';
+                            
+                                let xhr = new XMLHttpRequest();
+
+                                xhr.addEventListener('readystatechange', function() {
+                                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                                        let responseJSON = xhr.responseText;
+                                        try {
+                                            let json = xhr.responseText.substring(7);console.log(json);
+                                            let emr = JSON.parse(json).data;
+                                            let keys = Object.keys(emr);
+                                            
+
+                                            let headerRow = document.createElement('tr');
+                                            let h1 = document.createElement('th');
+                                            h1.innerHTML = 'Illness';
+                                            let h2 = document.createElement('th');
+                                            h2.innerHTML = 'Medication';
+                                            let h3 = document.createElement('th');
+                                            h3.innerHTML = 'Date';
+
+                                            headerRow.append(h1);
+                                            headerRow.append(h2);
+                                            headerRow.append(h3);
+                                            emfTable.append(headerRow);
+
+                                            keys.map(k => {
+                                                if (emr[k].patientID == id) {
+                                                    let row = document.createElement('tr');
+                                                    let c1 = document.createElement('td');
+                                                    c1.innerHTML = emr[k].illness;
+                                                    let c2 = document.createElement('td');
+                                                    c2.innerHTML = emr[k].medication;
+                                                    let c3 = document.createElement('td');
+                                                    c3.innerHTML = emr[k].date;
+                                                    row.append(c1);
+                                                    row.append(c2);
+                                                    row.append(c3);
+                                                    emfTable.append(row)
+                                                }
+                                            })
+                                        } catch (error) {
+                                            console.log(error);
+                                        }
+                                    }
+                                });
+
+                                xhr.open('GET', '../api/emf/read.php?', true);
+                                xhr.send();
+                            } else {
+                                emfHolder.classList.add('hidden');
+                                tableHolder.classList.remove('hidden');
+                                show.classList.remove('hidden');
+                                show.classList.add('profileBut');
+                                del.classList.remove('hidden');
+                                del.classList.add('profileBut');
+                                update.classList.remove('hidden');
+                                update.classList.add('profileBut');
+                                emf.innerHTML = 'EMF';
+                            }
+                        })
 
                         update.addEventListener('click', () => {
                             if (updateHolder.classList.contains('hidden')) {
