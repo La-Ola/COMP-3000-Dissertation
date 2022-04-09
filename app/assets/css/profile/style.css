@@ -9,3 +9,21 @@
     margin-top: 100px;
     display: inline-block;
 }
+
+.profileHeader {
+    background-color: var(--navy-blue);
+    margin: 50px auto 0 auto;
+    width: calc(100% - 80px);
+    padding: 10px 10px 10px 10px;
+    display: block;
+    box-shadow: var(--shadow);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    max-width: 1000px;
+    color: var(--lightest-text);
+    font-size: var(--font-medium);
+}
+
+.profileBut {
+    width: calc((100% - 120px) / 4);
+}

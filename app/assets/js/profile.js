@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     keys.map(key => {
                         let header = document.createElement('div');
-                        header.classList.add('header');
+                        header.classList.add('profileHeader');
                         header.innerText = patients[key].patientName;
 
                         let card = document.createElement('div');
@@ -37,19 +37,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         let table = document.createElement('table');
                         let holder = document.createElement('div');
-                        holder.classList.add('hidden')
+                        holder.classList.add('hidden');
+
                         let show = document.createElement('button');
                         let emf = document.createElement('button');
+                        let update = document.createElement('button');
+                        let del = document.createElement('button');
+
+                        show.classList.add('profileBut');
+                        emf.classList.add('profileBut');
+                        update.classList.add('hidden');
+                        del.classList.add('profileBut');
 
                         show.innerHTML = 'More';
                         emf.innerHTML = 'EMF';
+                        update.innerHTML = 'Update';
+                        del.innerHTML = 'Delete';
 
                         let r1 = document.createElement('tr');
                         r1.classList.add('biTableSpacing');
                         let d11 = document.createElement('td');
                         d11.innerHTML = '<b>Birthday:</b>';
                         let d12 = document.createElement('td');
-                        if (patients[key].DOB != '') {
+                        if (patients[key].DOB != '0000-00-00') {
                             d12.innerHTML = patients[key].DOB;
                         } else {
                             d12.innerHTML = 'Unknown';
@@ -133,6 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         card.append(holder);
                         card.append(show);
                         card.append(emf);
+                        card.append(update);
+                        card.append(del);
                         profiles.append(header);
                         profiles.append(card);
 
@@ -140,15 +152,21 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (holder.classList.contains('hidden')) {
                                 holder.classList.remove('hidden');
                                 show.innerHTML = 'Hide';
+                                update.classList.remove('hidden');
+                                update.classList.add('profileBut');
                             } else {
                                 holder.classList.add('hidden');
                                 show.innerHTML = 'Show';
+                                update.classList.add('hidden');
+                                update.classList.remove('profileBut');
                             }
                         })
 
-                        emf.addEventListener('click', () => {
-                            
-                        })
+                        emf.addEventListener('click', () => {})
+
+                        update.addEventListener('click', () => {})
+
+                        del.addEventListener('click', () => {})
                     });
 
                 } catch (error) {
@@ -209,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
         createPetCard.classList.add('hidden');
         createButton.classList.add('block');
         createButton.classList.remove('hidden');
-        checkPage()
+        window.location.reload();
     })
 
     createButton.addEventListener('click', () => {
