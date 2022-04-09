@@ -16,11 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let microchip = document.getElementById('microchip');
 
     let checkPage = function() {
-        profiles.innerHTML = '';
+        
 
         let xhr = new XMLHttpRequest();
 
         xhr.addEventListener('readystatechange', function() {
+            profiles.innerHTML = '';
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 try {
                     let json = xhr.responseText.substring(7);
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         let del = document.createElement('button');
 
                         show.classList.add('profileBut');
-                        emf.classList.add('profileBut');
+                        emf.classList.add('hidden');
                         update.classList.add('hidden');
                         del.classList.add('profileBut');
 
@@ -141,10 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         holder.append(table);
                         card.append(holder);
-                        card.append(show);
-                        card.append(emf);
-                        card.append(update);
                         card.append(del);
+                        card.append(update);
+                        card.append(emf);
+                        card.append(show);
                         profiles.append(header);
                         profiles.append(card);
 
@@ -154,11 +155,15 @@ document.addEventListener('DOMContentLoaded', () => {
                                 show.innerHTML = 'Hide';
                                 update.classList.remove('hidden');
                                 update.classList.add('profileBut');
+                                emf.classList.remove('hidden');
+                                emf.classList.add('profileBut');
                             } else {
                                 holder.classList.add('hidden');
                                 show.innerHTML = 'Show';
                                 update.classList.add('hidden');
                                 update.classList.remove('profileBut');
+                                emf.classList.add('hidden');
+                                emf.classList.remove('profileBut');
                             }
                         })
 
@@ -166,7 +171,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         update.addEventListener('click', () => {})
 
-                        del.addEventListener('click', () => {})
+                        del.addEventListener('click', () => {
+                            let xhr = new XMLHttpRequest();
+                            let body = {
+                                patientID: patients[key].patientID
+                            };
+
+                            xhr.addEventListener('readystatechange', function() {
+                                if (xhr.readyState === XMLHttpRequest.DONE) {
+                                    let responseJSON = xhr.responseText.substring(7);
+                                    let notifier = new AWN();
+                                    try {
+                                        if (xhr.status == 200) {
+                                            notifier.success('Successfully Deleted Profile');
+                                        } else {
+                                            notifier.alert('Has Not Deleted Booking. Check Connection.');
+                                        }
+                                    } catch (error) {
+                                        console.log(error);
+                                        notifier.alert('Has Not Deleted Booking. Check Connection.');
+                                    }
+                                }
+                            });
+                            xhr.open('DELETE', '../api/profile/delete.php?', true);
+                            xhr.send(JSON.stringify(body));
+
+                            window.location = window.location;
+                        })
                     });
 
                 } catch (error) {
@@ -223,11 +254,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         xhr.open('POST', '../api/profile/create.php?', true);
         xhr.send(JSON.stringify(body));
-        clearForm()
         createPetCard.classList.add('hidden');
         createButton.classList.add('block');
         createButton.classList.remove('hidden');
-        window.location.reload();
+        window.location = window.location;
     })
 
     createButton.addEventListener('click', () => {

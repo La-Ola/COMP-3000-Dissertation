@@ -32,7 +32,7 @@
 		}
 
         public function delete() {
-            $query = 'CALL deleteBooking(:id)';
+            $query = 'CALL deletePatient(:id)';
             $command = $this->connection->prepare($query);
             $command->bindParam(':id', $this->patientID);
             $command->execute();
