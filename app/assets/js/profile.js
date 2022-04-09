@@ -16,8 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let microchip = document.getElementById('microchip');
 
     let checkPage = function() {
-        
-
         let xhr = new XMLHttpRequest();
 
         xhr.addEventListener('readystatechange', function() {
@@ -37,8 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         card.classList.add('card');
 
                         let table = document.createElement('table');
-                        let holder = document.createElement('div');
-                        holder.classList.add('hidden');
+                        let tableHolder = document.createElement('div');
+                        tableHolder.classList.add('hidden');
 
                         let show = document.createElement('button');
                         let emf = document.createElement('button');
@@ -139,10 +137,156 @@ document.addEventListener('DOMContentLoaded', () => {
                         table.append(r4);
                         table.append(r5);
                         table.append(r6);
+                        tableHolder.append(table);
+                        
+                        let updateHolder = document.createElement('div');
+                        updateHolder.classList.add('hidden');
+                        let updateTable = document.createElement('table');
 
-                        holder.append(table);
-                        card.append(holder);
+                        let r7 = document.createElement('tr');
+                        r7.classList.add('biTableSpacing');
+                        let d71 = document.createElement('td');
+                        d71.innerHTML = '<b>Name:</b>';
+                        let d72 = document.createElement('td');
+                        let newName = document.createElement('input');
+                        newName.id = 'newName';
+                        newName.classList.add('inputBox');
+                        newName.placeholder = 'Name';
+                        if (patients[key].patientName != '') {
+                            newName.value = patients[key].patientName;
+                        } else {
+                            newName.value = '';
+                        }
+                        d72.append(newName);
+                        r7.append(d71);
+                        r7.append(d72);
+
+                        let r8 = document.createElement('tr');
+                        r8.classList.add('biTableSpacing');
+                        let d81 = document.createElement('td');
+                        d81.innerHTML = '<b>Birthday:</b>';
+                        let d82 = document.createElement('td');
+                        let newDOB = document.createElement('input');
+                        newDOB.id = 'newDOB';
+                        newDOB.classList.add('inputBox');
+                        newDOB.placeholder = 'yyyy-mm-dd';
+                        if (patients[key].DOB != '0000-00-00') {
+                            newDOB.value = patients[key].DOB;
+                        } else {
+                            newDOB.value = '';
+                        }
+                        d82.append(newDOB);
+                        r8.append(d81);
+                        r8.append(d82);
+
+                        let r9 = document.createElement('tr');
+                        r9.classList.add('biTableSpacing');
+                        let d91 = document.createElement('td');
+                        d91.innerHTML = '<b>Sex:</b>';
+                        let d92 = document.createElement('td');
+                        let newSex = document.createElement('input');
+                        newSex.id = 'newSex';
+                        newSex.classList.add('inputBox');
+                        newSex.placeholder = 'Male/Female';
+                        if (patients[key].sex != '') {
+                            newSex.value = patients[key].sex;
+                        } else {
+                            newSex.value = '';
+                        }
+                        d92.append(newSex);
+                        r9.append(d91);
+                        r9.append(d92);
+
+                        let r10 = document.createElement('tr');
+                        r10.classList.add('biTableSpacing');
+                        let d101 = document.createElement('td');
+                        d101.innerHTML = '<b>Breed:</b>';
+                        let d102 = document.createElement('td');
+                        let newBreed = document.createElement('input');
+                        newBreed.id = 'newBreed';
+                        newBreed.classList.add('inputBox');
+                        newBreed.placeholder = 'Golden Retreiver';
+                        if (patients[key].breed != '') {
+                            newBreed.value = patients[key].breed;
+                        } else {
+                            newBreed.value = '';
+                        }
+                        d102.append(newBreed);
+                        r10.append(d101);
+                        r10.append(d102);
+
+                        let r11 = document.createElement('tr');
+                        r11.classList.add('biTableSpacing');
+                        let d111 = document.createElement('td');
+                        d111.innerHTML = '<b>Species:</b>';
+                        let d112 = document.createElement('td');
+                        let newSpecies = document.createElement('input');
+                        newSpecies.id = 'newSpecies';
+                        newSpecies.classList.add('inputBox');
+                        newSpecies.placeholder = 'Dog';
+                        if (patients[key].species != '') {
+                            newSpecies.value = patients[key].species;
+                        } else {
+                            newSpecies.value = '';
+                        }
+                        d112.append(newSpecies);
+                        r11.append(d111);
+                        r11.append(d112);
+
+                        let r12 = document.createElement('tr');
+                        r12.classList.add('biTableSpacing');
+                        let d121 = document.createElement('td');
+                        d121.innerHTML = '<b>Neutered:</b>';
+                        let d122 = document.createElement('td');
+                        let newNeutered = document.createElement('input');
+                        newNeutered.id = 'newNeutered';
+                        newNeutered.classList.add('inputBox');
+                        newNeutered.placeholder = 'Yes/No';
+                        if (patients[key].neutered != '') {
+                            newNeutered.value = patients[key].neutered;
+                        } else {
+                            newNeutered.value = '';
+                        }
+                        d122.append(newNeutered);
+                        r12.append(d121);
+                        r12.append(d122);
+
+                        let r13 = document.createElement('tr');
+                        r13.classList.add('biTableSpacing');
+                        let d131 = document.createElement('td');
+                        d131.innerHTML = '<b>Microchip No.:</b>';
+                        let d132 = document.createElement('td');
+                        let newChip = document.createElement('input');
+                        newChip.id = 'newChip';
+                        newChip.classList.add('inputBox');
+                        newChip.placeholder = '0000000000000000';
+                        if (patients[key].microchip != '0') {
+                            newChip.value = patients[key].microchip;
+                        } else {
+                            newChip.value = '';
+                        }
+                        d132.append(newChip);
+                        r13.append(d131);
+                        r13.append(d132);
+
+                        updateTable.append(r7);
+                        updateTable.append(r8);
+                        updateTable.append(r9);
+                        updateTable.append(r10);
+                        updateTable.append(r11);
+                        updateTable.append(r12);
+                        updateTable.append(r13);
+                        
+                        let updateCommit = document.createElement('button');
+                        updateCommit.classList.add('hidden');
+                        updateCommit.innerHTML = 'Update';
+                        updateHolder.append(updateTable);
+
+
+                        card.append(tableHolder);
+                        card.append(updateHolder);
                         card.append(del);
+                        card.append(updateCommit);
                         card.append(update);
                         card.append(emf);
                         card.append(show);
@@ -150,15 +294,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         profiles.append(card);
 
                         show.addEventListener('click', () => {
-                            if (holder.classList.contains('hidden')) {
-                                holder.classList.remove('hidden');
+                            if (tableHolder.classList.contains('hidden')) {
+                                tableHolder.classList.remove('hidden');
                                 show.innerHTML = 'Hide';
                                 update.classList.remove('hidden');
                                 update.classList.add('profileBut');
                                 emf.classList.remove('hidden');
                                 emf.classList.add('profileBut');
                             } else {
-                                holder.classList.add('hidden');
+                                tableHolder.classList.add('hidden');
                                 show.innerHTML = 'Show';
                                 update.classList.add('hidden');
                                 update.classList.remove('profileBut');
@@ -169,7 +313,83 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         emf.addEventListener('click', () => {})
 
-                        update.addEventListener('click', () => {})
+                        update.addEventListener('click', () => {
+                            if (updateHolder.classList.contains('hidden')) {
+                                updateHolder.classList.remove('hidden');
+                                tableHolder.classList.add('hidden');
+                                show.classList.add('hidden');
+                                show.classList.remove('profileBut');
+                                del.classList.add('hidden');
+                                del.classList.remove('profileBut');
+                                emf.classList.add('hidden');
+                                emf.classList.remove('profileBut');
+                                updateCommit.classList.remove('hidden');
+                                updateCommit.classList.add('profileBut');
+                                update.innerHTML = 'Cancel';
+                            } else {
+                                updateHolder.classList.add('hidden');
+                                tableHolder.classList.remove('hidden');
+                                show.classList.remove('hidden');
+                                show.classList.add('profileBut');
+                                del.classList.remove('hidden');
+                                del.classList.add('profileBut');
+                                emf.classList.remove('hidden');
+                                emf.classList.add('profileBut');
+                                updateCommit.classList.add('hidden');
+                                updateCommit.classList.remove('profileBut');
+                                update.innerHTML = 'Update';
+                            }
+                        })
+
+                        updateCommit.addEventListener('click', () => {
+                            let id = patients[key].patientID;
+                            let xhr = new XMLHttpRequest();
+
+                            let body = {
+                                patientID: id,
+                                patientName: newName.value,
+                                DOB : newDOB.value,
+                                sex : newSex.value,
+                                breed : newBreed.value,
+                                species : newSpecies.value,
+                                neutered : newNeutered.value,
+                                microchip : newChip.value
+                            };
+
+                            xhr.addEventListener('readystatechange', function() {
+                                if (xhr.readyState === XMLHttpRequest.DONE) {
+                                    let responseJSON = xhr.responseText;
+                                    let notifier = new AWN();
+                                    try {
+                                        if (xhr.status == 200) {
+                                            notifier.success('Successfully Submitted Patient Information');
+                                        } else {
+                                            notifier.alert('Has Not Submitted Booking. Check Connection.');
+                                        }
+                                    } catch (error) {
+                                        console.log(error);
+                                        notifier.alert('Has Not Submitted Booking. Check Connection.');
+                                    }
+                                }
+                            });
+
+                            xhr.open('PUT', '../api/profile/update.php?', true);
+                            xhr.send(JSON.stringify(body));
+
+                            
+                            updateHolder.classList.add('hidden');
+                            tableHolder.classList.remove('hidden');
+                            show.classList.remove('hidden');
+                            show.classList.add('profileBut');
+                            del.classList.remove('hidden');
+                            del.classList.add('profileBut');
+                            emf.classList.remove('hidden');
+                            emf.classList.add('profileBut');
+                            updateCommit.classList.add('hidden');
+                            updateCommit.classList.remove('profileBut');
+                            update.innerHTML = 'Update';
+                            window.location = window.location;
+                        })
 
                         del.addEventListener('click', () => {
                             let xhr = new XMLHttpRequest();

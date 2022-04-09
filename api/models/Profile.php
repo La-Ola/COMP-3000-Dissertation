@@ -47,8 +47,9 @@
         }
 
         public function update() {
-            $query = 'CALL updatePatient(:newPatientName, :newDOB, :newSex, :newBreed, :newSpecies, :newNeutered, :newChip)';
+            $query = 'CALL updatePatient(:id, :newPatientName, :newDOB, :newSex, :newBreed, :newSpecies, :newNeutered, :newChip)';
 			$command = $this->connection->prepare($query);
+			$command->bindParam(':id', $this->patientID);
 			$command->bindParam(':newPatientName', $this->patientName);
 			$command->bindParam(':newDOB', $this->DOB);
 			$command->bindParam(':newSex', $this->sex);

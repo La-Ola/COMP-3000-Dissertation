@@ -26,6 +26,6 @@
         }
 
 	} else {
-		echo json_encode(array('message' => 'Wrong HTTP request method. Use POST instead.'));
+		echo json_encode(array('message' => 'Wrong HTTP request method. Use PUT instead.'));
 	}
 ?>

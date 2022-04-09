@@ -1,4 +1,4 @@
-CREATE PROCEDURE `updatePatient`(IN `id` INT, IN `newPatientName` VARCHAR(25), IN `newDOB` DATE, IN `newSex` VARCHAR(6), IN `newBreed` INT(25), IN `newSpecies` VARCHAR(25), IN `newNeutered` VARCHAR(3), IN `newChip` INT(11)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+CREATE PROCEDURE `updatePatient`(IN `id` INT, IN `newPatientName` VARCHAR(25), IN `newDOB` DATE, IN `newSex` VARCHAR(6), IN `newBreed` VARCHAR(25), IN `newSpecies` VARCHAR(25), IN `newNeutered` VARCHAR(3), IN `newChip` INT(11)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
 BEGIN 
     UPDATE patients SET patientName = newPatientName 
     WHERE patientID = id; 
