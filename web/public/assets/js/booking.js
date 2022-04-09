@@ -237,6 +237,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                         try {
                                             if (xhr.status == 200) {
                                                 notifier.success('Successfully Updated Booking');
+                                                bookableSlot.innerHTML = '';
+                                                checkAvailability()
                                             } else {
                                                 notifier.alert('Has Not Updated Booking. Check Connection');
                                             }
@@ -248,6 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 });
                                 xhr.open('PUT', '../../api/booking/update.php?', true);
                                 xhr.send(JSON.stringify(body));
+                                
                             });
 
                             deleteButton.addEventListener('click', () => {
@@ -263,6 +266,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                         try {
                                             if (xhr.status == 200) {
                                                 notifier.success('Successfully Deleted Booking');
+                                                bookableSlot.innerHTML = '';
+                                                checkAvailability()
                                             } else {
                                                 notifier.alert('Has Not Deleted Booking. Check Connection.');
                                             }
