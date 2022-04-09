@@ -24,7 +24,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     addButton.addEventListener('click', () => {
-        
+        let xhr = new XMLHttpRequest();
+
+        let body = {
+            patientName: petName.value,
+            DOB : dateofBirth.value,
+            sex : sex.value,
+            breed : breed.value,
+            species : species.value,
+            neutered : neutered.value,
+            microchip : microchip.value
+        };
+
+        xhr.addEventListener('readystatechange', function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                let responseJSON = xhr.responseText;
+                let notifier = new AWN();
+                try {
+                    if (xhr.status == 200) {
+                        notifier.success('Successfully Submitted Patient Information');
+                    } else {
+                        notifier.alert('Has Not Submitted Booking. Check Connection.');
+                    }
+                } catch (error) {
+                    console.log(error);
+                    notifier.alert('Has Not Submitted Booking. Check Connection.');
+                }
+            }
+        });
+
+        xhr.open('POST', '../api/profile/create.php?', true);
+        xhr.send(JSON.stringify(body));
+        clearForm()
+        createPetCard.classList.add('hidden');
+        createButton.classList.add('block');
+        createButton.classList.remove('hidden');
     })
 
     createButton.addEventListener('click', () => {

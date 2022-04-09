@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="./assets/css/global.css">
     <link rel="stylesheet" href="./assets/css/themes.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="../awesome-notifications-master/dist/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="./templogo.ico">
     <link rel="apple-touch-icon" href="./templogo.ico">
 
     <script src="./assets/js/appointment.js"></script>
-    <!--<script src="./assets/awesome-notifications-master/dist/index.var.js"></script>-->
+    <script src="../awesome-notifications-master/dist/index.var.js"></script>
 
     <title>Appointments</title>
 </head>

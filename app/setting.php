@@ -11,7 +11,6 @@
     <link rel="apple-touch-icon" href="./templogo.ico">
 
     <script src="./assets/js/setting.js"></script>
-    <!--<script src="./assets/awesome-notifications-master/dist/index.var.js"></script>-->
 
     <title>Settings</title>
 </head>
