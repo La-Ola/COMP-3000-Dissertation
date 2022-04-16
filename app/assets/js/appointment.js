@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     bookButton.addEventListener('click', () => {
         if (bookButton.innerText == 'Book Appointment') {
             tableSlot.classList.remove('hidden');
-            bookButton.innerText = 'Close Appointments';
+            bookButton.innerText = 'Close Appointment';
         } else {
             tableSlot.classList.add('hidden');
             bookButton.innerText = 'Book Appointment';
