@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             tableSlot.classList.add('hidden');
             bookButton.innerText = 'Book Appointment';
+            bookableSlot.innerHTML = '';
         }
         
     })
