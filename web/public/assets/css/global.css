@@ -111,7 +111,7 @@ textarea {
 }
 
 .navTitle {
-    padding: 0 0 0 20px;
+    padding: 0 0 0 15px;
     text-align: left;
     height: 70px;
     font-weight: bold;
@@ -130,13 +130,12 @@ textarea {
 
 .navbar button {
     height: 60px;
-    width: 190px;
-    margin: 0;
+    width: auto;
     box-shadow: none;
     transition: 0.5s;
     text-align:left;
-    margin-top: 10px;
-    padding: 0;
+    margin: 10px 0 0 0;
+    padding: 0 10px 0 0;
     float: right;
     vertical-align: text-bottom;
 }

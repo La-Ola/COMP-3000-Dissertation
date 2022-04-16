@@ -64,6 +64,18 @@
         </div>
     </div>
 
-    <div class="newBody"></div>
+    <div class="newBody">
+        <div class='halfCardContainer'>
+            <div class='halfCardHeader'>Appointments</div>
+            <div class='halfCard'>
+                <table id='appointmentTable'></table>
+            </div>
+        </div>
+
+        <div class='halfCardContainer'>
+            <div class='halfCardHeader'>Information</div>
+            <div class='halfCard'></div>
+        </div>
+    </div>
 </body>
 </html>
