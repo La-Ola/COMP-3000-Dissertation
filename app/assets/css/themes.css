@@ -14,8 +14,8 @@
     --grey-green-darker: rgb(187, 183, 172);
     --grey-green-lighter: rgb(204, 201, 186);
     --grey-green-ligtest: rgb(205, 210, 203);
-    --navy-blue: rgb(57, 65, 71);
-    --navy-green: rgb(71, 91, 100);
+    --navy-blue: rgb(71, 91, 100);
+    --navy-green: rgb(57, 65, 71);
 }
 
 [data-theme="dark"] {
@@ -30,8 +30,8 @@
     --grey-green-darker: rgb(23, 28, 31);
     --grey-green-lighter: rgb(46, 57, 63);
     --grey-green-ligtest: rgb(14, 13, 13);
-    --navy-blue: rgb(32, 40, 44);
-    --navy-green: rgb(47, 59, 65);
+    --navy-blue: rgb(47, 59, 65);
+    --navy-green: rgb(32, 40, 44);
 }
 
 [font-size="small"] {

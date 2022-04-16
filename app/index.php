@@ -10,7 +10,6 @@
     <link rel="apple-touch-icon" href="./templogo.ico">
 
     <script src="./assets/js/index.js"></script>
-    <!--<script src="./assets/awesome-notifications-master/dist/index.var.js"></script>-->
 
     <title>Home</title>
 </head>
@@ -21,7 +20,7 @@
             How This Works
         </div>
         <div class="card">
-            This is a web app designed for your phone and tablets in portrait mode (though it can be viewed in landscape, proportions are not perfect),
+            This is a web app designed for your phone. it can be used on some tablets in portrait mode, proportions are not perfect,
             the site is not formattd to be used on laptops, or computers.<br><br>
             Please add this site to your home screen so that it can be treated like an app!<br>BEWARE - once you have saved this
             site to your homescreen, it will not automatically update! To update, delete the homescreen app, and re-save the webpage.

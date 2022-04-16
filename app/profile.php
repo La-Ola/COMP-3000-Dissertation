@@ -7,18 +7,73 @@
     <link rel="stylesheet" href="./assets/css/global.css">
     <link rel="stylesheet" href="./assets/css/themes.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="../awesome-notifications-master/dist/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="./templogo.ico">
     <link rel="apple-touch-icon" href="./templogo.ico">
 
     <script src="./assets/js/profile.js"></script>
-    <!--<script src="./assets/awesome-notifications-master/dist/index.var.js"></script>-->
+    <script src="../awesome-notifications-master/dist/index.var.js"></script>
 
     <title>Self Diagnosis</title>
 </head>
 
 <body>
     <div class="newBody">
-        <button>View Medical File</button>
+        <div id="petList"></div>
+        <div class="header">
+            How to add a pet
+        </div>
+        <div class="card">
+            Please press the "Create Pet" button, and fill out as much information as possible. Once this is done, press the "Add Pet" button to create your pets profile.<br><br> Leave blanc if you don't know.
+        </div>
+        
+        <div id="createPet" class="hidden">
+            <div class="header">
+                New Pet
+            </div>
+            <div class="card">
+                <table>
+                    <tr class="biTableSpacing">
+                        <td><b>Pet Name: </b></td>
+                        <td><input class="inputBox" id="petName" placeholder="Pet Name"></td>
+                    </tr>
+
+                    <tr class="biTableSpacing">
+                        <td><b>Date of Birth: </b></td>
+                        <td><input class="inputBox" id="DOB" placeholder="yyyy-mm-dd"></td>
+                    </tr>
+
+                    <tr class="biTableSpacing">
+                        <td><b>Sex: </b></td>
+                        <td><input class="inputBox" id="sex" placeholder="Male/Female"></td>
+                    </tr>
+
+                    <tr class="biTableSpacing">
+                        <td><b>Breed: </b></td>
+                        <td><input class="inputBox" id="breed" placeholder="Golden Retreiver"></td>
+                    </tr>
+
+                    <tr class="biTableSpacing">
+                        <td><b>Species: </b></td>
+                        <td><input class="inputBox" id="species" placeholder="Dog"></td>
+                    </tr>
+
+                    <tr class="biTableSpacing">
+                        <td><b>Neutered: </b></td>
+                        <td><input class="inputBox" id="neutered" placeholder="yes/no"></td>
+                    </tr>
+
+                    <tr class="biTableSpacing">
+                        <td><b>Microchip: </b></td>
+                        <td><input class="inputBox" id="microchip" placeholder="0000000000000000"></td>
+                    </tr>
+                </table>
+                <button id="add" class="cardButton">Add Pet</button>
+                <button id="cancel" class="cardButton">Cancel</button>
+            </div>
+        </div>
+
+        <button id="create" class="block">Create Pet</button>
     </div>
     <div class="navbar">
         <a href='./index.php'>

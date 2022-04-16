@@ -4,13 +4,13 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		include_once '../Database.php';
-		include_once '../models/Booking.php';
+		include_once '../models/Profile.php';
 
 		$database = new Database();
         $db = $database->connect();
 
-        $booking = new Booking($db);
-        $result = $booking->readAll();
+        $profile = new Profile($db);
+        $result = $profile->read();
 
         $rows = $result->rowCount();
 
@@ -22,19 +22,21 @@
                 extract($row);
                 
                 $item = array(
-                    'bookingID' => $bookingID,
-                    'vetID' => $vetID,
                     'patientID' => $patientID,
-                    'bookingDate' => $bookingDate,
-                    'reason' => $reason,
-                    'blocked' => $blocked
+                    'patientName' => $patientName,
+                    'DOB' => $DOB,
+                    'sex' => $sex,
+                    'breed' => $breed,
+                    'species' => $species,
+                    'neutered' => $neutered, 
+                    'microchip' => $microchip
                 );
 
                 array_push($array['data'], $item);
             }
             echo json_encode($array, JSON_PRETTY_PRINT);
         } else {
-            echo json_encode(array('message' => 'No bookings found.'));
+            echo json_encode(array('message' => 'No profile found.'));
         }
     } else {
         echo json_encode(array('message' => 'Wrong HTTP request method. Use GET instead.'));

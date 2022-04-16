@@ -2,6 +2,12 @@
     --font-family: "Helvetica Neue", "Lucida Grande", "Arial", "Verdana", "Tahoma", sans-serif;
 }
 
+html,
+input,
+textarea {
+    font-family: var(--font-family);
+}
+
 body {
     background: var(--grey-green-ligtest);
     margin: 0;
@@ -14,7 +20,7 @@ button {
     border: none;
     outline: none;
     border-radius: 10px;
-    width: 250px;
+    width: 290px;
     font-size: var(--font-small);
     cursor: pointer;
     transition: 0.5s;
@@ -40,7 +46,7 @@ th {
 th, td {
     text-align: center;
     vertical-align: bottom;
-    border-bottom: 3px dashed var(--navy-green);
+    border-bottom: 3px dashed var(--light-text);
 }
 
 /*scroll bar*/
@@ -63,7 +69,6 @@ th, td {
     background: var(--navy-blue);
 }
 
-
 .navbar {
     height: 180px;
 	width: 100%;
@@ -82,7 +87,7 @@ th, td {
 
 .navbar button {
     height: 170px;
-    width: calc((100% - 50px) / 5);
+    width: calc((100% - 60px) / 5);
     box-shadow: none; 
     transition: 0.5s;
     text-align: center;
@@ -146,4 +151,32 @@ th, td {
     max-width: 990px;
     padding-right: 20px;
     color: var(--dark-text);
+}
+
+.inputBox {
+    box-shadow: var(--shadow);
+    border: none;
+    outline: none;
+    padding: 5px;
+    padding-left: 10px;
+    font-size: var(--font-smaller);
+    border-radius: 10px;
+    background-color: var(--off-white);
+    color: var(--dark-text);
+    display: inline-block;
+    width: calc(100% - 25px);
+}
+
+.hidden {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
+.questionLable {
+    display: inline-block;
+    margin: 0 0 25px 25px;
+    font-size: var(--font-smaller);
 }
