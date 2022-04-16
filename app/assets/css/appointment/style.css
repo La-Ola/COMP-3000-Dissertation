@@ -1,0 +1,214 @@
+.dateTable th, .dateTable td {
+    text-align: center;
+    vertical-align: bottom;
+    border-bottom: none;
+    width: calc(100% / 7);
+}
+
+input.datePicker {
+    background: var(--navy-blue);
+    color: var(--lightest-text);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    width: auto;
+    font-size: var(--font-medium);
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+    box-shadow: var(--shadow);
+}
+
+.datePicker:hover {
+    transition: 0.5s;
+    background-color: var(--grey-green-darker);
+}
+
+.timeBox {
+    font-weight: bold;
+    font-size: var(--font-smaller);
+    color: var(--dark-text);
+    padding: 10px;
+    width: 150px;
+    border: none;
+    box-shadow: var(--shadow);
+    background-color: var(--off-white);
+    text-align: center;
+    display: inline-block;
+    margin: 30px auto 10px 20px;
+    height: 130px
+}
+
+.unselectableTime {
+    font-size: var(--font-smaller);
+    color: var(--light-text);
+    box-shadow: none;
+    padding: 10px;
+    width: 150px;
+    border: none;
+    background-color: var(--off-white);
+    text-align: center;
+    display: inline-block;
+    margin: 30px auto 10px 20px;
+    transition: 0.5s;
+    user-select: none;
+    height: 130px
+}
+
+.timeBox:hover {
+    transition: 0.5s;
+    background-color: var(--grey-green-lighter);
+}
+
+.bookingHeader,
+.headerTimeCard {
+    margin: 50px auto 0 auto;
+    width: calc(100% - 80px);
+    padding: 10px 10px 10px 10px;
+    display: block;
+    box-shadow: var(--shadow);
+    background-color: var(--navy-green);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    max-width: 1000px;
+    color: var(--lightest-text);
+    font-size: var(--font-medium);
+}
+
+.bookingCard,
+.bookingTimeCard {
+    box-shadow: var(--shadow);
+    padding: 0 0 20px 0;
+    margin: 0 auto 0 auto;
+    width: calc(100% - 80px);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: block;
+    background-color: var(--green-white);
+    max-width: 1000px;
+    padding-right: 20px;
+}
+
+.active {
+    background-color: var(--grey-green-darker);
+}
+
+.bookingCard {
+    float: middle;
+}
+
+.inputBoxLarge {
+    border: none;
+    outline: none;
+    box-shadow: var(--shadow);
+    padding: 5px;
+    padding-left: 10px;
+    font-size: var(--font-smaller);
+    border-radius: 10px;
+    height: 200px;
+    width: calc(100% - 40px);
+    resize: none;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    background-color: var(--off-white);
+    color: var(--dark-text);
+    margin-left: 20px;
+}
+
+.ddContainer {
+    margin: 0 20px 20px 0;
+    width: 220px;
+}
+
+.dropdownButton {
+    border: none;
+    outline: none;
+    box-shadow: var(--shadow);
+    padding: 10px 10px 10px 10px;
+    background: var(--navy-green);
+    text-align: left;
+    border-radius: 10px;
+    color: var(--lightest-text);
+    font-size: var(--font-smaller);
+    width: 220px;
+    appearance: none;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.caretContainer {
+    float: right;
+    width: 70px;
+    height: 50px;
+    padding: 20px 10px 0 0;
+}
+
+.leftCaret {
+    padding: 1px 1px 1px 1px;
+    background: var(--lightest-text);
+    float: right;
+    width: 30px;
+    transform: rotate(-45deg);
+    transition: 1s;
+    border-radius: 10px;
+    position: relative;
+    top: 10px;
+}
+
+.rightCaret {
+    padding: 1px 1px 1px 1px;
+    background: var(--lightest-text);
+    float: right;
+    width: 30px;
+    transform: rotate(45deg);
+    transition: 1s;
+    border-radius: 10px;
+    position: relative;
+    top: 10px;
+    left: 10px;
+}
+
+.dropdownButton:hover .leftCaret {
+    transform: rotate(45deg);
+    width: 30px;
+    transition: 1s;
+}
+
+.dropdownButtonRadius {
+    border-radius: 10px 10px 0 0;
+}
+
+.dropdownButton:hover .rightCaret {
+    transform: rotate(-45deg);
+    width: 30px;
+}
+
+.dropdownContent {
+    border: none;
+    outline: none;
+    appearance: none;
+    box-shadow: var(--shadow);
+    background: var(--navy-green);
+    text-align: left;
+    border-radius: 0 0 10px 10px;
+    color: var(--lightest-text);
+    font-size: var(--font-smaller);
+    width: 220px;
+    transition: 0.25s;
+    cursor: pointer;
+    margin-left: 25px;
+}
+
+.dropdownContent a {
+    display: block;
+    padding: 5px 0 5px 10px;
+}
+
+.dropdownContent a:hover {
+    background-color: var(--navy-blue);
+}
+
+.dropdownContent a:hover:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
