@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="./assets/css/global.css">
     <link rel="stylesheet" href="./assets/css/themes.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="./templogo.ico">
-    <link rel="apple-touch-icon" href="./templogo.ico">
+    <link rel="shortcut icon" href="../familiarsystems.ico">
+    <link rel="apple-touch-icon" href="../familiarsystems.ico">
 
     <script src="./assets/js/setting.js"></script>
 
