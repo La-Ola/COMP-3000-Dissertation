@@ -10,7 +10,7 @@
 
     <script src="./assets/js/diagnosis.js"></script>
     <script src="../../awesome-notifications-master/dist/index.var.js"></script>
-    <title>Calander</title>
+    <title>Diagnosis</title>
 </head>
 
 <body>

@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                             if (patientsID == patients[key].patientID) {
                                                 c4.innerHTML = patients[key].patientName;
                                                 let moreBut = document.createElement('button');
+                                                moreBut.innerHTML = 'More';
                                                 moreBut.id = patients[key].patientID;
                                                 c5.append(moreBut);
                                                 moreBut.addEventListener('click', () => {
