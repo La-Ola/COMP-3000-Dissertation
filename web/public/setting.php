@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./assets/css/global.css">
     <link rel="stylesheet" href="./assets/css/themes.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="../familiarsystems.ico">
+    <link rel="shortcut icon" href="../../familiarsystems.ico">
 
     <script src="./assets/js/settings.js"></script>
     <title>Settings</title>

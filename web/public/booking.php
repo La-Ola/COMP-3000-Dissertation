@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./assets/css/themes.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="../../awesome-notifications-master/dist/style.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../familiarsystems.ico">
+    <link rel="shortcut icon" href="../../familiarsystems.ico">
 
     <script src="./assets/js/booking.js"></script>
     <script src="../../awesome-notifications-master/dist/index.var.js"></script>

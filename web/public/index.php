@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./assets/css/themes.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="../../awesome-notifications-master/dist/style.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../familiarsystems.ico">
+    <link rel="shortcut icon" href="../../familiarsystems.ico">
 
     <script src="./assets/js/index.js"></script>
     <script src="../../awesome-notifications-master/dist/index.var.js"></script>
@@ -75,7 +75,42 @@
 
         <div class='halfCardContainer'>
             <div class='halfCardHeader'>Information</div>
-            <div class='halfCard'></div>
+            <div class='halfCard'>
+                <div class='infoHolder'>
+                    <div id='petID'><b>ID: </b></div>
+                </div>
+                <div class='infoHolder'>
+                    <div id='species'><b>Species:</b></div>
+                </div>
+                <div class='infoHolder'>
+                    <b>Name:</b>
+                    <input id='name' class='hidden'>
+                    <div id='nameHolder'></div>
+                </div>
+                <div class='infoHolder'>
+                    <b>Neutered:</b>
+                    <input id='balls' class='hidden'>
+                    <div id='ballsHolder'></div>
+                </div>
+                <div class='infoHolder'>
+                    <b>Microchip no.:</b> 
+                    <input id='chip' class='hidden'>
+                    <div id='chipHolder'></div>
+                </div>
+                <div class='infoHolder'>
+                    <b>Blood glucose:</b>
+                    <div id='blood'></div>
+                </div>
+                <div class='infoHolder'>
+                    <b>Heart Rate:</b>
+                    <div id='heart'></div>
+                </div>
+                <div class='infoHolder'>
+                    <b>Blood pressure:</b>
+                    <div id='pressure'></div>
+                </div>
+                <div class='entryContainer'></div>
+            </div>
         </div>
     </div>
 </body>

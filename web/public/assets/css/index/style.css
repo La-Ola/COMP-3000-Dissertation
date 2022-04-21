@@ -31,6 +31,10 @@
     margin-bottom: 20px;
 }
 
+.halfCardContainer:last-of-type {
+    float: right;
+}
+
 #appointmentTable {
     margin: 0;
     width: 100%;
@@ -44,5 +48,25 @@
     border-bottom: 3px dashed var(--light-text);
     padding: 25px 0 15px 0;
     text-align: center;
+}
 
+.infoHolder {
+    width: calc(100%);
+    margin-bottom: 20px;
+}
+
+#nameHolder,
+#ballsHolder,
+#chipHolder {
+    display: inline;
+}
+
+.updateButton {
+    width: 105px;
+    font-size: var(--font-smaller);
+}
+
+.inputBox {
+    width: 150px !important;
+    display: inline;
 }

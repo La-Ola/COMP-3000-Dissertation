@@ -1,5 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     let table = document.getElementById('appointmentTable');
+
+    let infoName = document.getElementById('name');
+    let infoSpecies = document.getElementById('species');
+    let infoChip = document.getElementById('chip');
+    let infoBlood = document.getElementById('blood');
+    let infoHeart = document.getElementById('heart');
+    let infoPressure = document.getElementById('pressure');
+    let infoId = document.getElementById('petID');
+    let infoBalls = document.getElementById('balls');
+
+    let nameHolder = document.getElementById('nameHolder');
+    let ballsHolder = document.getElementById('ballsHolder');
+    let chipHolder = document.getElementById('chipHolder');
+
+
     let appointments = function() {
         table.innerHTML = '';
         let firstRow = document.createElement('tr');
@@ -13,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let head4 = document.createElement('th');
         head4.innerText = 'Pet';
         let head5 = document.createElement('th');
-        head5.innerText = 'More';
+        head5.innerText = 'Fill Info';
 
         firstRow.append(head1);
         firstRow.append(head2);
@@ -97,8 +113,62 @@ document.addEventListener("DOMContentLoaded", () => {
                                                 moreBut.innerHTML = 'More';
                                                 moreBut.id = patients[key].patientID;
                                                 c5.append(moreBut);
-                                                moreBut.addEventListener('click', () => {
 
+                                                moreBut.addEventListener('click', () => {
+                                                    infoName.classList.remove('hidden');
+                                                    infoName.classList.add('inputBox');
+
+                                                    infoChip.classList.remove('hidden');
+                                                    infoChip.classList.add('inputBox');
+
+                                                    infoBalls.classList.remove('hidden');
+                                                    infoBalls.classList.add('inputBox');
+
+                                                    infoId.innerHTML = '<b>ID: </b>'+ patientsID;
+                                                    infoName.value = patients[key].patientName;
+                                                    infoSpecies.innerHTML = '<b>Species: </b>' + patients[key].species;
+
+                                                    if (patients[key].neutered != '') {
+                                                        infoBalls.value = patients[key].neutered;
+                                                    } else {
+                                                        infoBalls.value = 'Unknown';
+                                                    }
+
+                                                    if (patients[key].microchip != '') {
+                                                        infoChip.value = patients[key].microchip;
+                                                    } else {
+                                                        infoChip.value = 'Unknown';
+                                                    }
+
+                                                    infoName.addEventListener('change', (e) => {
+                                                        nameHolder.innerHTML = '';
+
+                                                        let updateB = document.createElement('button');
+                                                        updateB.classList.add('updateButton');
+                                                        updateB.innerHTML = 'Update';
+                                                        nameHolder.append(updateB);
+
+                                                    });
+
+                                                    infoBalls.addEventListener('change', (e) => {
+                                                        ballsHolder.innerHTML = '';
+
+                                                        let updateB = document.createElement('button');
+                                                        updateB.classList.add('updateButton');
+                                                        updateB.innerHTML = 'Update';
+                                                        ballsHolder.append(updateB);
+
+                                                    });
+
+                                                    infoChip.addEventListener('change', (e) => {
+                                                        chipHolder.innerHTML = '';
+
+                                                        let updateB = document.createElement('button');
+                                                        updateB.classList.add('updateButton');
+                                                        updateB.innerHTML = 'Update';
+                                                        chipHolder.append(updateB);
+
+                                                    });
                                                 });
                                             }
                                         })
