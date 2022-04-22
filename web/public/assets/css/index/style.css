@@ -35,13 +35,23 @@
     float: right;
 }
 
-#appointmentTable {
+#appointmentTable, #medications {
     margin: 0;
     width: 100%;
 }
 
 #appointmentTable th {
     width: calc(100% / 5);
+}
+
+#medications th {
+    width: calc(100% - 110px / 2);
+}
+
+#medications td {
+    border-bottom: 3px dashed var(--light-text);
+    padding: 25px 0 15px 0;
+    text-align: center;
 }
 
 #appointmentTable td {
@@ -66,7 +76,66 @@
     font-size: var(--font-smaller);
 }
 
+.illnessInputBoxTable,
+.medicineInputBoxTable {
+    width: calc(100% - 40px);
+    display: inline;
+    border: none;
+    outline: none;
+    box-shadow: var(--shadow);
+    padding: 5px;
+    padding-left: 10px;
+    font-size: var(--font-smaller);
+    border-radius: 10px;
+    background-color: var(--off-white);
+    color: var(--dark-text);
+}
+
+.tableButton {
+    margin: 0 10px 0 0;
+}
+
 .inputBox {
     width: 150px !important;
     display: inline;
+}
+
+.inputNotes {
+    border: none;
+    outline: none;
+    box-shadow: var(--shadow);
+    padding: 5px;
+    padding-left: 10px;
+    font-size: var(--font-smaller);
+    border-radius: 10px;
+    height: 150px;
+    width: calc(100% - 15px);
+    resize: none;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    background-color: var(--off-white);
+    color: var(--dark-text);
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+
+.bottomButton {
+    margin: 20px 0 0 0;
+}
+
+.formButton {
+    width: calc(100% - 50px);
+    margin-top: 20px;
+    background-color: var(--navy-blue);
+}
+
+.baseCard {
+    box-shadow: var(--shadow);
+    padding: 20px 15px 20px 15px;
+    margin: 20px auto 0 auto;
+    width: calc(100% - 50px);
+    border-radius: 10px;
+    display: block;
+    background-color: var(--green-white);
+    color: var(--dark-text);
 }

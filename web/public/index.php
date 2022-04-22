@@ -85,18 +85,19 @@
                 <div class='infoHolder'>
                     <b>Name:</b>
                     <input id='name' class='hidden'>
-                    <div id='nameHolder'></div>
                 </div>
                 <div class='infoHolder'>
                     <b>Neutered:</b>
-                    <input id='balls' class='hidden'>
-                    <div id='ballsHolder'></div>
+                    <input id='neut' class='hidden'>
                 </div>
                 <div class='infoHolder'>
                     <b>Microchip no.:</b> 
                     <input id='chip' class='hidden'>
-                    <div id='chipHolder'></div>
                 </div>
+                <div id='halfCard'></div>
+            </div>
+
+            <div class='baseCard'>
                 <div class='infoHolder'>
                     <b>Blood glucose:</b>
                     <div id='blood'></div>
@@ -109,8 +110,32 @@
                     <b>Blood pressure:</b>
                     <div id='pressure'></div>
                 </div>
-                <div class='entryContainer'></div>
             </div>
+
+            <div id='noteCard' class='baseCard'>
+                <div class='infoHolder'>
+                    <div id='reasonHolder'><b>Reason for Appointment: </b> </div>
+                </div>
+                <textarea id='noteTextArea' class='inputNotes' placeholder='Notes'></textarea>
+            </div>
+
+            <div id='medsCard' class='baseCard'>
+                <div class='entryContainer'>
+                    <table id='medications'>
+                        <tr>
+                            <th>Illness</th>
+                            <th>Medications</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td><input id='illness' class='illnessInputBoxTable'></td>
+                            <td><input id='medicine' class='medicineInputBoxTable'></td>
+                            <td id='buttonColumn'><button id='rowButton' class='tableButton'>Add Row</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <button id='formSubmit' class='hidden'>Submit New Medical Information</button>
         </div>
     </div>
 </body>

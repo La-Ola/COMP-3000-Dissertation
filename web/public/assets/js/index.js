@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let table = document.getElementById('appointmentTable');
 
+    let infoCard = document.getElementById('halfCard');
+
     let infoName = document.getElementById('name');
     let infoSpecies = document.getElementById('species');
     let infoChip = document.getElementById('chip');
@@ -9,12 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let infoHeart = document.getElementById('heart');
     let infoPressure = document.getElementById('pressure');
     let infoId = document.getElementById('petID');
-    let infoBalls = document.getElementById('balls');
+    let infoneut = document.getElementById('neut');
 
-    let nameHolder = document.getElementById('nameHolder');
-    let ballsHolder = document.getElementById('ballsHolder');
-    let chipHolder = document.getElementById('chipHolder');
+    let reasonHolder = document.getElementById('reasonHolder');
 
+    let noteTextArea = document.getElementById('noteTextArea');
+
+    let medTable = document.getElementById('medications');
+    let buttonColumn = document.getElementById('buttonColumn');
+    let rowButton = document.getElementById('rowButton');
+    let formSubmit = document.getElementById('formSubmit');
 
     let appointments = function() {
         table.innerHTML = '';
@@ -75,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         let bookingBlockTime = bookingDate[1];
                         if (current <= bookingBlockDate) {
                             let patientsID = bookedSlots[key].patientID;
+                            let reason = bookedSlots[key].reason;
 
                             let splitDate = bookingBlockDate.split('-');
                             let year = splitDate[0];
@@ -121,17 +128,23 @@ document.addEventListener("DOMContentLoaded", () => {
                                                     infoChip.classList.remove('hidden');
                                                     infoChip.classList.add('inputBox');
 
-                                                    infoBalls.classList.remove('hidden');
-                                                    infoBalls.classList.add('inputBox');
+                                                    infoneut.classList.remove('hidden');
+                                                    infoneut.classList.add('inputBox');
 
                                                     infoId.innerHTML = '<b>ID: </b>'+ patientsID;
                                                     infoName.value = patients[key].patientName;
                                                     infoSpecies.innerHTML = '<b>Species: </b>' + patients[key].species;
 
-                                                    if (patients[key].neutered != '') {
-                                                        infoBalls.value = patients[key].neutered;
+                                                    if (reason == '' || reason == null) {
+                                                        reasonHolder.innerHTML = '<b>Reason for Appointment: </b>Unknown';
                                                     } else {
-                                                        infoBalls.value = 'Unknown';
+                                                        reasonHolder.innerHTML = '<b>Reason for Appointment: </b>' + reason;
+                                                    }
+
+                                                    if (patients[key].neutered != '') {
+                                                        infoneut.value = patients[key].neutered;
+                                                    } else {
+                                                        infoneut.value = 'Unknown';
                                                     }
 
                                                     if (patients[key].microchip != '') {
@@ -140,36 +153,109 @@ document.addEventListener("DOMContentLoaded", () => {
                                                         infoChip.value = 'Unknown';
                                                     }
 
-                                                    infoName.addEventListener('change', (e) => {
-                                                        nameHolder.innerHTML = '';
+                                                    let submitButton = document.createElement('button');
+                                                    submitButton.classList.add('bottomButton');
+                                                    submitButton.innerHTML = 'Submit';
+                                                    infoCard.innerHTML = '';
+                                                    infoCard.append(submitButton);
 
-                                                        let updateB = document.createElement('button');
-                                                        updateB.classList.add('updateButton');
-                                                        updateB.innerHTML = 'Update';
-                                                        nameHolder.append(updateB);
+                                                    submitButton.addEventListener('click', () => {
+                                                        let xhr = new XMLHttpRequest();
 
-                                                    });
+                                                        let body = {
+                                                            patientID: patientsID,
+                                                            patientName: infoName.value,
+                                                            DOB : patients[key].DOB,
+                                                            sex : patients[key].sex,
+                                                            breed : patients[key].breed,
+                                                            species : patients[key].species,
+                                                            neutered : infoneut.value,
+                                                            microchip : infoChip.value
+                                                        };
 
-                                                    infoBalls.addEventListener('change', (e) => {
-                                                        ballsHolder.innerHTML = '';
+                                                        xhr.addEventListener('readystatechange', function() {
+                                                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                                                let responseJSON = xhr.responseText;
+                                                                let notifier = new AWN();
+                                                                try {
+                                                                    if (xhr.status == 200) {
+                                                                        notifier.success('Successfully Submitted New Microchip Number');
+                                                                    } else {
+                                                                        notifier.alert('Has Not Submitted Booking. Check Connection.');
+                                                                    }
+                                                                } catch (error) {
+                                                                    console.log(error);
+                                                                    notifier.alert('Has Not Submitted Booking. Check Connection.');
+                                                                }
+                                                            }
+                                                        });
 
-                                                        let updateB = document.createElement('button');
-                                                        updateB.classList.add('updateButton');
-                                                        updateB.innerHTML = 'Update';
-                                                        ballsHolder.append(updateB);
+                                                        xhr.open('PUT', '../../api/profile/update.php?', true);
+                                                        xhr.send(JSON.stringify(body));
+                                                    })
 
-                                                    });
+                                                    rowButton.addEventListener('click', () => {
+                                                        let illnessCollect = document.querySelectorAll('#illness');
+                                                        let medicineCollect = document.querySelectorAll('#medicine');
 
-                                                    infoChip.addEventListener('change', (e) => {
-                                                        chipHolder.innerHTML = '';
+                                                        let lastIllness = illnessCollect[illnessCollect.length- 1];
+                                                        let lastMedicine = medicineCollect[medicineCollect.length- 1];
 
-                                                        let updateB = document.createElement('button');
-                                                        updateB.classList.add('updateButton');
-                                                        updateB.innerHTML = 'Update';
-                                                        chipHolder.append(updateB);
+                                                        let lastIllnessValue = lastIllness.value;
+                                                        let lastMedicineValue = lastMedicine.value;
 
-                                                    });
-                                                });
+                                                        console.log(lastIllness)
+                                                        if (lastIllnessValue == '' && lastMedicineValue == '') {
+                                                            let notifier = new AWN();
+                                                            notifier.alert('No Information In Current Row.');
+                                                        } else {
+                                                            rowButton.classList.add('hidden');
+
+                                                            let newRow = document.createElement('tr');
+
+                                                            let firstColumn = document.createElement('td');
+                                                            let secondColumn = document.createElement('td');
+                                                            let thirdColumn = document.createElement('td');
+
+                                                            let firstInput = document.createElement('input');
+                                                            let secondInput = document.createElement('input');
+
+                                                            firstInput.classList.add('illnessInputBoxTable');
+                                                            secondInput.classList.add('medicineInputBoxTable');
+
+                                                            firstInput.value = '';
+                                                            secondInput.value = '';
+
+                                                            rowButton.classList.add('tableButton');
+                                                            rowButton.classList.remove('hidden');
+
+                                                            buttonColumn.id = '';
+                                                            buttonColumn.innerHTML = '';
+
+                                                            firstInput.id = 'illness';
+                                                            secondInput.id = 'medicine';
+                                                            thirdColumn.id = 'buttonColumn';
+
+                                                            firstColumn.append(firstInput);
+                                                            secondColumn.append(secondInput);
+                                                            thirdColumn.append(rowButton);
+
+                                                            newRow.append(firstColumn);
+                                                            newRow.append(secondColumn);
+                                                            newRow.append(thirdColumn);
+
+                                                            medTable.append(newRow);
+                                                        }
+                                                    })
+
+                                                    formSubmit.classList.remove('hidden');
+                                                    formSubmit.classList.add('formButton');
+
+                                                    formSubmit.addEventListener('click', () => {
+                                                        noteTextArea.value;
+                                                        window.location = window.location;
+                                                    })
+                                                })
                                             }
                                         })
                                     } catch (error) {
