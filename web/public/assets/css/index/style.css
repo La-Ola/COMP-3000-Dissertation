@@ -35,13 +35,23 @@
     float: right;
 }
 
-#appointmentTable, #medications {
+#appointmentTable, #medications, #historyTable {
     margin: 0;
     width: 100%;
 }
 
+#appointmentTable td, #historyTable td {
+    border-bottom: 3px dashed var(--light-text);
+    padding: 25px 0 15px 0;
+    text-align: center;
+}
+
 #appointmentTable th {
     width: calc(100% / 5);
+}
+
+#historyTable th {
+    width: calc(100% / 4);
 }
 
 #medications th {
@@ -49,12 +59,6 @@
 }
 
 #medications td {
-    border-bottom: 3px dashed var(--light-text);
-    padding: 25px 0 15px 0;
-    text-align: center;
-}
-
-#appointmentTable td {
     border-bottom: 3px dashed var(--light-text);
     padding: 25px 0 15px 0;
     text-align: center;
@@ -138,4 +142,8 @@
     display: block;
     background-color: var(--green-white);
     color: var(--dark-text);
+}
+
+.card {
+    margin: 0 auto 20px auto !important;
 }

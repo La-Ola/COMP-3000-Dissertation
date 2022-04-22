@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let infoId = document.getElementById('petID');
     let infoneut = document.getElementById('neut');
 
+    let histHead = document.getElementById('histHead');
+    let histCard = document.getElementById('histCard')
+    let historyCard = document.getElementById('historyCard');
+
     let reasonHolder = document.getElementById('reasonHolder');
 
     let noteTextArea = document.getElementById('noteTextArea');
@@ -24,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let appointments = function() {
         table.innerHTML = '';
+        historyCard.innerHTML = '';
         let firstRow = document.createElement('tr');
 
         let head1 = document.createElement('th');
@@ -122,6 +127,13 @@ document.addEventListener("DOMContentLoaded", () => {
                                                 c5.append(moreBut);
 
                                                 moreBut.addEventListener('click', () => {
+                                                    histHead.classList.remove('hidden');
+                                                    histCard.classList.remove('hidden');
+
+                                                    histHead.classList.add('header');
+                                                    histCard.classList.add('card');
+                                                    historyCard.innerHTML = '';
+
                                                     infoName.classList.remove('hidden');
                                                     infoName.classList.add('inputBox');
 
@@ -194,17 +206,86 @@ document.addEventListener("DOMContentLoaded", () => {
                                                         xhr.send(JSON.stringify(body));
                                                     })
 
+                                                    let xhr = new XMLHttpRequest();
+                                                    xhr.addEventListener('readystatechange', function() {
+                                                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                                                            let responseJSON = xhr.responseText;
+                                                            try {
+                                                                let json = xhr.responseText.substring(7);console.log(json);
+                                                                let emr = JSON.parse(json).data;
+                                                                let keys = Object.keys(emr);
+
+                                                                let emfTable = document.createElement('table');
+                                                                emfTable.id = 'historyTable';
+
+                                                                let headerRow = document.createElement('tr');
+                                                                let h1 = document.createElement('th');
+                                                                h1.innerHTML = 'Date';
+                                                                let h2 = document.createElement('th');
+                                                                h2.innerHTML = 'Illness';
+                                                                let h3 = document.createElement('th');
+                                                                h3.innerHTML = 'Medicine';
+                                                                let h4 = document.createElement('th');
+                                                                h4.innerHTML = 'Notes';
+                                                                let h5 = document.createElement('th');
+
+                                                                headerRow.append(h1);
+                                                                headerRow.append(h2);
+                                                                headerRow.append(h3);
+                                                                headerRow.append(h4);
+                                                                headerRow.append(h5);
+                                                                emfTable.append(headerRow);
+
+                                                                keys.map(k => {
+                                                                    if (emr[k].patientID == patientsID) {
+                                                                        let row = document.createElement('tr');
+                                                                        let c1 = document.createElement('td');
+                                                                        c1.innerHTML = emr[k].date;
+                                                                        let c2 = document.createElement('td');
+                                                                        c2.innerHTML = emr[k].illness;
+                                                                        let c3 = document.createElement('td');
+                                                                        c3.innerHTML = emr[k].medication;
+                                                                        let c4 = document.createElement('td');
+                                                                        c4.innerHTML = emr[k].notes;
+                                                                        let c5 = document.createElement('td');
+                                                                        let deleteButton = document.createElement('button');
+                                                                        deleteButton.innerHTML = 'Delete';
+                                                                        c5.append(deleteButton);
+                                                                        row.append(c1);
+                                                                        row.append(c2);
+                                                                        row.append(c3);
+                                                                        row.append(c4);
+                                                                        row.append(c5);
+                                                                        emfTable.append(row);
+                                                                    }
+                                                                })
+
+                                                                let rows = emfTable.getElementsByTagName("tr");
+                                                                if (rows.length == 1) {
+                                                                    emfTable.innerHTML = '';
+                                                                    historyCard.innerHTML = '<b>No Information</b>';
+                                                                }
+
+                                                                historyCard.append(emfTable);
+
+                                                            } catch (error) {
+                                                                console.log(error);
+                                                            }
+                                                        }
+                                                    });
+                                                    xhr.open('GET', '../../api/emf/read.php?', true);
+                                                    xhr.send();
+
                                                     rowButton.addEventListener('click', () => {
                                                         let illnessCollect = document.querySelectorAll('#illness');
                                                         let medicineCollect = document.querySelectorAll('#medicine');
 
-                                                        let lastIllness = illnessCollect[illnessCollect.length- 1];
-                                                        let lastMedicine = medicineCollect[medicineCollect.length- 1];
+                                                        let lastIllness = illnessCollect[illnessCollect.length - 1];
+                                                        let lastMedicine = medicineCollect[medicineCollect.length - 1];
 
                                                         let lastIllnessValue = lastIllness.value;
                                                         let lastMedicineValue = lastMedicine.value;
 
-                                                        console.log(lastIllness)
                                                         if (lastIllnessValue == '' && lastMedicineValue == '') {
                                                             let notifier = new AWN();
                                                             notifier.alert('No Information In Current Row.');

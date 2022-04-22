@@ -66,6 +66,13 @@
     </div>
 
     <div class="newBody">
+        <div id='histHead' class='hidden'>Medical History</div>
+        <div id='histCard' class='hidden'>
+            <div class='infoHolder'>
+            </div>
+            <div id='historyCard'></div>
+        </div>
+
         <div class='halfCardContainer'>
             <div class='halfCardHeader'>Appointments</div>
             <div class='halfCard'>
