@@ -40,16 +40,4 @@
 
             return $command;
         }
-
-        public function update() {
-            $query = 'CALL updateEMF(:id, :patientID, :illness, :medication, :date, :notes)';
-			$command = $this->connection->prepare($query);
-			$command->bindParam(':id', $this->EMRID);
-			$command->bindParam(':patientID', $this->patientID);
-			$command->bindParam(':illness', $this->illness);
-			$command->bindParam(':medication', $this->medication);
-			$command->bindParam(':date', $this->date);
-			$command->bindParam(':notes', $this->notes);
-			$command->execute();
-        }
     }
