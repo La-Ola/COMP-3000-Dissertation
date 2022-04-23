@@ -369,8 +369,42 @@ document.addEventListener("DOMContentLoaded", () => {
                                                     formSubmit.classList.add('formButton');
 
                                                     formSubmit.addEventListener('click', () => {
-                                                        noteTextArea.value;
-                                                        window.location = window.location;
+                                                        let illnessCollect = document.querySelectorAll('#illness');
+                                                        let medicineCollect = document.querySelectorAll('#medicine');
+
+                                                        let date = new Date();
+
+                                                        for (i = 0; i <= illnessCollect.length; i++) {
+                                                            let lastIllness = illnessCollect[i];
+                                                            let lastMedicine = medicineCollect[i];
+
+                                                            let xhr = new XMLHttpRequest();
+                                                            let body = {
+                                                                "patientID": patientsID,
+                                                                "illness": lastIllness.value,
+                                                                "medication": lastMedicine.value,
+                                                                "date": date,
+                                                                "notes": noteTextArea.value
+                                                            };
+                                                            xhr.addEventListener('readystatechange', function() {
+                                                                if (xhr.readyState === XMLHttpRequest.DONE) {
+                                                                    let responseJSON = xhr.responseText;
+                                                                    let notifier = new AWN();
+                                                                    try {
+                                                                        if (xhr.status == 200) {
+                                                                            notifier.success('Successfully Created New File');
+                                                                        } else {
+                                                                            notifier.alert('Has Not Created New File. Check Connection.');
+                                                                        }
+                                                                    } catch (error) {
+                                                                        console.log(error);
+                                                                    } 
+                                                                }
+                                                            })
+                                                            xhr.open('POST', '../../api/emf/create.php?', true);
+                                                            xhr.send(JSON.stringify(body));
+                                                            window.location = window.location;
+                                                        }
                                                     })
                                                 })
                                             }
