@@ -40,7 +40,10 @@
     width: 100%;
 }
 
-#appointmentTable td, #historyTable td {
+#appointmentTable td,
+#historyTable td,
+#medications td,
+#paramTable td {
     border-bottom: 3px dashed var(--light-text);
     padding: 25px 0 15px 0;
     text-align: center;
@@ -50,18 +53,13 @@
     width: calc(100% / 5);
 }
 
-#historyTable th {
+#historyTable th,
+#paramTable th{
     width: calc(100% / 4);
 }
 
 #medications th {
     width: calc(100% - 110px / 2);
-}
-
-#medications td {
-    border-bottom: 3px dashed var(--light-text);
-    padding: 25px 0 15px 0;
-    text-align: center;
 }
 
 .infoHolder {

@@ -105,17 +105,30 @@
             </div>
 
             <div class='baseCard'>
+                <table id='paramTable'>
+                    <tr>
+                        <th>Paramaters</th>
+                        <th>Bottom Range</th>
+                        <th>Top Range</th>
+                    </tr>
+                    <tr>
+                        <td><b>Blood glucose: (mg/Dl)</b></td>
+                        <td id='botGluc'></td>
+                        <td id='topGluc'></td>
+                    </tr>
+                    <tr>
+                        <td><b>Heart Rate: (BPM) </b></td>
+                        <td id='botHeart'></td>
+                        <td id='topHeart'></td>
+                    </tr>
+                    <tr>
+                        <td><b>Body Temp: (c)</b></td>
+                        <td id='botTemp'></td>
+                        <td id='topTemp'></td>
+                    </tr>
+                </table>
                 <div class='infoHolder'>
-                    <b>Blood glucose:</b>
-                    <div id='blood'></div>
-                </div>
-                <div class='infoHolder'>
-                    <b>Heart Rate:</b>
-                    <div id='heart'></div>
-                </div>
-                <div class='infoHolder'>
-                    <b>Blood pressure:</b>
-                    <div id='pressure'></div>
+                    <b>This is based on mature animals, any double values account for large and small breeds respectively.</b> 
                 </div>
             </div>
 
