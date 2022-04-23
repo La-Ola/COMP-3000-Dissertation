@@ -4,18 +4,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let infoCard = document.getElementById('halfCard');
 
-    let infoName = document.getElementById('name');
-    let infoSpecies = document.getElementById('species');
-    let infoChip = document.getElementById('chip');
-    let infoBlood = document.getElementById('blood');
-    let infoHeart = document.getElementById('heart');
-    let infoPressure = document.getElementById('pressure');
-    let infoId = document.getElementById('petID');
-    let infoneut = document.getElementById('neut');
-
     let histHead = document.getElementById('histHead');
     let histCard = document.getElementById('histCard')
     let historyCard = document.getElementById('historyCard');
+
+    let infoName = document.getElementById('name');
+    let infoSpecies = document.getElementById('species');
+    let infoChip = document.getElementById('chip');
+    let infoId = document.getElementById('petID');
+    let infoneut = document.getElementById('neut');
+
+    let botGluc = document.getElementById('botGluc');
+    let botHeart = document.getElementById('botHeart');
+    let botTemp = document.getElementById('botTemp');
+    let topGluc = document.getElementById('topGluc');
+    let topHeart = document.getElementById('topHeart');
+    let topTemp = document.getElementById('topTemp');
 
     let reasonHolder = document.getElementById('reasonHolder');
 
@@ -134,78 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                                     histCard.classList.add('card');
                                                     historyCard.innerHTML = '';
 
-                                                    infoName.classList.remove('hidden');
-                                                    infoName.classList.add('inputBox');
-
-                                                    infoChip.classList.remove('hidden');
-                                                    infoChip.classList.add('inputBox');
-
-                                                    infoneut.classList.remove('hidden');
-                                                    infoneut.classList.add('inputBox');
-
-                                                    infoId.innerHTML = '<b>ID: </b>'+ patientsID;
-                                                    infoName.value = patients[key].patientName;
-                                                    infoSpecies.innerHTML = '<b>Species: </b>' + patients[key].species;
-
-                                                    if (reason == '' || reason == null) {
-                                                        reasonHolder.innerHTML = '<b>Reason for Appointment: </b>Unknown';
-                                                    } else {
-                                                        reasonHolder.innerHTML = '<b>Reason for Appointment: </b>' + reason;
-                                                    }
-
-                                                    if (patients[key].neutered != '') {
-                                                        infoneut.value = patients[key].neutered;
-                                                    } else {
-                                                        infoneut.value = 'Unknown';
-                                                    }
-
-                                                    if (patients[key].microchip != '') {
-                                                        infoChip.value = patients[key].microchip;
-                                                    } else {
-                                                        infoChip.value = 'Unknown';
-                                                    }
-
-                                                    let submitButton = document.createElement('button');
-                                                    submitButton.classList.add('bottomButton');
-                                                    submitButton.innerHTML = 'Submit';
-                                                    infoCard.innerHTML = '';
-                                                    infoCard.append(submitButton);
-
-                                                    submitButton.addEventListener('click', () => {
-                                                        let xhr = new XMLHttpRequest();
-
-                                                        let body = {
-                                                            patientID: patientsID,
-                                                            patientName: infoName.value,
-                                                            DOB : patients[key].DOB,
-                                                            sex : patients[key].sex,
-                                                            breed : patients[key].breed,
-                                                            species : patients[key].species,
-                                                            neutered : infoneut.value,
-                                                            microchip : infoChip.value
-                                                        };
-
-                                                        xhr.addEventListener('readystatechange', function() {
-                                                            if (xhr.readyState === XMLHttpRequest.DONE) {
-                                                                let responseJSON = xhr.responseText;
-                                                                let notifier = new AWN();
-                                                                try {
-                                                                    if (xhr.status == 200) {
-                                                                        notifier.success('Successfully Submitted New Microchip Number');
-                                                                    } else {
-                                                                        notifier.alert('Has Not Submitted Booking. Check Connection.');
-                                                                    }
-                                                                } catch (error) {
-                                                                    console.log(error);
-                                                                    notifier.alert('Has Not Submitted Booking. Check Connection.');
-                                                                }
-                                                            }
-                                                        });
-
-                                                        xhr.open('PUT', '../../api/profile/update.php?', true);
-                                                        xhr.send(JSON.stringify(body));
-                                                    })
-
                                                     let fillMedicalFile = function() {
                                                         let xhr = new XMLHttpRequest();
                                                         xhr.addEventListener('readystatechange', function() {
@@ -311,6 +243,123 @@ document.addEventListener("DOMContentLoaded", () => {
                                                     }
 
                                                     fillMedicalFile()
+
+                                                    infoName.classList.remove('hidden');
+                                                    infoName.classList.add('inputBox');
+
+                                                    infoChip.classList.remove('hidden');
+                                                    infoChip.classList.add('inputBox');
+
+                                                    infoneut.classList.remove('hidden');
+                                                    infoneut.classList.add('inputBox');
+
+                                                    infoId.innerHTML = '<b>ID: </b>'+ patientsID;
+                                                    infoName.value = patients[key].patientName;
+                                                    infoSpecies.innerHTML = '<b>Species: </b>' + patients[key].species;
+
+                                                    if (reason == '' || reason == null) {
+                                                        reasonHolder.innerHTML = '<b>Reason for Appointment: </b>Unknown';
+                                                    } else {
+                                                        reasonHolder.innerHTML = '<b>Reason for Appointment: </b>' + reason;
+                                                    }
+
+                                                    if (patients[key].neutered != '') {
+                                                        infoneut.value = patients[key].neutered;
+                                                    } else {
+                                                        infoneut.value = 'Unknown';
+                                                    }
+
+                                                    if (patients[key].microchip != '') {
+                                                        infoChip.value = patients[key].microchip;
+                                                    } else {
+                                                        infoChip.value = 'Unknown';
+                                                    }
+
+                                                    let submitButton = document.createElement('button');
+                                                    submitButton.classList.add('bottomButton');
+                                                    submitButton.innerHTML = 'Submit';
+                                                    infoCard.innerHTML = '';
+                                                    infoCard.append(submitButton);
+
+                                                    submitButton.addEventListener('click', () => {
+                                                        let xhr = new XMLHttpRequest();
+
+                                                        let body = {
+                                                            patientID: patientsID,
+                                                            patientName: infoName.value,
+                                                            DOB : patients[key].DOB,
+                                                            sex : patients[key].sex,
+                                                            breed : patients[key].breed,
+                                                            species : patients[key].species,
+                                                            neutered : infoneut.value,
+                                                            microchip : infoChip.value
+                                                        };
+
+                                                        xhr.addEventListener('readystatechange', function() {
+                                                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                                                let responseJSON = xhr.responseText;
+                                                                let notifier = new AWN();
+                                                                try {
+                                                                    if (xhr.status == 200) {
+                                                                        notifier.success('Successfully Submitted New Microchip Number');
+                                                                    } else {
+                                                                        notifier.alert('Has Not Submitted Booking. Check Connection.');
+                                                                    }
+                                                                } catch (error) {
+                                                                    console.log(error);
+                                                                    notifier.alert('Has Not Submitted Booking. Check Connection.');
+                                                                }
+                                                            }
+                                                        });
+
+                                                        xhr.open('PUT', '../../api/profile/update.php?', true);
+                                                        xhr.send(JSON.stringify(body));
+                                                    })
+
+                                                    let fillParams = function() {
+                                                        let xhr = new XMLHttpRequest();
+                                                        xhr.addEventListener('readystatechange', function() {
+                                                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                                                try {
+                                                                    botGluc.innerHTML = '';
+                                                                    topGluc.innerHTML = '';
+
+                                                                    botHeart.innerHTML = '';
+                                                                    topHeart.innerHTML = '';
+
+                                                                    botTemp.innerHTML = '';
+                                                                    topTemp.innerHTML = '';
+
+                                                                    let species = patients[key].species;
+
+                                                                    let json = xhr.responseText.substring(7);
+                                                                    let params = JSON.parse(json).data;
+                                                                    let keys = Object.keys(params);
+
+                                                                    keys.map(key => {
+                                                                        if (species.toLowerCase() == params[key].animal) {
+                                                                            botGluc.innerHTML = params[key].bloodGlucoseBottom;
+                                                                            topGluc.innerHTML = params[key].bloodGlucoseTop;
+
+                                                                            botHeart.innerHTML = params[key].heartRateBottom;
+                                                                            topHeart.innerHTML = params[key].heartRateTop;
+
+                                                                            botTemp.innerHTML = params[key].bodyTempBottom;
+                                                                            topTemp.innerHTML = params[key].bodyTempTop;
+                                                                        }
+                                                                    })
+                                                                    
+                                                                    
+                                                                } catch (error) {
+                                                                    console.log(error);
+                                                                }
+                                                            }
+                                                        })
+                                                        xhr.open('GET', '../../api/parameters/read.php?', true);
+                                                        xhr.send();
+                                                    }
+
+                                                    fillParams()
 
                                                     rowButton.addEventListener('click', () => {
                                                         let illnessCollect = document.querySelectorAll('#illness');

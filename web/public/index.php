@@ -128,7 +128,7 @@
                     </tr>
                 </table>
                 <div class='infoHolder'>
-                    <b>This is based on mature animals, any double values account for large and small breeds respectively.</b> 
+                    <b>This is based on mature animals.</b> 
                 </div>
             </div>
 
