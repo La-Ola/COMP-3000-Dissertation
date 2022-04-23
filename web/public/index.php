@@ -80,7 +80,7 @@
             </div>
         </div>
 
-        <div class='halfCardContainer'>
+        <div id='halfCardContainer2' class='hidden'>
             <div class='halfCardHeader'>Information</div>
             <div class='halfCard'>
                 <div class='infoHolder'>

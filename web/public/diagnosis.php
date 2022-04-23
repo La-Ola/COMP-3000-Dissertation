@@ -66,6 +66,10 @@
     </div>
 
     <div class="newBody">
+    <div class='header'></div>
+        <div class='card'>
+            <b>COMING SOON</b>
+        </div>
     </div>
 </body>
 </html>

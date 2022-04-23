@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let infoCard = document.getElementById('halfCard');
 
+    let secondHalf = document.getElementById('halfCardContainer2');
+
     let histHead = document.getElementById('histHead');
     let histCard = document.getElementById('histCard')
     let historyCard = document.getElementById('historyCard');
@@ -131,6 +133,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                                 c5.append(moreBut);
 
                                                 moreBut.addEventListener('click', () => {
+                                                    secondHalf.classList.remove('hidden');
+                                                    secondHalf.classList.add('halfCardContainer');
+
                                                     histHead.classList.remove('hidden');
                                                     histCard.classList.remove('hidden');
 
