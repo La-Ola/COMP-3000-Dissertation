@@ -206,75 +206,111 @@ document.addEventListener("DOMContentLoaded", () => {
                                                         xhr.send(JSON.stringify(body));
                                                     })
 
-                                                    let xhr = new XMLHttpRequest();
-                                                    xhr.addEventListener('readystatechange', function() {
-                                                        if (xhr.readyState === XMLHttpRequest.DONE) {
-                                                            let responseJSON = xhr.responseText;
-                                                            try {
-                                                                let json = xhr.responseText.substring(7);console.log(json);
-                                                                let emr = JSON.parse(json).data;
-                                                                let keys = Object.keys(emr);
+                                                    let fillMedicalFile = function() {
+                                                        let xhr = new XMLHttpRequest();
+                                                        xhr.addEventListener('readystatechange', function() {
+                                                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                                                let responseJSON = xhr.responseText;
+                                                                try {
+                                                                    let json = xhr.responseText.substring(7);
+                                                                    let emr = JSON.parse(json).data;
+                                                                    let keys = Object.keys(emr);
 
-                                                                let emfTable = document.createElement('table');
-                                                                emfTable.id = 'historyTable';
+                                                                    let emfTable = document.createElement('table');
+                                                                    emfTable.id = 'historyTable';
 
-                                                                let headerRow = document.createElement('tr');
-                                                                let h1 = document.createElement('th');
-                                                                h1.innerHTML = 'Date';
-                                                                let h2 = document.createElement('th');
-                                                                h2.innerHTML = 'Illness';
-                                                                let h3 = document.createElement('th');
-                                                                h3.innerHTML = 'Medicine';
-                                                                let h4 = document.createElement('th');
-                                                                h4.innerHTML = 'Notes';
-                                                                let h5 = document.createElement('th');
+                                                                    let headerRow = document.createElement('tr');
+                                                                    let h1 = document.createElement('th');
+                                                                    h1.innerHTML = 'Date';
+                                                                    let h2 = document.createElement('th');
+                                                                    h2.innerHTML = 'Illness';
+                                                                    let h3 = document.createElement('th');
+                                                                    h3.innerHTML = 'Medicine';
+                                                                    let h4 = document.createElement('th');
+                                                                    h4.innerHTML = 'Notes';
+                                                                    let h5 = document.createElement('th');
 
-                                                                headerRow.append(h1);
-                                                                headerRow.append(h2);
-                                                                headerRow.append(h3);
-                                                                headerRow.append(h4);
-                                                                headerRow.append(h5);
-                                                                emfTable.append(headerRow);
+                                                                    headerRow.append(h1);
+                                                                    headerRow.append(h2);
+                                                                    headerRow.append(h3);
+                                                                    headerRow.append(h4);
+                                                                    headerRow.append(h5);
+                                                                    emfTable.append(headerRow);
 
-                                                                keys.map(k => {
-                                                                    if (emr[k].patientID == patientsID) {
-                                                                        let row = document.createElement('tr');
-                                                                        let c1 = document.createElement('td');
-                                                                        c1.innerHTML = emr[k].date;
-                                                                        let c2 = document.createElement('td');
-                                                                        c2.innerHTML = emr[k].illness;
-                                                                        let c3 = document.createElement('td');
-                                                                        c3.innerHTML = emr[k].medication;
-                                                                        let c4 = document.createElement('td');
-                                                                        c4.innerHTML = emr[k].notes;
-                                                                        let c5 = document.createElement('td');
-                                                                        let deleteButton = document.createElement('button');
-                                                                        deleteButton.innerHTML = 'Delete';
-                                                                        c5.append(deleteButton);
-                                                                        row.append(c1);
-                                                                        row.append(c2);
-                                                                        row.append(c3);
-                                                                        row.append(c4);
-                                                                        row.append(c5);
-                                                                        emfTable.append(row);
+                                                                    keys.map(k => {
+                                                                        if (emr[k].patientID == patientsID) {
+                                                                            let row = document.createElement('tr');
+                                                                            let c1 = document.createElement('td');
+                                                                            c1.innerHTML = emr[k].date;
+
+                                                                            let c2 = document.createElement('td');
+                                                                            c2.innerHTML = emr[k].illness;
+
+                                                                            let c3 = document.createElement('td');
+                                                                            c3.innerHTML = emr[k].medication;
+
+                                                                            let c4 = document.createElement('td');
+                                                                            c4.innerHTML = emr[k].notes;
+
+                                                                            let c5 = document.createElement('td');
+                                                                            let deleteButton = document.createElement('button');
+                                                                            deleteButton.innerHTML = 'Delete';
+                                                                            c5.append(deleteButton);
+
+                                                                            row.append(c1);
+                                                                            row.append(c2);
+                                                                            row.append(c3);
+                                                                            row.append(c4);
+                                                                            row.append(c5);
+                                                                            emfTable.append(row);
+
+                                                                            deleteButton.addEventListener('click', () => {
+                                                                                let xhr = new XMLHttpRequest();
+                                                                                let body = {
+                                                                                        "EMRID" : emr[k].EMRID
+                                                                                };
+                                                                                xhr.addEventListener('readystatechange', function() {
+                                                                                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                                                                                        let responseJSON = xhr.responseText;
+                                                                                        let notifier = new AWN();
+                                                                                        try {
+                                                                                            if (xhr.status == 200) {
+                                                                                                notifier.success('Successfully Deleted EMF');
+                                                                                                historyCard.innerHTML = '';
+                                                                                                fillMedicalFile()
+                                                                                            } else {
+                                                                                                notifier.alert('Has Not Deleted EMF. Check Connection.');
+                                                                                            }
+                                                                                        } catch (error) {
+                                                                                            console.log(error);
+                                                                                        } 
+                                                                                    }
+                                                                                })
+                                                                                xhr.open('DELETE', '../../api/emf/delete.php?', true);
+                                                                                xhr.send(JSON.stringify(body));
+                                                                            })
+                                                                        }
+                                                                    })
+
+                                                                    let rows = emfTable.getElementsByTagName("tr");
+                                                                    if (rows.length == 1) {
+                                                                        emfTable.innerHTML = '';
+                                                                        historyCard.innerHTML = '<b>No Information</b>';
                                                                     }
-                                                                })
 
-                                                                let rows = emfTable.getElementsByTagName("tr");
-                                                                if (rows.length == 1) {
-                                                                    emfTable.innerHTML = '';
+                                                                    historyCard.append(emfTable);
+
+                                                                } catch (error) {
+                                                                    console.log(error);
                                                                     historyCard.innerHTML = '<b>No Information</b>';
                                                                 }
-
-                                                                historyCard.append(emfTable);
-
-                                                            } catch (error) {
-                                                                console.log(error);
                                                             }
-                                                        }
-                                                    });
-                                                    xhr.open('GET', '../../api/emf/read.php?', true);
-                                                    xhr.send();
+                                                        });
+                                                        xhr.open('GET', '../../api/emf/read.php?', true);
+                                                        xhr.send();
+                                                    }
+
+                                                    fillMedicalFile()
 
                                                     rowButton.addEventListener('click', () => {
                                                         let illnessCollect = document.querySelectorAll('#illness');
