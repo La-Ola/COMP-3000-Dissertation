@@ -1,9 +1,107 @@
-DROP TABLE IF EXISTS bodyparameter;
-DROP TABLE IF EXISTS booking;
-DROP TABLE IF EXISTS electronicmedicalfile;
-DROP TABLE IF EXISTS patients;
-DROP TABLE IF EXISTS owner;
-DROP TABLE IF EXISTS vet;
+
+--this is an export of the database containing all tables and stored prcedures
+-- inludes pre-made owner and vet, and fills bodyparameter table sample
+
+
+
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 23, 2022 at 12:43 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `familiar_systems`
+--
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `blockTime` (IN `vetID` INT, IN `bookingDate` DATETIME)  NO SQL
+BEGIN
+	INSERT INTO booking (vetID, patientID, bookingDate, reason, blocked) VALUES (vetID, NULL, bookingDate, NULL, 1);
+	COMMIT;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createBooking` (IN `vetID` INT, IN `patientID` INT, IN `bookingDate` DATETIME, IN `reason` VARCHAR(200))  BEGIN
+	INSERT INTO booking (vetID, patientID, bookingDate, reason, blocked) VALUES (vetID, patientID, bookingDate, reason, 0);
+	COMMIT;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createEMF` (IN `patientID` INT, IN `illness` VARCHAR(25), IN `medication` VARCHAR(25), IN `date` DATE, IN `notes` VARCHAR(200))  NO SQL
+BEGIN
+	INSERT INTO electronicmedicalfile (patientID, illness, medication, date, notes) VALUES (patientID, illness, medication, date, notes);
+	COMMIT;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createPatient` (IN `patientName` VARCHAR(25), IN `DOB` DATE, IN `sex` VARCHAR(6), IN `breed` VARCHAR(25), IN `species` VARCHAR(25), IN `neutered` VARCHAR(3), IN `microchip` INT(11))  NO SQL
+BEGIN
+	INSERT INTO patients (ownerID, patientName, DOB, sex, breed, species, neutered, microchip) VALUES (1212, patientName, DOB, sex, breed, species, neutered, microchip);
+	COMMIT;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteBooking` (IN `id` INT)  NO SQL
+BEGIN
+	DELETE FROM booking
+    WHERE bookingID = id;
+	COMMIT;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteEMF` (IN `id` INT)  NO SQL
+BEGIN
+	DELETE FROM electronicmedicalfile
+    WHERE EMRID = id;
+	COMMIT;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deletePatient` (IN `id` INT)  NO SQL
+BEGIN
+	DELETE FROM patients
+    WHERE patientID = id;
+	COMMIT;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `readEMF` (IN `id` INT)  NO SQL
+BEGIN
+	SELECT * FROM electronicmedicalfile
+    WHERE patientID = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateBooking` (IN `id` INT, IN `newPatientID` INT, IN `newReason` VARCHAR(200))  NO SQL
+BEGIN
+	UPDATE booking SET patientID = newPatientID WHERE bookingID = id;
+    UPDATE booking SET reason = newReason WHERE bookingID = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updatePatient` (IN `id` INT, IN `newPatientName` VARCHAR(25), IN `newDOB` DATE, IN `newSex` VARCHAR(6), IN `newBreed` VARCHAR(25), IN `newSpecies` VARCHAR(25), IN `newNeutered` VARCHAR(3), IN `newChip` INT(11))  NO SQL
+BEGIN
+	UPDATE patients SET patientName = newPatientName 	WHERE patientID = id;
+    UPDATE patients SET DOB = newDOB WHERE patientID = id;
+    UPDATE patients SET sex = newSex WHERE patientID = id;
+    UPDATE patients SET breed = newBreed WHERE patientID = id;
+    UPDATE patients SET species = newSpecies WHERE patientID = id;
+    UPDATE patients SET neutered = newNeutered WHERE patientID = id;
+    UPDATE patients SET microchip = newChip WHERE patientID = id;
+END$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `bodyparameter`
 --
@@ -74,6 +172,13 @@ CREATE TABLE `owner` (
   `owner_Email` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `owner`
+--
+
+INSERT INTO `owner` (`ownerID`, `owner_Username`, `owner_Password`, `owner_Fname`, `owner_Sname`, `owner_Mobile`, `owner_Email`) VALUES
+(1212, 'anOwner', 'iAmAnOwner9090', 'samuel', 'azur', '01212101101', 'anOwner@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -107,6 +212,13 @@ CREATE TABLE `vet` (
   `vet_Mobile` varchar(45) NOT NULL,
   `vet_EMail` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vet`
+--
+
+INSERT INTO `vet` (`vetID`, `vet_Username`, `vet_Password`, `vet_FName`, `vet_SName`, `vet_Mobile`, `vet_EMail`) VALUES
+(1111, 'bestVet', 'bvet1111', 'Roselyn', 'Skinner', '07868464685', 'bestVet@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -195,3 +307,7 @@ ALTER TABLE `electronicmedicalfile`
 ALTER TABLE `patients`
   ADD CONSTRAINT `patients_ibfk_1` FOREIGN KEY (`ownerID`) REFERENCES `owner` (`ownerID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
