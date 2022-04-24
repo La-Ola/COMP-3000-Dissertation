@@ -194,7 +194,7 @@ CREATE TABLE `patients` (
   `breed` varchar(25) DEFAULT NULL,
   `species` varchar(25) DEFAULT NULL,
   `neutered` varchar(3) DEFAULT NULL,
-  `microchip` int(11) DEFAULT NULL
+  `microchip` int(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
