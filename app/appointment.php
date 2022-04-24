@@ -30,7 +30,7 @@
 
         <div id='timeSelector' class='hidden'>
             <div class="header">
-                <input id="date_picker" class="datePicker" type="date" name="date_picker" required >
+                <input id="datePicker" class="datePicker" type="date" name="datePicker" required >
                 Choose appointment
             </div>
             <div id="bookingCard" class="bookingCard">

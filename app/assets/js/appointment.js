@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //all global variables required
     let table = document.getElementById('bookingTable');
-    let datePicker = document.getElementById('date_picker');
+    let datePicker = document.getElementById('datePicker');
     let tableSlot = document.getElementById('timeSelector');
 
     let timeBox = document.getElementsByClassName('timeBox');
@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let bookedSlots = {};
     let blockedSlots = {};
 
+    /**
+     * @desc book button activated on click, shows table with booking slots. 
+     * on second click, hides the booking table
+     */
     bookButton.addEventListener('click', () => {
         if (bookButton.innerText == 'Book Appointment') {
             tableSlot.classList.remove('hidden');
@@ -34,6 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    /**
+     * @desc this function does a request to check for bookings and blocked slots. 
+     * then makes the unavailable time non-selectable
+     */
     let checkAvailability = function() {
         let xhr = new XMLHttpRequest();
         xhr.addEventListener('readystatechange', function() {
@@ -43,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     let bookings = JSON.parse(json).data;
                     let keys = Object.keys(bookings);
 
+                    //loops through keys and sorts booked and blocked slots
                     keys.map(key => {
                         if (bookings[key].blocked == 0) {
                             bookedSlots[bookings[key].bookingDate] = bookings[key];
@@ -51,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
 
+                    //makes booked/blocked slots unselectable
                     let keysOfBooked = Object.keys(bookedSlots);
                     keysOfBooked.map(key => {
                         let bookingDate = bookedSlots[key].bookingDate;
@@ -90,8 +100,13 @@ document.addEventListener('DOMContentLoaded', () => {
         xhr.send();
     }
 
+    //runs checkAvailability on document load
     checkAvailability();
 
+    /**
+     * @desc gets the id of clicked timebox and makes it appear active. then creates a card to book appointment
+     * runs the function 'fillBookableForm'.
+     */
     let getTime = function(timeBox) {
         return function() {
             let chosenTime = timeBox.id;
@@ -121,10 +136,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    for (var i = 0, l = timeBox.length; l > i; i++) {
+    /**
+     * @desc loops through all timebox elements, and when it gets clicked runs the getTime function
+     */
+    let l = timeBox.length;
+    for (let i = 0; l > i; i++) {
         timeBox[i].onclick = getTime(timeBox[i]);
     }
 
+    /**
+     * @desc fills appointments table with all appointments from the day of viewing and onwards. 
+     * gets information from xmlhttprequests.
+     */
     let appointments = function() {
         table.innerHTML = '';
         let firstRow = document.createElement('tr');
@@ -240,8 +263,13 @@ document.addEventListener('DOMContentLoaded', () => {
         xhr.send();
     }
 
+    //runs appointments on page load
     appointments()
 
+    /**
+     * @desc when the datepicker value changes, it makes all the timeboxes selectable again then re-checks
+     * the availability for the new day selected.
+     */
     datePicker.addEventListener('change', () => {
         let bookingCard = document.getElementsByClassName('bookingCard')[0];
         let childs = bookingCard.childElementCount;
@@ -254,6 +282,12 @@ document.addEventListener('DOMContentLoaded', () => {
         checkAvailability()
     });
 
+    /**
+     * @desc creates a box to enter information about bookings. the first section enters owners pets into a drop
+     * down for easy selection.
+     * 
+     * submit button performs xmlhttp request sets booking using selected pet name, and makes timeslot unselectable.
+     */
     let fillBookableForm = function(bookable, slot) {
         if (slot.classList.contains('unselectableTime')) {
             bookableSlot.innerHTML = '';
@@ -371,6 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ddContainer.append(ddButton);
             ddContainer.append(ddContent);
 
+            //shows drop down on click
             ddButton.addEventListener('click', function() {
                 if (ddContent.classList.contains("hidden")) {
                     ddContent.classList.remove("hidden");
