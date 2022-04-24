@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    //all global variables required
     let addButton = document.getElementById('add');
     let cancelButton = document.getElementById('cancel');
     let createButton = document.getElementById('create');
@@ -17,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let checkPage = function() {
         let xhr = new XMLHttpRequest();
-
         xhr.addEventListener('readystatechange', function() {
             profiles.innerHTML = '';
             if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -283,7 +283,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         updateHolder.append(updateTable);
 
                         let emfHolder = document.createElement('div');
-                        //emfHolder.classList.add('hidden');
                         let emfTable = document.createElement('table');
                         emfHolder.append(emfTable)
 
@@ -314,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 emf.classList.add('hidden');
                                 emf.classList.remove('profileBut');
                             }
-                        })
+                        });
 
                         emf.addEventListener('click', () => {
                             let id = patients[key].patientID;
@@ -331,15 +330,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                 emf.innerHTML = 'Close';
                             
                                 let xhr = new XMLHttpRequest();
-
                                 xhr.addEventListener('readystatechange', function() {
                                     if (xhr.readyState === XMLHttpRequest.DONE) {
-                                        let responseJSON = xhr.responseText;
                                         try {
                                             let json = xhr.responseText.substring(7);console.log(json);
                                             let emr = JSON.parse(json).data;
                                             let keys = Object.keys(emr);
-                                            
 
                                             let headerRow = document.createElement('tr');
                                             let h1 = document.createElement('th');
@@ -374,7 +370,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                         }
                                     }
                                 });
-
                                 xhr.open('GET', '../api/emf/read.php?', true);
                                 xhr.send();
                             } else {
@@ -388,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 update.classList.add('profileBut');
                                 emf.innerHTML = 'EMF';
                             }
-                        })
+                        });
 
                         update.addEventListener('click', () => {
                             if (updateHolder.classList.contains('hidden')) {
@@ -416,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 updateCommit.classList.remove('profileBut');
                                 update.innerHTML = 'Update';
                             }
-                        })
+                        });
 
                         updateCommit.addEventListener('click', () => {
                             let id = patients[key].patientID;
@@ -435,7 +430,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             xhr.addEventListener('readystatechange', function() {
                                 if (xhr.readyState === XMLHttpRequest.DONE) {
-                                    let responseJSON = xhr.responseText;
                                     let notifier = new AWN();
                                     try {
                                         if (xhr.status == 200) {
@@ -449,7 +443,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                     }
                                 }
                             });
-
                             xhr.open('PUT', '../api/profile/update.php?', true);
                             xhr.send(JSON.stringify(body));
 
@@ -466,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             updateCommit.classList.remove('profileBut');
                             update.innerHTML = 'Update';
                             window.location = window.location;
-                        })
+                        });
 
                         del.addEventListener('click', () => {
                             let xhr = new XMLHttpRequest();
@@ -476,7 +469,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             xhr.addEventListener('readystatechange', function() {
                                 if (xhr.readyState === XMLHttpRequest.DONE) {
-                                    let responseJSON = xhr.responseText.substring(7);
                                     let notifier = new AWN();
                                     try {
                                         if (xhr.status == 200) {
@@ -494,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             xhr.send(JSON.stringify(body));
 
                             window.location = window.location;
-                        })
+                        });
                     });
 
                 } catch (error) {
@@ -521,7 +513,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addButton.addEventListener('click', () => {
         let xhr = new XMLHttpRequest();
-
         let body = {
             patientName: petName.value,
             DOB : dateofBirth.value,
@@ -534,7 +525,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         xhr.addEventListener('readystatechange', function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                let responseJSON = xhr.responseText;
                 let notifier = new AWN();
                 try {
                     if (xhr.status == 200) {
@@ -548,9 +538,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-
         xhr.open('POST', '../api/profile/create.php?', true);
         xhr.send(JSON.stringify(body));
+
         createPetCard.classList.add('hidden');
         createButton.classList.add('block');
         createButton.classList.remove('hidden');
@@ -558,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     createButton.addEventListener('click', () => {
-        clearForm();
+        clearForm()
 
         createPetCard.classList.remove('hidden');
         createButton.classList.remove('block');
@@ -571,6 +561,9 @@ document.addEventListener('DOMContentLoaded', () => {
         createButton.classList.remove('hidden');
     })
 
+    /**
+     * @desc checks local storage for font size and sets font size for page
+     */
     if (localStorage.getItem('font') === 'small') {
         document.body.setAttribute('font-size', 'small');
         localStorage.setItem('font', 'small');
@@ -582,6 +575,9 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem('font');
     }
 
+    /**
+     * @desc checks local storage for theme of page and sets the theme
+     */
     if (localStorage.getItem('theme') === 'dark') { 
         document.body.setAttribute('data-theme', 'dark'); 
     } else { 
