@@ -19,7 +19,8 @@
 
 <body>
     <div class="newBody">
-        
+        <div class='header'><b>COMING SOON</b></div>
+        <div class='card'>Please check back soon! If you've bookmarked us, please go to main site on your phone to check for update</div>
     </div>
     <div class="navbar">
         <a href='./index.php'>
