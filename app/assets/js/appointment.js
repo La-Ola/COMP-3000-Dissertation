@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    //all global variables required
     let table = document.getElementById('bookingTable');
     let datePicker = document.getElementById('date_picker');
     let tableSlot = document.getElementById('timeSelector');
@@ -31,12 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
             bookButton.innerText = 'Book Appointment';
             bookableSlot.innerHTML = '';
         }
-        
-    })
+    });
 
     let checkAvailability = function() {
         let xhr = new XMLHttpRequest();
-
         xhr.addEventListener('readystatechange', function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 try {
@@ -54,10 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     let keysOfBooked = Object.keys(bookedSlots);
                     keysOfBooked.map(key => {
-                        let bookingID = bookedSlots[key].bookingID;
                         let bookingDate = bookedSlots[key].bookingDate;
-                        let patientID = bookedSlots[key].patientID;
-                        let reason = bookedSlots[key].reason;
 
                         bookingDate = bookingDate.split(' ');
                         let bookingBlockDate = bookingDate[0];
@@ -85,13 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             slot.name = 'blocked';
                         }
                     });
-
                 } catch (error) {
                     console.log(error);
                 }
             }
         });
-
         xhr.open('GET', '../api/booking/readAll.php?', true);
         xhr.send();
     }
@@ -104,8 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let chosenSlot = document.getElementById(chosenTime);
             chosenSlot.classList.add('active');
 
-            splitDate = datePicker.value.split('-');
-            theDate = splitDate[2] + '/' + splitDate[1] + '/' + splitDate[0];
+            let splitDate = datePicker.value.split('-');
+            let theDate = splitDate[2] + '/' + splitDate[1] + '/' + splitDate[0];
 
             bookableSlot.innerHTML = '';
 
@@ -150,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         firstRow.append(head4);
 
         table.append(firstRow);
+
         let xhr = new XMLHttpRequest();
         xhr.addEventListener('readystatechange', function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -170,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     let keysOfBooked = Object.keys(bookedSlots).sort();
                     keysOfBooked.map(key => {
-                        let month = function (m) {
+                        let month = function(m) {
                             if (m < 10) {
                                 m = '0' + m.toString();
                             }
@@ -179,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         let now = new Date();
                         let miniMonth = now.getMonth() + 1;
                         let current = now.getFullYear() + '-' + (month(miniMonth)) + '-' + now.getDate();
-                        
+
                         let bookingDate = bookedSlots[key].bookingDate;
 
                         bookingDate = bookingDate.split(' ');
@@ -215,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         let json = xhr.responseText.substring(7);
                                         let patients = JSON.parse(json).data;
                                         let keys = Object.keys(patients);
-                                        
+
                                         keys.map(key => {
                                             if (patientID == patients[key].patientID) {
                                                 c4.innerHTML = patients[key].patientName;
@@ -226,7 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                     }
                                 }
                             });
-                    
                             xhr.open('GET', '../api/profile/read.php?', true);
                             xhr.send();
 
@@ -242,7 +236,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-
         xhr.open('GET', '../api/booking/readAll.php?', true);
         xhr.send();
     }
@@ -252,13 +245,13 @@ document.addEventListener('DOMContentLoaded', () => {
     datePicker.addEventListener('change', () => {
         let bookingCard = document.getElementsByClassName('bookingCard')[0];
         let childs = bookingCard.childElementCount;
-        
+
         for (let i = 0; i < childs; i++) {
             let slot = bookingCard.children[i];
             slot.classList.remove('unselectableTime');
             slot.classList.add('timeBox');
         }
-        checkAvailability();
+        checkAvailability()
     });
 
     let fillBookableForm = function(bookable, slot) {
@@ -298,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         let json = xhr.responseText.substring(7);
                         let patients = JSON.parse(json).data;
                         let keys = Object.keys(patients);
-    
+
                         keys.map(key => {
                             let name = patients[key].patientName;
                             let petId = patients[key].patientID;
@@ -319,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 caretContainer.classList.add("caretContainer");
                                 let rightCaret = document.createElement("span");
                                 rightCaret.classList.add("rightCaret");
-                                
+
                                 let leftCaret = document.createElement("span");
                                 leftCaret.classList.add("leftCaret");
 
@@ -336,7 +329,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                     slot.classList.add('unselectableTime');
 
                                     let xhr = new XMLHttpRequest();
-
                                     let body = {
                                         vetID: 1111,
                                         patientID: dropdown.id,
@@ -346,7 +338,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                     xhr.addEventListener('readystatechange', function() {
                                         if (xhr.readyState === XMLHttpRequest.DONE) {
-                                            let responseJSON = xhr.responseText;
                                             let notifier = new AWN();
                                             try {
                                                 if (xhr.status == 200) {
@@ -363,7 +354,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                             }
                                         }
                                     });
-
                                     xhr.open('POST', '../api/booking/create.php?', true);
                                     xhr.send(JSON.stringify(body));
                                 });
@@ -374,7 +364,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
-
             xhr.open('GET', '../api/profile/read.php?', true);
             xhr.send();
 
@@ -417,6 +406,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    /**
+     * @desc checks local storage for font size and sets font size for page
+     */
     if (localStorage.getItem('font') === 'small') {
         document.body.setAttribute('font-size', 'small');
         localStorage.setItem('font', 'small');
@@ -428,6 +420,9 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem('font');
     }
 
+    /**
+     * @desc checks local storage for theme of page and sets the theme
+     */
     if (localStorage.getItem("theme") === "dark") { 
         document.body.setAttribute("data-theme", "dark"); 
     } else { 
