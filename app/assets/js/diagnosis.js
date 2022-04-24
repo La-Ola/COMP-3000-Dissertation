@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    /**
+     * @desc checks local storage for font size and sets font size for page
+     */
     if (localStorage.getItem('font') === 'small') {
         document.body.setAttribute('font-size', 'small');
         localStorage.setItem('font', 'small');
@@ -11,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem('font');
     }
 
+    /**
+     * @desc checks local storage for theme of page and sets the theme
+     */
     if (localStorage.getItem("theme") === "dark") { 
         document.body.setAttribute("data-theme", "dark"); 
     } else { 
