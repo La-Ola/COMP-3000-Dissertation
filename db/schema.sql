@@ -9,13 +9,13 @@ DROP TABLE IF EXISTS vet;
 --
 
 CREATE TABLE `bodyparameter` (
-  `animal` varchar(25) NOT NULL,
-  `bloodGlucoseBottom` float NOT NULL,
-  `bloodGlucoseTop` float NOT NULL,
-  `heartRateBottom` int(3) NOT NULL,
-  `heartRateTop` int(3) NOT NULL,
-  `bodyTempBottom` float NOT NULL,
-  `bodyTempTop` float NOT NULL
+  `animal` VARCHAR(25) NOT NULL,
+  `bloodGlucoseBottom` FLOAT NOT NULL,
+  `bloodGlucoseTop` FLOAT NOT NULL,
+  `heartRateBottom` INT(3) NOT NULL,
+  `heartRateTop` INT(3) NOT NULL,
+  `bodyTempBottom` FLOAT NOT NULL,
+  `bodyTempTop` FLOAT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -26,7 +26,7 @@ INSERT INTO `bodyparameter` (`animal`, `bloodGlucoseBottom`, `bloodGlucoseTop`, 
 ('dog', 60, 111, 70, 120, 38, 39.5),
 ('cat', 80, 120, 120, 140, 37.8, 38.9),
 ('horse', 70, 135, 28, 40, 37.5, 38.5),
-('rabbit', 21.6, 541.8, 180, 350, 38.5, 40);
+('rabBIT', 21.6, 541.8, 180, 350, 38.5, 40);
 
 -- --------------------------------------------------------
 
@@ -35,12 +35,12 @@ INSERT INTO `bodyparameter` (`animal`, `bloodGlucoseBottom`, `bloodGlucoseTop`, 
 --
 
 CREATE TABLE `booking` (
-  `bookingID` int(11) NOT NULL,
-  `vetID` int(11) NOT NULL,
-  `patientID` int(11) DEFAULT NULL,
-  `bookingDate` datetime DEFAULT NULL,
-  `reason` varchar(200) DEFAULT NULL,
-  `blocked` bit(1) NOT NULL
+  `bookingID` INT(11) NOT NULL,
+  `vetID` INT(11) NOT NULL,
+  `patientID` INT(11) DEFAULT NULL,
+  `bookingDate` DATETIME DEFAULT NULL,
+  `reason` VARCHAR(200) DEFAULT NULL,
+  `blocked` BIT(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -50,12 +50,12 @@ CREATE TABLE `booking` (
 --
 
 CREATE TABLE `electronicmedicalfile` (
-  `EMRID` int(11) NOT NULL,
-  `patientID` int(11) NOT NULL,
-  `illness` varchar(25) DEFAULT NULL,
-  `medication` varchar(25) NOT NULL,
-  `date` date NOT NULL,
-  `notes` varchar(200) NOT NULL
+  `EMRID` INT(11) NOT NULL,
+  `patientID` INT(11) NOT NULL,
+  `illness` VARCHAR(25) DEFAULT NULL,
+  `medication` VARCHAR(25) NOT NULL,
+  `date` DATE NOT NULL,
+  `notes` VARCHAR(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -65,13 +65,13 @@ CREATE TABLE `electronicmedicalfile` (
 --
 
 CREATE TABLE `owner` (
-  `ownerID` int(11) NOT NULL,
-  `owner_Username` varchar(25) NOT NULL,
-  `owner_Password` varchar(80) NOT NULL,
-  `owner_Fname` varchar(25) NOT NULL,
-  `owner_Sname` varchar(25) NOT NULL,
-  `owner_Mobile` varchar(13) NOT NULL,
-  `owner_Email` varchar(80) NOT NULL
+  `ownerID` INT(11) NOT NULL,
+  `owner_Username` VARCHAR(25) NOT NULL,
+  `owner_Password` VARCHAR(80) NOT NULL,
+  `owner_Fname` VARCHAR(25) NOT NULL,
+  `owner_Sname` VARCHAR(25) NOT NULL,
+  `owner_Mobile` VARCHAR(13) NOT NULL,
+  `owner_Email` VARCHAR(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -81,15 +81,15 @@ CREATE TABLE `owner` (
 --
 
 CREATE TABLE `patients` (
-  `patientID` int(11) NOT NULL,
-  `ownerID` int(11) NOT NULL,
-  `patientName` varchar(25) DEFAULT NULL,
-  `DOB` date DEFAULT NULL,
-  `sex` varchar(6) DEFAULT NULL,
-  `breed` varchar(25) DEFAULT NULL,
-  `species` varchar(25) DEFAULT NULL,
-  `neutered` varchar(3) DEFAULT NULL,
-  `microchip` int(11) DEFAULT NULL
+  `patientID` INT(11) NOT NULL,
+  `ownerID` INT(11) NOT NULL,
+  `patientName` VARCHAR(25) DEFAULT NULL,
+  `DOB` DATE DEFAULT NULL,
+  `sex` VARCHAR(6) DEFAULT NULL,
+  `breed` VARCHAR(25) DEFAULT NULL,
+  `species` VARCHAR(25) DEFAULT NULL,
+  `neutered` VARCHAR(3) DEFAULT NULL,
+  `microchip` INT(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -99,13 +99,13 @@ CREATE TABLE `patients` (
 --
 
 CREATE TABLE `vet` (
-  `vetID` int(11) NOT NULL,
-  `vet_Username` varchar(45) NOT NULL,
-  `vet_Password` varchar(45) NOT NULL,
-  `vet_FName` varchar(45) NOT NULL,
-  `vet_SName` varchar(45) NOT NULL,
-  `vet_Mobile` varchar(45) NOT NULL,
-  `vet_EMail` varchar(45) NOT NULL
+  `vetID` INT(11) NOT NULL,
+  `vet_Username` VARCHAR(45) NOT NULL,
+  `vet_Password` VARCHAR(45) NOT NULL,
+  `vet_FName` VARCHAR(45) NOT NULL,
+  `vet_SName` VARCHAR(45) NOT NULL,
+  `vet_Mobile` VARCHAR(45) NOT NULL,
+  `vet_EMail` VARCHAR(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -159,38 +159,38 @@ ALTER TABLE `vet`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `bookingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `bookingID` INT(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `electronicmedicalfile`
 --
 ALTER TABLE `electronicmedicalfile`
-  MODIFY `EMRID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `EMRID` INT(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `patientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `patientID` INT(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- ConstraINTs for dumped tables
 --
 
 --
--- Constraints for table `booking`
+-- ConstraINTs for table `booking`
 --
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`patientID`) REFERENCES `patients` (`patientID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `electronicmedicalfile`
+-- ConstraINTs for table `electronicmedicalfile`
 --
 ALTER TABLE `electronicmedicalfile`
   ADD CONSTRAINT `electronicmedicalfile_ibfk_1` FOREIGN KEY (`patientID`) REFERENCES `patients` (`patientID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `patients`
+-- ConstraINTs for table `patients`
 --
 ALTER TABLE `patients`
   ADD CONSTRAINT `patients_ibfk_1` FOREIGN KEY (`ownerID`) REFERENCES `owner` (`ownerID`) ON DELETE CASCADE ON UPDATE CASCADE;
