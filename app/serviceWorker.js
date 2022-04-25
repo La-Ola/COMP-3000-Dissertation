@@ -59,30 +59,31 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('install', (event) => {
     event.waitUntil(
         addResourcesToCache([
-            '/app',
-            '/app/index.php',
-            '/app/assets/js/index.js',
-            '/app/appointment.php',
-            '/app/assets/css/appointment/style.css',
-            '/app/assets/js/appointment.js',
-            '/app/diagnosis.php',
-            '/app/assets/js/diagnosis.js',
-            '/app/profile.php',
-            '/app/assets/css/profile/style.css',
-            '/app/assets/js/profile.js',
-            '/app/setting.php',
-            '/app/assets/css/setting/style.css',
-            '/app/assets/js/setting.js',
-            '/app/assets/css/global.css',
-            '/app/assets/css/themes.css',
-            '/app/familiarsystems.ico',
+            '/COMP-3000/app',
+            '/COMP-3000/app/manifest.json',
+            '/COMP-3000/app/index.php',
+            '/COMP-3000/app/assets/js/index.js',
+            '/COMP-3000/app/appointment.php',
+            '/COMP-3000/app/assets/css/appointment/style.css',
+            '/COMP-3000/app/assets/js/appointment.js',
+            '/COMP-3000/app/diagnosis.php',
+            '/COMP-3000/app/assets/js/diagnosis.js',
+            '/COMP-3000/app/profile.php',
+            '/COMP-3000/app/assets/css/profile/style.css',
+            '/COMP-3000/app/assets/js/profile.js',
+            '/COMP-3000/app/setting.php',
+            '/COMP-3000/app/assets/css/setting/style.css',
+            '/COMP-3000/app/assets/js/setting.js',
+            '/COMP-3000/app/assets/css/global.css',
+            '/COMP-3000/app/assets/css/themes.css',
+            '/COMP-3000/app/familiarsystems.ico'
         ])
     )
 });
 
 self.addEventListener('fetch', (fetchEvent) => {
     fetchEvent.respondWith(
-        cachesFirst({
+        cacheFirst({
             request: fetchEvent.request,
             preloadResponsePromise: fetchEvent.preloadResponse
         })

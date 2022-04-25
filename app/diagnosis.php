@@ -3,7 +3,6 @@
 
 <head>
     <link rel='manifest' href='./manifest.json' />
-    <link rel='stylesheet' href='./assets/css/diagnosis/style.css'>
     <link rel='stylesheet' href='./assets/css/global.css'>
     <link rel='stylesheet' href='./assets/css/themes.css'>
     <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
