@@ -72,9 +72,7 @@ textarea {
     display: none;
 }
 
-
 /*scroll bar*/
-
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -94,7 +92,6 @@ textarea {
 }
 
 /*navbar*/
-
 .newBody {
     margin-top: 110px;
 }

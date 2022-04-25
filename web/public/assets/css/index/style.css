@@ -35,7 +35,9 @@
     float: right;
 }
 
-#appointmentTable, #medications, #historyTable {
+#appointmentTable,
+#medications,
+#historyTable {
     margin: 0;
     width: 100%;
 }
@@ -54,7 +56,7 @@
 }
 
 #historyTable th,
-#paramTable th{
+#paramTable th {
     width: calc(100% / 4);
 }
 
