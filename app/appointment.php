@@ -11,7 +11,7 @@
     <link rel='shortcut icon' href='../familiarsystems.ico'>
     <link rel='apple-touch-icon' href='../familiarsystems.ico'>
 
-    <script src='./assets/js/appointment.js'></script>
+    <script id="appointment-script" src='./assets/js/appointment.js'></script>
     <script src='../awesome-notifications-master/dist/index.var.js'></script>
 
     <title>Appointments</title>

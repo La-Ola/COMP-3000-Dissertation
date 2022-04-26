@@ -4,6 +4,7 @@
  * addAll() waits for cache to be created then takes an array of URLs to put into cache
 */
 const addResourcesToCache = async (resources) => {
+    caches.delete('cache1');
     const cache = await caches.open('cache1');
     await cache.addAll(resources);
 }
@@ -27,28 +28,22 @@ const putInCache = async (request, response) => {
  * 
  * preload starts download immediatly so that it doesnt have to wait for service worker to boot up
  */
-const cacheFirst = async (request, preloadResponsePromise) => {
+const cacheFirst = async (request) => {
     const responseFromCache = await caches.match(request);
-    if (responseFromCache) {
+
+    if (responseFromCache && !navigator.onLine) {
         return responseFromCache;
     }
-    const preloadResponse = await preloadResponsePromise;
-    if (preloadResponse) {
-        console.info('using preload response', preloadResponse);
-        putInCache(request, preloadResponse.clone());
-        return preloadResponse;
+    const responseFromNetwork = await fetch(request);
+    if (request.method === 'GET') {
+        putInCache(request, responseFromNetwork.clone())
     }
-}
+    
+    return responseFromNetwork;
+};
 
-// Enable navigation preloadin browser
-const enableNavigationPreload = async () => {
-    if (self.registration.navigationPreload) {
-        await self.registration.navigationPreload.enable();
-    }
-}
-
-self.addEventListener('activate', (event) => {
-    event.waitUntil(enableNavigationPreload());
+self.addEventListener('fetch', (event) => {
+    event.respondWith(cacheFirst(event.request));
 });
 
 /**
@@ -81,11 +76,6 @@ self.addEventListener('install', (event) => {
     )
 });
 
-self.addEventListener('fetch', (fetchEvent) => {
-    fetchEvent.respondWith(
-        cacheFirst({
-            request: fetchEvent.request,
-            preloadResponsePromise: fetchEvent.preloadResponse
-        })
-    )
+self.addEventListener('active', (event) => {
+
 });

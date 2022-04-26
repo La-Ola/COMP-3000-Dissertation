@@ -576,26 +576,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     /**
-     * @desc allows for users to see form for creating a new pet profile
-     */
-    createButton.addEventListener('click', () => {
-        clearForm()
-
-        createPetCard.classList.remove('hidden');
-        createButton.classList.remove('block');
-        createButton.classList.add('hidden');
-    })
-
-    /**
-     * @desc closes form to create a new pet
-     */
-    cancelButton.addEventListener('click', () => {
-        createPetCard.classList.add('hidden');
-        createButton.classList.add('block');
-        createButton.classList.remove('hidden');
-    })
-
-    /**
      * @desc checks local storage for font size and sets font size for page
      */
     if (localStorage.getItem('font') === 'small') {
@@ -616,5 +596,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.setAttribute('data-theme', 'dark'); 
     } else { 
         document.body.removeAttribute('data-theme', 'dark');
+    }
+
+    if (!navigator.onLine) {
+
     }
 });
