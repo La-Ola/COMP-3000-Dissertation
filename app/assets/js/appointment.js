@@ -88,6 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
+    /**
+     * @desc fills the table with the appointments, information taken from bookings table and patients table
+     * @param {object} bookedSlots 
+     */
     let fillAppointments = (bookedSlots) => {
         let keysOfBooked = Object.keys(bookedSlots).sort();
         keysOfBooked.map(key => {
@@ -193,6 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.removeAttribute("data-theme", "dark");
     }
 
+    //if offline, runs the first part of the if statement.
+    //if online the statement runs the xmlhttp requests
     if (!navigator.onLine) {
         bookButton.classList.add('hidden');
 
@@ -292,6 +298,9 @@ document.addEventListener('DOMContentLoaded', () => {
             timeBox[i].onclick = getTime(timeBox[i]);
         }
 
+        /**
+         * @desc reads profiles from table and stores the information in local storage
+         */
         let readProfile = () => {
             let xhr = new XMLHttpRequest();
             xhr.addEventListener('readystatechange', function() {
@@ -313,8 +322,12 @@ document.addEventListener('DOMContentLoaded', () => {
             xhr.send();
         }
 
+        //runs readProfile function
         readProfile()
 
+        /**
+         * @desc read all bookings, stores data in local storage and fills out appointments table
+         */
         let readBooking = () => {
             let xhr = new XMLHttpRequest();
             xhr.addEventListener('readystatechange', function() {
@@ -332,6 +345,8 @@ document.addEventListener('DOMContentLoaded', () => {
             xhr.open('GET', '../api/booking/readAll.php?', true);
             xhr.send();
         }
+
+        //runs readBooking function
         readBooking()
 
         /**
@@ -407,7 +422,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                     ddButton.appendChild(caretContainer);
 
                                     submitButton.addEventListener('click', function() {
-
                                         let theSlot = slot.innerText + ':00';
                                         let dateSelected = datePicker.value;
                                         let formattedDateTime = dateSelected + ' ' + theSlot;
