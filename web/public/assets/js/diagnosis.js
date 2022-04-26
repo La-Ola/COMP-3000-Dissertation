@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
 
+    /**
+     * @desc checks local storage for font size selected and sets the active size button to
+     * to a different colour.
+     */
     if (localStorage.getItem('font') === 'small') {
 		document.body.setAttribute('font-size', 'small');
         localStorage.setItem('font', 'small');
@@ -12,6 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.removeItem('font');
     }
 
+    /**
+     * @desc checks local storage for page theme
+     */
     if (localStorage.getItem("theme") === "dark") { 
 		document.body.setAttribute("data-theme", "dark"); 
 	} else { 
