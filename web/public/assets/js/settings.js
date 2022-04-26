@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    //all global variables required
     let togglePosition = document.getElementById('toggle-button');
     let toggleContainer = document.getElementById('toggle');
 
@@ -6,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let regButton = document.getElementById('regularFont');
     let lrgButton = document.getElementById('largeFont');
 
+    /**
+     * @desc button to activate small font adds selected to local storage
+     */
     smlButton.addEventListener('click', () => {
         if (document.body.hasAttribute('font-size', 'large')) {
             document.body.removeAttribute('font-Size', 'large');
@@ -19,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('font', 'small');
     });
 
+    /**
+     * @desc button to activate medium font adds selected to local storage
+     */
     regButton.addEventListener('click', () => {
         if (document.body.hasAttribute('font-size', 'small')) {
             document.body.removeAttribute('font-Size', 'small');
@@ -32,6 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
         smlButton.classList.remove('fontBoxActive');
     });
 
+    /**
+     * @desc button to activate large font adds selected to local storage
+     */
     lrgButton.addEventListener('click', () => {
         if (document.body.hasAttribute('font-size', 'small')) {
             document.body.removeAttribute('font-Size', 'small');
@@ -61,6 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    /**
+     * @desc checks local storage for font size selected and sets the active size button to
+     * to a different colour.
+     */
     if (localStorage.getItem('font') === 'small') {
 		document.body.setAttribute('font-size', 'small');
         smlButton.classList.add('fontBoxActive');
@@ -77,6 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		regButton.classList.add('fontBoxActive');
     }
 
+    /**
+     * @desc checks local storage for page theme
+     */
     if (localStorage.getItem('theme') === 'dark') { 
 		document.body.setAttribute('data-theme', 'dark'); 
         togglePosition.classList.add('toggle-button-active');
