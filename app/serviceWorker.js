@@ -26,7 +26,7 @@ const putInCache = async (request, response) => {
  * if request doesnt match, it runs a function to add page to cache for future
  * promise not returned by put in cache because i dont want to wait for it to be added before returning a response
  * 
- * preload starts download immediatly so that it doesnt have to wait for service worker to boot up
+ * when offline it uses cache, when online it uses the network responses
  */
 const cacheFirst = async (request) => {
     const responseFromCache = await caches.match(request);
@@ -38,7 +38,7 @@ const cacheFirst = async (request) => {
     if (request.method === 'GET') {
         putInCache(request, responseFromNetwork.clone())
     }
-    
+
     return responseFromNetwork;
 };
 
@@ -74,8 +74,4 @@ self.addEventListener('install', (event) => {
             '/COMP-3000/app/familiarsystems.ico'
         ])
     )
-});
-
-self.addEventListener('active', (event) => {
-
 });

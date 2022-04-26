@@ -90,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let fillAppointments = (bookedSlots) => {
         let keysOfBooked = Object.keys(bookedSlots).sort();
-        console.log(keysOfBooked);
         keysOfBooked.map(key => {
             let monthFunction = function(m) {
                 if (m < 10) {
@@ -107,8 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bookingDate = bookingDate.split(' ');
             let bookingBlockDate = bookingDate[0];
             let bookingBlockTime = bookingDate[1];
-            console.log("BOOK KEY", key);
-            // if (current <= bookingBlockDate) {
+            if (current <= bookingBlockDate) {
                 let patientID = bookedSlots[key].patientID;
 
                 let splitDate = bookingBlockDate.split('-');
@@ -138,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 row.append(c3);
                 row.append(c4);
                 table.append(row);
-            // }
+            }
         });
     }
 
@@ -224,16 +222,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let checkAvailability = function() {
             return new Promise((resolve, reject) => {
                 try {
+                    bookableSlot.innerHTML = '';
                     let xhr = new XMLHttpRequest();
                     xhr.addEventListener('readystatechange', function() {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
                             try {
-                                console.log(xhr.responseText);
                                 let json = xhr.responseText.substring(7);
                                 let bookings = JSON.parse(json).data;
                                 let keys = Object.keys(bookings);
-
-                                console.log("CORRECT KEYS", keys);
 
                                 fillBookedBlockedSlots(bookings, keys);
 
@@ -411,9 +407,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                     ddButton.appendChild(caretContainer);
 
                                     submitButton.addEventListener('click', function() {
-                                        let script = document.getElementById("appointment-script")
-                                        let src = script.getAttribute("src");
-                                        script.setAttribute("src", src + "?" + new Date().getTime());
 
                                         let theSlot = slot.innerText + ':00';
                                         let dateSelected = datePicker.value;
@@ -437,6 +430,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                                     try {
                                                         if (xhr.status == 200) {
                                                             notifier.success('Successfully Submitted Booking Information');
+                                                            tableSlot.classList.add('hidden');
+                                                            bookButton.innerText = 'Book Appointment';
                                                             bookableSlot.innerHTML = '';
                                                             await checkAvailability()
                                                             appointments()
