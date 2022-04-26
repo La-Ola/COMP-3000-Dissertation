@@ -222,26 +222,34 @@ document.addEventListener('DOMContentLoaded', () => {
          * then makes the unavailable time non-selectable
          */
         let checkAvailability = function() {
-            let xhr = new XMLHttpRequest();
-            xhr.addEventListener('readystatechange', function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    try {
-                        console.log(xhr.responseText);
-                        let json = xhr.responseText.substring(7);
-                        let bookings = JSON.parse(json).data;
-                        let keys = Object.keys(bookings);
+            return new Promise((resolve, reject) => {
+                try {
+                    let xhr = new XMLHttpRequest();
+                    xhr.addEventListener('readystatechange', function() {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            try {
+                                console.log(xhr.responseText);
+                                let json = xhr.responseText.substring(7);
+                                let bookings = JSON.parse(json).data;
+                                let keys = Object.keys(bookings);
 
-                        console.log("CORRECT KEYS", keys);
+                                console.log("CORRECT KEYS", keys);
 
-                        fillBookedBlockedSlots(bookings, keys);
+                                fillBookedBlockedSlots(bookings, keys);
 
-                    } catch (error) {
-                        console.log(error);
-                    }
+                                resolve();
+                            } catch (error) {
+                                console.log(error);
+                            }
+                        }
+                    });
+                    xhr.open('GET', '../api/booking/readAll.php?', true);
+                    xhr.send();
+                } catch(error) {
+                    console.log(error);
+                    reject(error);
                 }
             });
-            xhr.open('GET', '../api/booking/readAll.php?', true);
-            xhr.send();
         }
 
         //runs checkAvailability on document load
@@ -423,14 +431,14 @@ document.addEventListener('DOMContentLoaded', () => {
                                                 reason: reasonIDInput.value
                                             };
 
-                                            xhr.addEventListener('readystatechange', function() {
+                                            xhr.addEventListener('readystatechange', async function() {
                                                 if (xhr.readyState === XMLHttpRequest.DONE) {
                                                     let notifier = new AWN();
                                                     try {
                                                         if (xhr.status == 200) {
                                                             notifier.success('Successfully Submitted Booking Information');
                                                             bookableSlot.innerHTML = '';
-                                                            checkAvailability()
+                                                            await checkAvailability()
                                                             appointments()
                                                         } else {
                                                             notifier.alert('Has Not Submitted Booking. Check Connection.');
