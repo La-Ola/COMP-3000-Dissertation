@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    //all global variables needed
     let table = document.getElementById('appointmentTable');
 
     let infoCard = document.getElementById('halfCard');
@@ -32,6 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let rowButton = document.getElementById('rowButton');
     let formSubmit = document.getElementById('formSubmit');
 
+    /**
+     * @desc fills out appointments and information
+     */
     let appointments = function() {
         table.innerHTML = '';
         historyCard.innerHTML = '';
@@ -55,6 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
         firstRow.append(head5);
 
         table.append(firstRow);
+
+        /**
+         * @desc gets booked slots and adds them to the appointments table
+         */
         let xhr = new XMLHttpRequest();
         xhr.addEventListener('readystatechange', function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -116,6 +124,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             c4.id = patientsID;
                             let c5 = document.createElement('td');
 
+                            /**
+                             * @desc adds to appointment table the patient name
+                             */
                             let xhr = new XMLHttpRequest();
                             xhr.addEventListener('readystatechange', function() {
                                 if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -132,6 +143,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                                 moreBut.id = patients[key].patientID;
                                                 c5.append(moreBut);
 
+                                                /**
+                                                 * @desc onclick brings up medical history, profile, body parameters, and
+                                                 * places to add new medications and medical notes to emf
+                                                 */
                                                 moreBut.addEventListener('click', () => {
                                                     secondHalf.classList.remove('hidden');
                                                     secondHalf.classList.add('halfCardContainer');
@@ -143,11 +158,13 @@ document.addEventListener("DOMContentLoaded", () => {
                                                     histCard.classList.add('card');
                                                     historyCard.innerHTML = '';
 
+                                                    /**
+                                                     * @desc fills out the medical file for the selected pet
+                                                     */
                                                     let fillMedicalFile = function() {
                                                         let xhr = new XMLHttpRequest();
                                                         xhr.addEventListener('readystatechange', function() {
                                                             if (xhr.readyState === XMLHttpRequest.DONE) {
-                                                                let responseJSON = xhr.responseText;
                                                                 try {
                                                                     let json = xhr.responseText.substring(7);
                                                                     let emr = JSON.parse(json).data;
@@ -201,6 +218,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                                                             row.append(c5);
                                                                             emfTable.append(row);
 
+                                                                            /**
+                                                                             * @desc allows to delete a row in emf, incase of incorrect submission
+                                                                             */
                                                                             deleteButton.addEventListener('click', () => {
                                                                                 let xhr = new XMLHttpRequest();
                                                                                 let body = {
@@ -208,7 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                                                                 };
                                                                                 xhr.addEventListener('readystatechange', function() {
                                                                                     if (xhr.readyState === XMLHttpRequest.DONE) {
-                                                                                        let responseJSON = xhr.responseText;
                                                                                         let notifier = new AWN();
                                                                                         try {
                                                                                             if (xhr.status == 200) {
@@ -229,6 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                                                         }
                                                                     })
 
+                                                                    //if theres no information for the pet in its emf then it with display no information
                                                                     let rows = emfTable.getElementsByTagName("tr");
                                                                     if (rows.length == 1) {
                                                                         emfTable.innerHTML = '';
@@ -249,6 +269,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                                                     fillMedicalFile()
 
+                                                    /**
+                                                     * @desc fills out box with patient profile information and then allows for updates
+                                                     */
                                                     infoName.classList.remove('hidden');
                                                     infoName.classList.add('inputBox');
 
@@ -286,6 +309,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                                     infoCard.innerHTML = '';
                                                     infoCard.append(submitButton);
 
+                                                    /**
+                                                     * @desc update patient profile during appointment
+                                                     */
                                                     submitButton.addEventListener('click', () => {
                                                         let xhr = new XMLHttpRequest();
 
@@ -302,7 +328,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                                                         xhr.addEventListener('readystatechange', function() {
                                                             if (xhr.readyState === XMLHttpRequest.DONE) {
-                                                                let responseJSON = xhr.responseText;
                                                                 let notifier = new AWN();
                                                                 try {
                                                                     if (xhr.status == 200) {
@@ -316,11 +341,13 @@ document.addEventListener("DOMContentLoaded", () => {
                                                                 }
                                                             }
                                                         });
-
                                                         xhr.open('PUT', '../../api/profile/update.php?', true);
                                                         xhr.send(JSON.stringify(body));
                                                     })
 
+                                                    /**
+                                                     * @desc fills a card with body parapemeter saving vet time looking for them in other places such as online
+                                                     */
                                                     let fillParams = function() {
                                                         let xhr = new XMLHttpRequest();
                                                         xhr.addEventListener('readystatechange', function() {
@@ -366,6 +393,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                                                     fillParams()
 
+                                                    /**
+                                                     * @desc on click checks if input boxes are empty. if both are empty, a new row wont be added
+                                                     * else a new row will be added
+                                                     */
                                                     rowButton.addEventListener('click', () => {
                                                         let illnessCollect = document.querySelectorAll('#illness');
                                                         let medicineCollect = document.querySelectorAll('#medicine');
@@ -419,9 +450,13 @@ document.addEventListener("DOMContentLoaded", () => {
                                                         }
                                                     })
 
+                                                    //allow submit button to be shown
                                                     formSubmit.classList.remove('hidden');
                                                     formSubmit.classList.add('formButton');
 
+                                                    /**
+                                                     * @desc on click updates medical file with entries into input boxes/textareas
+                                                     */
                                                     formSubmit.addEventListener('click', () => {
                                                         let illnessCollect = document.querySelectorAll('#illness');
                                                         let medicineCollect = document.querySelectorAll('#medicine');
@@ -440,9 +475,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                                                 "date": date,
                                                                 "notes": noteTextArea.value
                                                             };
+
                                                             xhr.addEventListener('readystatechange', function() {
                                                                 if (xhr.readyState === XMLHttpRequest.DONE) {
-                                                                    let responseJSON = xhr.responseText;
                                                                     let notifier = new AWN();
                                                                     try {
                                                                         if (xhr.status == 200) {
@@ -459,7 +494,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                                             xhr.send(JSON.stringify(body));
                                                             window.location = window.location;
                                                         }
-                                                    })
+                                                    });
                                                 })
                                             }
                                         })
@@ -472,6 +507,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             xhr.open('GET', '../../api/profile/read.php?', true);
                             xhr.send();
 
+                            //adds row to appointments card with all of its information
                             row.append(c1);
                             row.append(c2);
                             row.append(c3);
@@ -490,6 +526,7 @@ document.addEventListener("DOMContentLoaded", () => {
         xhr.send();
     }
 
+    //runs appointments function on page load
     appointments()
 
     /**
