@@ -293,7 +293,8 @@ ALTER TABLE `patients`
 -- Constraints for table `booking`
 --
 ALTER TABLE `booking`
-  ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`patientID`) REFERENCES `patients` (`patientID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`patientID`) REFERENCES `patients` (`patientID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`vetID`) REFERENCES `vet` (`vetID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `electronicmedicalfile`
