@@ -225,6 +225,11 @@ document.addEventListener('DOMContentLoaded', () => {
             let buttonContainer = document.createElement('div');
             buttonContainer.classList.add('container');
 
+            //appends containers holding labels input boxes/textareas, and buttons
+            bookable.append(patientInputContainer);
+            bookable.append(reasonInputContainer);
+            bookable.append(buttonContainer);
+
             /**
              * @desc if the time is unselectable but not blocked, itll fill the input box and text area with the
              * booking information from the bookings table. it adds an update button and delete button
@@ -445,47 +450,45 @@ document.addEventListener('DOMContentLoaded', () => {
                     let dateSelected = datePicker.value;
                     let formattedDateTime = dateSelected + ' ' + theSlot;
 
-                    slot.classList.remove('timeBox');
-                    slot.classList.add('unselectableTime');
+                    if (patientIDInput.value != '') {
+                        slot.classList.remove('timeBox');
+                        slot.classList.add('unselectableTime');
 
-                    let xhr = new XMLHttpRequest();
+                        let xhr = new XMLHttpRequest();
 
-                    let body = {
-                        vetID: 1111,
-                        patientID: patientIDInput.value,
-                        bookingDate: formattedDateTime,
-                        reason: reasonIDInput.value
-                    };
+                        let body = {
+                            vetID: 1111,
+                            patientID: patientIDInput.value,
+                            bookingDate: formattedDateTime,
+                            reason: reasonIDInput.value
+                        };
 
-                    xhr.addEventListener('readystatechange', function() {
-                        if (xhr.readyState === XMLHttpRequest.DONE) {
-                            let responseJSON = xhr.responseText;
-                            let notifier = new AWN();
-                            try {
-                                if (xhr.status == 200) {
-                                    notifier.success('Successfully Submitted Booking Information');
-                                    bookableSlot.innerHTML = '';
-                                    checkAvailability()
-                                } else {
+                        xhr.addEventListener('readystatechange', function() {
+                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                let notifier = new AWN();
+                                try {
+                                    if (xhr.status == 200) {
+                                        bookableSlot.innerHTML = '';
+                                        checkAvailability()
+                                        notifier.success('Successfully Submitted Booking Information');
+                                    } else {
+                                        notifier.alert('Has Not Submitted Booking. Check Connection.');
+                                    }
+                                } catch (error) {
+                                    console.log(error);
                                     notifier.alert('Has Not Submitted Booking. Check Connection.');
                                 }
-                            } catch (error) {
-                                console.log(error);
-                                notifier.alert('Has Not Submitted Booking. Check Connection.');
                             }
-                        }
-                    });
+                        });
 
-                    xhr.open('POST', '../../api/booking/create.php?', true);
-                    xhr.send(JSON.stringify(body));
-
+                        xhr.open('POST', '../../api/booking/create.php?', true);
+                        xhr.send(JSON.stringify(body));
+                    } else {
+                        let notifier = new AWN();
+                        notifier.alert('Please Enter Pet ID.');
+                    }
                 });
             }
-
-            //appends containers holding labels input boxes/textareas, and buttons
-            bookable.append(patientInputContainer);
-            bookable.append(reasonInputContainer);
-            bookable.append(buttonContainer);
         }
 
         /**
