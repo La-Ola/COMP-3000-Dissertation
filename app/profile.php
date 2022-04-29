@@ -34,7 +34,7 @@
             <div class='card'>
                 <table>
                     <tr class='biTableSpacing'>
-                        <td><b>Pet Name: </b></td>
+                        <td><b>* Pet Name: </b></td>
                         <td><input class='inputBox' id='petName' placeholder='Pet Name'></td>
                     </tr>
 
@@ -54,7 +54,7 @@
                     </tr>
 
                     <tr class='biTableSpacing'>
-                        <td><b>Species: </b></td>
+                        <td><b>* Species: </b></td>
                         <td><input class='inputBox' id='species' placeholder='Dog'></td>
                     </tr>
 
