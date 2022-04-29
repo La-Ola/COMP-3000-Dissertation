@@ -77,13 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
         xhr.send();
 
         /**
-         * 
+         * @desc allows for new pet to be added
          */
         createButton.addEventListener('click', () => {
             createPetCard.classList.remove('hidden');
             createButton.classList.add('hidden');
-            createButton.classList.remove('hidden');
+            createButton.classList.remove('block');
         })
+
         /**
          * @desc when add button is clicked all information for new pet is submitted to the profile table using
          * an xmlhttp request
