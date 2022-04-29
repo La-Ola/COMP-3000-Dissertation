@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let r7 = document.createElement('tr');
                 r7.classList.add('biTableSpacing');
                 let d71 = document.createElement('td');
-                d71.innerHTML = '<b>Name:</b>';
+                d71.innerHTML = '<b>*Name:</b>';
                 let d72 = document.createElement('td');
                 let newName = document.createElement('input');
                 newName.id = 'newName';
@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let r11 = document.createElement('tr');
                 r11.classList.add('biTableSpacing');
                 let d111 = document.createElement('td');
-                d111.innerHTML = '<b>Species:</b>';
+                d111.innerHTML = '<b>*Species:</b>';
                 let d112 = document.createElement('td');
                 let newSpecies = document.createElement('input');
                 newSpecies.id = 'newSpecies';

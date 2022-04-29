@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
             patientIDInput.classList.add('inputBox');
             patientIDInput.id = 'PatientIDInput';
             patientIDInput.placeholder = 'Patient ID';
-            patientIDLabel.innerHTML = 'Patient ID:';
+            patientIDLabel.innerHTML = '*Patient ID:';
             patientIDLabelClassifier.append(patientIDLabel);
             patientInputContainer.append(patientIDLabelClassifier);
             patientInputContainer.append(patientIDInput);
