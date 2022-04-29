@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let c1 = document.createElement('td');
                 let jsDay = new Date(year, month, sday)
                 let dayNum = jsDay.getDay();
-                let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+                let days = ['Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
                 let day = days[dayNum];
                 c1.innerHTML = day;
                 let c2 = document.createElement('td');
@@ -191,10 +191,10 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * @desc checks local storage for theme of page and sets the theme
      */
-    if (localStorage.getItem("theme") === "dark") { 
-        document.body.setAttribute("data-theme", "dark"); 
+    if (localStorage.getItem('theme') === 'dark') { 
+        document.body.setAttribute('data-theme', 'dark'); 
     } else { 
-        document.body.removeAttribute("data-theme", "dark");
+        document.body.removeAttribute('data-theme', 'dark');
     }
 
     //if offline, runs the first part of the if statement.
@@ -406,16 +406,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                 dropdown.addEventListener('click', function() {
                                     ddButton.innerText = name;
-                                    ddContent.classList.add("hidden");
-                                    ddButton.classList.remove("dropdownButtonRadius");
+                                    ddContent.classList.add('hidden');
+                                    ddButton.classList.remove('dropdownButtonRadius');
 
-                                    let caretContainer = document.createElement("div");
-                                    caretContainer.classList.add("caretContainer");
-                                    let rightCaret = document.createElement("span");
-                                    rightCaret.classList.add("rightCaret");
+                                    let caretContainer = document.createElement('div');
+                                    caretContainer.classList.add('caretContainer');
+                                    let rightCaret = document.createElement('span');
+                                    rightCaret.classList.add('rightCaret');
 
-                                    let leftCaret = document.createElement("span");
-                                    leftCaret.classList.add("leftCaret");
+                                    let leftCaret = document.createElement('span');
+                                    leftCaret.classList.add('leftCaret');
 
                                     caretContainer.appendChild(leftCaret);
                                     caretContainer.appendChild(rightCaret);
@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                                 }
                                             });
 
-                                            xhr.addEventListener("error", (error) => {
+                                            xhr.addEventListener('error', (error) => {
                                                 console.log(error);
                                             })
 
@@ -485,14 +485,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 //shows drop down on click
                 ddButton.addEventListener('click', function() {
-                    if (ddContent.classList.contains("hidden")) {
-                        ddContent.classList.remove("hidden");
-                        ddContent.classList.add("dropdownContent");
-                        ddButton.classList.add("dropdownButtonRadius");
+                    if (ddContent.classList.contains('hidden')) {
+                        ddContent.classList.remove('hidden');
+                        ddContent.classList.add('dropdownContent');
+                        ddButton.classList.add('dropdownButtonRadius');
                     }
                     else {
-                        ddContent.classList.add("hidden");
-                        ddButton.classList.remove("dropdownButtonRadius");
+                        ddContent.classList.add('hidden');
+                        ddButton.classList.remove('dropdownButtonRadius');
                     }
                 });
 

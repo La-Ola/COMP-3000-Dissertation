@@ -3,11 +3,11 @@
  * on page load, it registers the service worker
  */
 
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function() {
-        navigator.serviceWorker.register("./serviceWorker.js", {updateViaCache: 'none'})
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./serviceWorker.js', {updateViaCache: 'none'})
         .then(navigator.serviceWorker.update)
-        .catch(err => console.log("service worker not registered", err))
+        .catch(err => console.log('service worker not registered', err))
     });
 }
 
@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * @desc checks local storage for theme of page and sets the theme
      */
-    if (localStorage.getItem("theme") === "dark") { 
-        document.body.setAttribute("data-theme", "dark"); 
+    if (localStorage.getItem('theme') === 'dark') { 
+        document.body.setAttribute('data-theme', 'dark'); 
     } else { 
-        document.body.removeAttribute("data-theme", "dark");
+        document.body.removeAttribute('data-theme', 'dark');
     }
 });

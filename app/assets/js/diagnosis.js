@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * @desc checks local storage for theme of page and sets the theme
      */
-    if (localStorage.getItem("theme") === "dark") { 
-        document.body.setAttribute("data-theme", "dark"); 
+    if (localStorage.getItem('theme') === 'dark') { 
+        document.body.setAttribute('data-theme', 'dark'); 
     } else { 
-        document.body.removeAttribute("data-theme", "dark");
+        document.body.removeAttribute('data-theme', 'dark');
     }
 });
