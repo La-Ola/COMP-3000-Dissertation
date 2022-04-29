@@ -2,16 +2,20 @@
  * firstly check to see if the browser supports the service worker.
  * on page load, it registers the service worker
  */
-/** 
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function() {
-        navigator.serviceWorker.register("./serviceWorker.js", {updateViaCache: 'none'})
-        .then(navigator.serviceWorker.update())
-        .catch(err => console.log("service worker not registered", err))
-    })
-}*/
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./serviceWorker.js', {updateViaCache: 'none'})
+        .then(navigator.serviceWorker.update)
+        .catch(err => console.log('service worker not registered', err))
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
+    /**
+     * @desc checks local storage for font size and sets font size for page
+     */
     if (localStorage.getItem('font') === 'small') {
         document.body.setAttribute('font-size', 'small');
         localStorage.setItem('font', 'small');
@@ -23,9 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem('font');
     }
 
-    if (localStorage.getItem("theme") === "dark") { 
-        document.body.setAttribute("data-theme", "dark"); 
+    /**
+     * @desc checks local storage for theme of page and sets the theme
+     */
+    if (localStorage.getItem('theme') === 'dark') { 
+        document.body.setAttribute('data-theme', 'dark'); 
     } else { 
-        document.body.removeAttribute("data-theme", "dark");
+        document.body.removeAttribute('data-theme', 'dark');
     }
 });

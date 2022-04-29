@@ -1,4 +1,5 @@
-.dateTable th, .dateTable td {
+.dateTable th,
+.dateTable td {
     text-align: center;
     vertical-align: bottom;
     border-bottom: none;
@@ -211,4 +212,3 @@ input.datePicker {
 .dropdownContent a:hover:last-child {
     border-radius: 0 0 10px 10px;
 }
-
