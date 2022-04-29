@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     let checkAvailability = function() {
         let xhr = new XMLHttpRequest();
-
         xhr.addEventListener('readystatechange', function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 try {
@@ -73,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             slot.name = 'blocked';
                         }
                     });
-
                 } catch (error) {
                     console.log(error);
                 }
@@ -170,7 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         xhr.addEventListener('readystatechange', function() {
                             if (xhr.readyState === XMLHttpRequest.DONE) {
-                                let responseJSON = xhr.responseText.substring(7);
                                 let notifier = new AWN();
                                 try {
                                     if (xhr.status == 200) {
@@ -273,7 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                 xhr.addEventListener('readystatechange', function() {
                                     if (xhr.readyState === XMLHttpRequest.DONE) {
-                                        let responseJSON = xhr.responseText.substring(7);
                                         let notifier = new AWN();
                                         try {
                                             if (xhr.status == 200) {
@@ -306,7 +302,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                 xhr.addEventListener('readystatechange', function() {
                                     if (xhr.readyState === XMLHttpRequest.DONE) {
-                                        let responseJSON = xhr.responseText.substring(7);
                                         let notifier = new AWN();
                                         try {
                                             if (xhr.status == 200) {
@@ -366,7 +361,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     let formattedDateTime = dateSelected + ' ' + theSlot;
 
                     let xhr = new XMLHttpRequest();
-
                     let body = {
                         vetID: 1111,
                         bookingDate: formattedDateTime
@@ -374,7 +368,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     xhr.addEventListener('readystatechange', function() {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
-                            let responseJSON = xhr.responseText;
                             let notifier = new AWN();
                             try {
                                 if (xhr.status == 200) {
@@ -388,7 +381,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
                     });
-
                     xhr.open('POST', '../../api/booking/block.php?', true);
                     xhr.send(JSON.stringify(body));
 
@@ -418,7 +410,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                 xhr.addEventListener('readystatechange', function() {
                                     if (xhr.readyState === XMLHttpRequest.DONE) {
-                                        let responseJSON = xhr.responseText.substring(7);
                                         let notifier = new AWN();
                                         try {
                                             if (xhr.status == 200) {
@@ -455,7 +446,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         slot.classList.add('unselectableTime');
 
                         let xhr = new XMLHttpRequest();
-
                         let body = {
                             vetID: 1111,
                             patientID: patientIDInput.value,
@@ -480,7 +470,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
                             }
                         });
-
                         xhr.open('POST', '../../api/booking/create.php?', true);
                         xhr.send(JSON.stringify(body));
                     } else {

@@ -314,7 +314,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                                      */
                                                     submitButton.addEventListener('click', () => {
                                                         let xhr = new XMLHttpRequest();
-
                                                         let body = {
                                                             patientID: patientsID,
                                                             patientName: infoName.value,
@@ -380,8 +379,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                                                             topTemp.innerHTML = params[key].bodyTempTop;
                                                                         }
                                                                     })
-                                                                    
-                                                                    
                                                                 } catch (error) {
                                                                     console.log(error);
                                                                 }
@@ -503,7 +500,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                     }
                                 }
                             });
-                    
                             xhr.open('GET', '../../api/profile/read.php?', true);
                             xhr.send();
 
@@ -521,7 +517,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         });
-
         xhr.open('GET', '../../api/booking/readAll.php?', true);
         xhr.send();
     }
