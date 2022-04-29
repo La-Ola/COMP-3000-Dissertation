@@ -4,10 +4,5 @@
 ### Logo custom designed and created by Samantha Skinner MSc, BSc
 
 
-## Bootstrap Resources
-### Vet booking page
-- CSS
-    - https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
-
-- JS
-    - 
+## Credits
+- https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
