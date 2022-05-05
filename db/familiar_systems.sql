@@ -1,5 +1,6 @@
 
---this is an export of the database containing all tables and stored prcedures
+-- this line and the following 2 must be removed for import to succeed
+-- this is an export of the database containing all tables and stored prcedures
 -- inludes pre-made owner and vet, and fills bodyparameter table sample
 
 

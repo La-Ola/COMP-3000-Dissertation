@@ -91,10 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                         let now = new Date();
                         let miniMonth = now.getMonth() + 1;
-                        let current = now.getFullYear() + '-' + (month(miniMonth)) + '-' + now.getDate();
+                        let current = now.getFullYear() + '-' + (month(miniMonth)) + '-' + '0' + now.getDate();
                         
                         let bookingDate = bookedSlots[key].bookingDate;
-
                         bookingDate = bookingDate.split(' ');
                         let bookingBlockDate = bookingDate[0];
                         let bookingBlockTime = bookingDate[1];
