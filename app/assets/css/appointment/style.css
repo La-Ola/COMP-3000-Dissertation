@@ -212,3 +212,23 @@ input.datePicker {
 .dropdownContent a:hover:last-child {
     border-radius: 0 0 10px 10px;
 }
+
+.binButton {
+    background: var(--navy-green);
+    color: var(--lightest-text);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    width: 60px;
+    font-size: var(--font-small);
+    cursor: pointer;
+    transition: 0.5s;
+    margin: 0;
+    box-shadow: var(--shadow);
+    padding: 10px 0 10px 0;
+}
+
+.binButtonSVG {
+    fill: var(--lightest-text);
+    width: 30px;
+}
