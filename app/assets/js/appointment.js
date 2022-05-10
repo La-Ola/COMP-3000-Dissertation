@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             let now = new Date();
             let miniMonth = now.getMonth() + 1;
-            let current = now.getFullYear() + '-' + (monthFunction(miniMonth)) + '-' + '0' + now.getDate();
+            let current = now.getFullYear() + '-' + (monthFunction(miniMonth)) + '-' + ('0' + now.getDate()).slice(-2);
 
             let bookingDate = bookedSlots[key].bookingDate;
             bookingDate = bookingDate.split(' ');
